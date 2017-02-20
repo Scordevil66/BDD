@@ -5,6 +5,8 @@
  */
 package bodegadedatos;
 
+import com.app.bdd.form.frmLogin;
+
 /**
  *
  * @author user
@@ -15,7 +17,9 @@ public class BodegaDeDatos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+       frmLogin miLogin = new frmLogin();
+        miLogin.setLocationRelativeTo(null);
+        miLogin.setVisible(true);
     }
     
 }

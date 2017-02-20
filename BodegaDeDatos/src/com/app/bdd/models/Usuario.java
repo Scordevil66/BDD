@@ -11,4 +11,6 @@ package com.app.bdd.models;
  */
 public class Usuario {
     
+    private int idUsuario;
+    
 }

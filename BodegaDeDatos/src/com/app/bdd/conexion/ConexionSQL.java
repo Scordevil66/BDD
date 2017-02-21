@@ -47,7 +47,7 @@ public class ConexionSQL {
             //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
             String url = "jdbc:sqlserver://localhost:1433;databaseName=SadRBM";
             // CONECCION A LA BASE DE DATOS
-            cn = DriverManager.getConnection(url, "root", clave);
+            cn = DriverManager.getConnection(url, "ce", clave);
             // TRAE LOS DATOS
             Statement st = cn.createStatement();
 

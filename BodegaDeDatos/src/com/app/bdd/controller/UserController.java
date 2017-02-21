@@ -8,8 +8,6 @@ package com.app.bdd.controller;
 
 import com.app.bdd.conexion.ConexionSQL;
 import com.app.bdd.models.Usuario;
-import java.sql.Date;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -31,52 +29,18 @@ public class UserController {
 
         try {
             
-            String sql = "";
-
-//            String sql = "INSERT INTO [dbo].[sadRecursoHumano] "
-//                    + "           ([rhNumIden] "
-//                    + "           ,[rhCodDeptoIden]"
-//                    + "           ,[rhCodCiudadIden]"
-//                    + "           ,[rhNombres]"
-//                    + "           ,[rhApellido1]"
-//                    + "           ,[rhApellido2]"
-//                    + "           ,[rhCodSexo]"
-//                    + "           ,[rhCodEstCivil]"
-//                    + "           ,[rhDireccion]"
-//                    + "           ,[rhBarrio]"
-//                    + "           ,[rhFchNacimiento]"
-//                    + "           ,[rhCodDeptoOrigen]"
-//                    + "           ,[rhCodCiudadOrigen]"
-//                    + "           ,[rhTelefono]"
-//                    + "           ,[rhCelular]"
-//                    + "           ,[rhCodTipVivienda]"
-//                    + "           ,[rhEstrato]"
-//                    + "           ,[rhGrupoSang]"
-//                    + "           ,[rhRH]"
-//                    + "           ,[rhCodEstado]"
-//                    + "           ,[rhCorreo])"
-//                    + "     VALUES "
-//                    + "           (" + usuario.getRhNumIden()
-//                    + "           ," + usuario.getRhCodDeptoIden()
-//                    + "           ," + usuario.getRhCodCiudadIden()
-//                    + "           ,'" + usuario.getRhNombres()
-//                    + "'           ,'" + usuario.getRhApellido1()
-//                    + "'           ,'" + usuario.getRhApellido2()
-//                    + "'           ," + usuario.getRhCodSexo()
-//                    + "           ," + usuario.getRhCodEstCivil()
-//                    + "           ,'" + usuario.getRhDireccion()
-//                    + "'           ,'" + usuario.getRhBarrio()
-//                    + "'           ,CONVERT(VARCHAR, '" + mesN+"/"+diaN+"/" +anioN +"', 103)"
-//                    + "           ," + usuario.getRhCodDeptoOrigen()
-//                    + "           ," + usuario.getRhCodCiudadOrigen()
-//                    + "           ," + usuario.getRhTelefono()
-//                    + "           ," + usuario.getRhCelular()
-//                    + "           ," + usuario.getRhCodTipVivienda()
-//                    + "           ," + usuario.getRhEstrato()
-//                    + "           ,'" + usuario.getRhGrupoSang()
-//                    + "'           ,'" + usuario.getRhRH()
-//                    + "'           ," + usuario.getRhCodEstado()
-//                    + "           ,'" + usuario.getRhCorreo() + "');";
+            String sql = "INSERT INTO  [BodegaDatos].[dbo].[usuarios] "
+                    + "           ([varNombreUser] "
+                    + "           ,[varApellidosUser]"
+                    + "           ,[varCargoUser]"
+                    + "           ,[varUsuario]"
+                    + "           ,[varPassword])"
+                    + "     VALUES "
+                    + "           (" + user.getVarNombreUser()
+                    + "           ," + user.getVarApellidosUser()
+                    + "           ," + user.getVarCargoUser()
+                    + "           ,'" + user.getVarUsuario()
+                    + "'           ,'" + user.getVarPassword()+ "');";
 
           
 

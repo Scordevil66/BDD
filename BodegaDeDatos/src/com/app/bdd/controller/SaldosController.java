@@ -7,7 +7,7 @@ package com.app.bdd.controller;
 
 
 import com.app.bdd.conexion.ConexionSQL;
-import com.app.bdd.models.Saldos;
+import com.app.bdd.models.TslSaldos;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +25,7 @@ public class SaldosController {
         this.st = ConexionSQL.conexion();
     }
 
-    public int registrarSaldo(Saldos saldo) throws Exception {
+    public int registrarSaldo(TslSaldos saldo) throws Exception {
 
         int sa = 0;
 

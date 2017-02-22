@@ -9,7 +9,7 @@ package com.app.bdd.models;
  *
  * @author ce
  */
-public class Saldos {
+public class TslSaldos {
 
     private int intIdSaldos;
 
@@ -32,14 +32,14 @@ public class Saldos {
     private String varSubtipo;
 
     //Constructers....
-    public Saldos() {
+    public TslSaldos() {
     }
 
-    public Saldos(int intIdSaldos) {
+    public TslSaldos(int intIdSaldos) {
         this.intIdSaldos = intIdSaldos;
     }
 
-    public Saldos(int intIdSaldos, String varBin, String varNitEMpresa, String varTarjeta, String varMiembro, String varNombTajHabiente, String decSaldoDispo, String varEstadoTarjeta, String varDescripEsta, String varSubtipo) {
+    public TslSaldos(int intIdSaldos, String varBin, String varNitEMpresa, String varTarjeta, String varMiembro, String varNombTajHabiente, String decSaldoDispo, String varEstadoTarjeta, String varDescripEsta, String varSubtipo) {
         this.intIdSaldos = intIdSaldos;
         this.varBin = varBin;
         this.varNitEMpresa = varNitEMpresa;

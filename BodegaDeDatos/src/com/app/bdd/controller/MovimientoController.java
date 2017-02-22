@@ -36,6 +36,18 @@ public class MovimientoController {
 
         int mo = 0;
 //        
+           String converFechaTransac = movimiento.getVarDateFechaTransac();
+           String anioTransac = converFechaTransac.substring(0, 4);
+           String mesTransac = converFechaTransac.substring(4, 6);
+           String diaTransac = converFechaTransac.substring(6, 8);
+           
+           
+           String convertergetVarFechAutoriza = movimiento.getVarFechAutoriza();
+           String anioAutoriza = convertergetVarFechAutoriza.substring(0, 4);
+           String mesAutoriza = convertergetVarFechAutoriza.substring(4, 6);
+           String diaAutoriza = convertergetVarFechAutoriza.substring(6, 8);
+           
+
 //        CONVERT(VARCHAR, '" + mesN+"/"+diaN+"/" +anioN +"', 103)"
 
         try {
@@ -85,13 +97,13 @@ public class MovimientoController {
                     + "'           ,'" + movimiento.getVarDescTransac()
                     + "'           ,'" + movimiento.getDecValTransaccion()
                     + " '          ,'" + movimiento.getDecValDispensado()
-                    + "'           ,'" + movimiento.getDateFechaTransac()
-                    + "'           ,'" + movimiento.getDecValCarCobr()
+                    + "'           ,CONVERT(VARCHAR, '" + mesTransac+"/"+diaTransac+"/" +anioTransac +"', 103)"
+                    + "           ,'" + movimiento.getDecValCarCobr()
                     + "'           ,'" + movimiento.getDecImpEmerEcono()
                     + "'           ,'" + movimiento.getDecValIva()
                     + " '          ,'" + movimiento.getDecTotalCobrar()
-                    + "'           ,'" + movimiento.getDateFechAutoriza()
-                    + " '          ,'" + movimiento.getVarHoraAutoriza()
+                    + "'           ,CONVERT(VARCHAR, '" + diaAutoriza+"/"+mesAutoriza+"/" +anioAutoriza +"', 103)"
+                    + "           ,'" + movimiento.getVarHoraAutoriza()
                     + " '          ,'" + movimiento.getVarHortaDisposi()
                     + "'           ,'" + movimiento.getVarNumReferencia()
                     + "'           ,'" + movimiento.getVarRedAdquiriente()

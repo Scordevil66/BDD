@@ -5,7 +5,6 @@
  */
 package com.app.bdd.controller;
 
-
 import com.app.bdd.conexion.ConexionSQL;
 import com.app.bdd.models.Movimientos;
 import java.io.BufferedReader;
@@ -28,17 +27,19 @@ public class MovimientoController {
     public MovimientoController() throws SQLException {
         this.st = ConexionSQL.conexion();
     }
-    
-        public static  void main(String[] args) {
+
+    public static void main(String[] args) {
         LeerArchivoMovimientoTxt();
     }
 
     public static int registrarMovimiento(Movimientos movimiento) throws Exception {
 
         int mo = 0;
+//        
+//        CONVERT(VARCHAR, '" + mesN+"/"+diaN+"/" +anioN +"', 103)"
 
         try {
-            
+
             String sql = "INSERT INTO  [BodegaDatos].[dbo].[movimientos] "
                     + "           ([varBin]"
                     + "           ,[varTarjeta]"
@@ -105,8 +106,6 @@ public class MovimientoController {
                     + "'           ,'" + movimiento.getVarNumCuotas()
                     + "'           ,'" + movimiento.getVarFiller2() + "');";
 
-          
-
             st.execute(sql);
 
             mo++;
@@ -122,15 +121,14 @@ public class MovimientoController {
         return mo;
 
     }
-    
-      public static void LeerArchivoMovimientoTxt() {
+
+    public static void LeerArchivoMovimientoTxt() {
         //Creamos un String que va a contener todo el texto del archivo
         String texto = "";
-        
+
         Movimientos movimiento = new Movimientos();
-        
-        double decValTransaccion = 0,decValDispensado = 0,decValCarCobr = 0,decValIva = 0,decTotalCobrar = 0 ,decImpEmerEcono = 0;
-        
+
+        double decValTransaccion = 0, decValDispensado = 0, decValCarCobr = 0, decValIva = 0, decTotalCobrar = 0, decImpEmerEcono = 0;
 
         try {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
@@ -141,7 +139,7 @@ public class MovimientoController {
 
 //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
             while ((texto = contenido.readLine()) != null) {
-            
+
                 movimiento = new Movimientos();
                 decValTransaccion = 0;
                 decValDispensado = 0;
@@ -149,7 +147,7 @@ public class MovimientoController {
                 decValIva = 0;
                 decTotalCobrar = 0;
                 decImpEmerEcono = 0;
-                
+
                 movimiento.setVarBin(texto.substring(0, 9));
                 movimiento.setVarTarjeta(texto.substring(9, 28));
                 movimiento.setVarNitEmpresa(texto.substring(28, 43));
@@ -157,53 +155,47 @@ public class MovimientoController {
                 movimiento.setVarDispOrigen(texto.substring(62, 64));
                 movimiento.setVarDesEstCoCargos(texto.substring(64, 94));
                 movimiento.setVarDescTransac(texto.substring(94, 124));
-                 
+
                 String enteroValTransaccion = texto.substring(124, 139);
                 String decimalValTransaccion = texto.substring(139, 141);
-                String cadenaValTransaccion = enteroValTransaccion+"."+decimalValTransaccion;
+                String cadenaValTransaccion = enteroValTransaccion + "." + decimalValTransaccion;
                 decValTransaccion = Double.parseDouble(cadenaValTransaccion);
-                
+
 //                decValTransaccion = Double.parseDouble(texto.substring(124, 141));
-                
                 String enteroValDispensado = texto.substring(141, 156);
                 String decimalValDispensado = texto.substring(156, 158);
-                String cadenaValDispensado = enteroValDispensado+"."+decimalValDispensado;                    
+                String cadenaValDispensado = enteroValDispensado + "." + decimalValDispensado;
                 decValDispensado = Double.parseDouble(cadenaValDispensado);
-                
-//                decValDispensado = Double.parseDouble(texto.substring(141, 158));
 
+//                decValDispensado = Double.parseDouble(texto.substring(141, 158));
                 movimiento.setVarDateFechaTransac(texto.substring(158, 166));
-                
+
                 String enteroTotalCobrar = texto.substring(166, 181);
                 String decimalTotalCobrar = texto.substring(181, 183);
-                String cadenaTotalCobrar = enteroTotalCobrar+"."+decimalTotalCobrar;
+                String cadenaTotalCobrar = enteroTotalCobrar + "." + decimalTotalCobrar;
                 decTotalCobrar = Double.parseDouble(cadenaTotalCobrar);
-                
+
 //                decTotalCobrar = Double.parseDouble(texto.substring(166, 183));
 //                movimiento.setDecTotalCobrar(decTotalCobrar);
-                
                 String enterodecValIva = texto.substring(183, 198);
                 String decimaldecValIva = texto.substring(198, 200);
-                String cadenadecValIva = enterodecValIva+"."+decimaldecValIva;
+                String cadenadecValIva = enterodecValIva + "." + decimaldecValIva;
                 decValIva = Double.parseDouble(cadenadecValIva);
-                      
+
 //                decValIva = Double.parseDouble(texto.substring(183, 200 ));
 //                movimiento.setDecValIva(decValIva);
-                               
                 String enterodecValCarCobr = texto.substring(200, 215);
                 String decimaldecValCarCobr = texto.substring(215, 217);
-                String cadenadecValCarCobr = enterodecValCarCobr+"."+decimaldecValCarCobr;
+                String cadenadecValCarCobr = enterodecValCarCobr + "." + decimaldecValCarCobr;
                 decValCarCobr = Double.parseDouble(cadenadecValCarCobr);
-                
+
 //                decValCarCobr = Double.parseDouble(texto.substring(200, 217));
 //                movimiento.setDecValCarCobr(decValCarCobr);
-                
-                  String enterodecImpEmerEcono = texto.substring(217, 232);
-                  String decimaldecImpEmerEcono = texto.substring(232, 234);
-                  String cadenadecImpEmerEcono = enterodecImpEmerEcono+"."+decimaldecImpEmerEcono;
-                  decImpEmerEcono = Double.parseDouble(cadenadecImpEmerEcono);
+                String enterodecImpEmerEcono = texto.substring(217, 232);
+                String decimaldecImpEmerEcono = texto.substring(232, 234);
+                String cadenadecImpEmerEcono = enterodecImpEmerEcono + "." + decimaldecImpEmerEcono;
+                decImpEmerEcono = Double.parseDouble(cadenadecImpEmerEcono);
 //                decImpEmerEcono = Double.parseDouble(texto.substring(217, 234));
-
 
                 movimiento.setVarIndicadorRever(texto.substring(234, 235));
                 movimiento.setVarRespuAutoriz(texto.substring(235, 237));
@@ -225,11 +217,11 @@ public class MovimientoController {
                 movimiento.setVarValorBaseDevIva(texto.substring(423, 438));
                 movimiento.setVarNumCuotas(texto.substring(438, 440));
                 movimiento.setVarFiller2(texto.substring(440, 450));
-                
+
                 System.out.println(texto);
-                
+
                 int resultado = registrarMovimiento(movimiento);
-                
+
             }
         } //Si se causa un error al leer cae aqui
         catch (Exception e) {

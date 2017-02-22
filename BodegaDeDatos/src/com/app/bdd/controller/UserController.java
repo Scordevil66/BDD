@@ -36,10 +36,10 @@ public class UserController {
                     + "           ,[varUsuario]"
                     + "           ,[varPassword])"
                     + "     VALUES "
-                    + "           (" + user.getVarNombreUser()
-                    + "           ," + user.getVarApellidosUser()
-                    + "           ," + user.getVarCargoUser()
-                    + "           ,'" + user.getVarUsuario()
+                    + "           ('" + user.getVarNombreUser()
+                    + "'           ,'" + user.getVarApellidosUser()
+                    + " '          ,'" + user.getVarCargoUser()
+                    + "'           ,'" + user.getVarUsuario()
                     + "'           ,'" + user.getVarPassword()+ "');";
 
           

@@ -33,7 +33,9 @@ public class Movimientos {
 
     private double decValDispensado;
 
-    private double dateFechaTransac;
+    private Date dateFechaTransac;
+    
+    private String varDateFechaTransac;
 
     private double decValCarCobr;
 
@@ -93,46 +95,6 @@ public class Movimientos {
         this.intidMovimientos = intidMovimientos;
     }
 
-    public Movimientos(int intidMovimientos, String varBin, String varTarjeta, String varNitEmpresa, String varNumCuenta, String varDispOrigen, String varDesEstCoCargos, String varDescTransac, double decValTransaccion, double decValDispensado, double dateFechaTransac, double decValCarCobr, double decValIva, double decTotalCobrar, double decImpEmerEcono, String varIndicadorRever, String varRespuAutoriz, String varDescrpResp, String varCodAutoriza, String varFiller, Date dateFechAutoriza, String varFechAutoriza, String varHoraAutoriza, String varHortaDisposi, String varNumReferencia, String varRedAdquiriente, String varNumDispos, String varCodEstablecimiento, String varSubtipo, String varDescriSubtipo, String varNumTarjSecundari, String varValorPropina, String varValorIva, String varValorBaseDevIva, String varNumCuotas, String varFiller2) {
-        this.intidMovimientos = intidMovimientos;
-        this.varBin = varBin;
-        this.varTarjeta = varTarjeta;
-        this.varNitEmpresa = varNitEmpresa;
-        this.varNumCuenta = varNumCuenta;
-        this.varDispOrigen = varDispOrigen;
-        this.varDesEstCoCargos = varDesEstCoCargos;
-        this.varDescTransac = varDescTransac;
-        this.decValTransaccion = decValTransaccion;
-        this.decValDispensado = decValDispensado;
-        this.dateFechaTransac = dateFechaTransac;
-        this.decValCarCobr = decValCarCobr;
-        this.decValIva = decValIva;
-        this.decTotalCobrar = decTotalCobrar;
-        this.decImpEmerEcono = decImpEmerEcono;
-        this.varIndicadorRever = varIndicadorRever;
-        this.varRespuAutoriz = varRespuAutoriz;
-        this.varDescrpResp = varDescrpResp;
-        this.varCodAutoriza = varCodAutoriza;
-        this.varFiller = varFiller;
-        this.dateFechAutoriza = dateFechAutoriza;
-        this.varFechAutoriza = varFechAutoriza;
-        this.varHoraAutoriza = varHoraAutoriza;
-        this.varHortaDisposi = varHortaDisposi;
-        this.varNumReferencia = varNumReferencia;
-        this.varRedAdquiriente = varRedAdquiriente;
-        this.varNumDispos = varNumDispos;
-        this.varCodEstablecimiento = varCodEstablecimiento;
-        this.varSubtipo = varSubtipo;
-        this.varDescriSubtipo = varDescriSubtipo;
-        this.varNumTarjSecundari = varNumTarjSecundari;
-        this.varValorPropina = varValorPropina;
-        this.varValorIva = varValorIva;
-        this.varValorBaseDevIva = varValorBaseDevIva;
-        this.varNumCuotas = varNumCuotas;
-        this.varFiller2 = varFiller2;
-    }
-
-    /// getters and setters 
     public int getIntidMovimientos() {
         return intidMovimientos;
     }
@@ -213,12 +175,20 @@ public class Movimientos {
         this.decValDispensado = decValDispensado;
     }
 
-    public double getDateFechaTransac() {
+    public Date getDateFechaTransac() {
         return dateFechaTransac;
     }
 
-    public void setDateFechaTransac(double dateFechaTransac) {
+    public void setDateFechaTransac(Date dateFechaTransac) {
         this.dateFechaTransac = dateFechaTransac;
+    }
+
+    public String getVarDateFechaTransac() {
+        return varDateFechaTransac;
+    }
+
+    public void setVarDateFechaTransac(String varDateFechaTransac) {
+        this.varDateFechaTransac = varDateFechaTransac;
     }
 
     public double getDecValCarCobr() {
@@ -420,12 +390,16 @@ public class Movimientos {
     public void setVarFiller2(String varFiller2) {
         this.varFiller2 = varFiller2;
     }
+
+    
     
     //TO String
 
     @Override
     public String toString() {
-        return "Movimientos{" + "intidMovimientos=" + intidMovimientos + ", varBin=" + varBin + ", varTarjeta=" + varTarjeta + ", varNitEmpresa=" + varNitEmpresa + ", varNumCuenta=" + varNumCuenta + ", varDispOrigen=" + varDispOrigen + ", varDesEstCoCargos=" + varDesEstCoCargos + ", varDescTransac=" + varDescTransac + ", decValTransaccion=" + decValTransaccion + ", decValDispensado=" + decValDispensado + ", dateFechaTransac=" + dateFechaTransac + ", decValCarCobr=" + decValCarCobr + ", decValIva=" + decValIva + ", decTotalCobrar=" + decTotalCobrar + ", decImpEmerEcono=" + decImpEmerEcono + ", varIndicadorRever=" + varIndicadorRever + ", varRespuAutoriz=" + varRespuAutoriz + ", varDescrpResp=" + varDescrpResp + ", varCodAutoriza=" + varCodAutoriza + ", varFiller=" + varFiller + ", dateFechAutoriza=" + dateFechAutoriza + ", varFechAutoriza=" + varFechAutoriza + ", varHoraAutoriza=" + varHoraAutoriza + ", varHortaDisposi=" + varHortaDisposi + ", varNumReferencia=" + varNumReferencia + ", varRedAdquiriente=" + varRedAdquiriente + ", varNumDispos=" + varNumDispos + ", varCodEstablecimiento=" + varCodEstablecimiento + ", varSubtipo=" + varSubtipo + ", varDescriSubtipo=" + varDescriSubtipo + ", varNumTarjSecundari=" + varNumTarjSecundari + ", varValorPropina=" + varValorPropina + ", varValorIva=" + varValorIva + ", varValorBaseDevIva=" + varValorBaseDevIva + ", varNumCuotas=" + varNumCuotas + ", varFiller2=" + varFiller2 + '}';
+        return "Movimientos{" + "intidMovimientos=" + intidMovimientos + ", varBin=" + varBin + ", varTarjeta=" + varTarjeta + ", varNitEmpresa=" + varNitEmpresa + ", varNumCuenta=" + varNumCuenta + ", varDispOrigen=" + varDispOrigen + ", varDesEstCoCargos=" + varDesEstCoCargos + ", varDescTransac=" + varDescTransac + ", decValTransaccion=" + decValTransaccion + ", decValDispensado=" + decValDispensado + ", dateFechaTransac=" + dateFechaTransac + ", varDateFechaTransac=" + varDateFechaTransac + ", decValCarCobr=" + decValCarCobr + ", decValIva=" + decValIva + ", decTotalCobrar=" + decTotalCobrar + ", decImpEmerEcono=" + decImpEmerEcono + ", varIndicadorRever=" + varIndicadorRever + ", varRespuAutoriz=" + varRespuAutoriz + ", varDescrpResp=" + varDescrpResp + ", varCodAutoriza=" + varCodAutoriza + ", varFiller=" + varFiller + ", dateFechAutoriza=" + dateFechAutoriza + ", varFechAutoriza=" + varFechAutoriza + ", varHoraAutoriza=" + varHoraAutoriza + ", varHortaDisposi=" + varHortaDisposi + ", varNumReferencia=" + varNumReferencia + ", varRedAdquiriente=" + varRedAdquiriente + ", varNumDispos=" + varNumDispos + ", varCodEstablecimiento=" + varCodEstablecimiento + ", varSubtipo=" + varSubtipo + ", varDescriSubtipo=" + varDescriSubtipo + ", varNumTarjSecundari=" + varNumTarjSecundari + ", varValorPropina=" + varValorPropina + ", varValorIva=" + varValorIva + ", varValorBaseDevIva=" + varValorBaseDevIva + ", varNumCuotas=" + varNumCuotas + ", varFiller2=" + varFiller2 + '}';
     }
+
+  
 
 }

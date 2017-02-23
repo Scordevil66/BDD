@@ -23,7 +23,7 @@ public class TslSaldos {
 
     private String varNombTajHabiente;
 
-    private String decSaldoDispo;
+    private double decSaldoDispo;
 
     private String varEstadoTarjeta;
 
@@ -39,7 +39,7 @@ public class TslSaldos {
         this.intIdSaldos = intIdSaldos;
     }
 
-    public TslSaldos(int intIdSaldos, String varBin, String varNitEMpresa, String varTarjeta, String varMiembro, String varNombTajHabiente, String decSaldoDispo, String varEstadoTarjeta, String varDescripEsta, String varSubtipo) {
+    public TslSaldos(int intIdSaldos, String varBin, String varNitEMpresa, String varTarjeta, String varMiembro, String varNombTajHabiente, double decSaldoDispo, String varEstadoTarjeta, String varDescripEsta, String varSubtipo) {
         this.intIdSaldos = intIdSaldos;
         this.varBin = varBin;
         this.varNitEMpresa = varNitEMpresa;
@@ -101,11 +101,11 @@ public class TslSaldos {
         this.varNombTajHabiente = varNombTajHabiente;
     }
 
-    public String getDecSaldoDispo() {
+    public double getDecSaldoDispo() {
         return decSaldoDispo;
     }
 
-    public void setDecSaldoDispo(String decSaldoDispo) {
+    public void setDecSaldoDispo(double decSaldoDispo) {
         this.decSaldoDispo = decSaldoDispo;
     }
 

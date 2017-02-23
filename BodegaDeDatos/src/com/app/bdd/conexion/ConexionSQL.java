@@ -23,7 +23,7 @@ import java.util.logging.Logger;
 public class ConexionSQL {
 
     //static String clave = "yU7eywfXILoZjtaD";
-    static String clave = "";
+    static String clave = "qwerty";
     static Statement ST = null;
     static Connection cn = null;
     static String user = "";
@@ -47,7 +47,7 @@ public class ConexionSQL {
             //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
             String url = "jdbc:sqlserver://localhost:1433;databaseName=BodegaDatos";
             // CONECCION A LA BASE DE DATOS
-            cn = DriverManager.getConnection(url, "ce", clave);
+            cn = DriverManager.getConnection(url, "sa", clave);
             // TRAE LOS DATOS
             Statement st = cn.createStatement();
 

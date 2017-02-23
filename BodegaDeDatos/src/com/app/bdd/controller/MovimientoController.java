@@ -24,8 +24,8 @@ public class MovimientoController {
 
     static Statement st;
 
-    public MovimientoController() throws SQLException {
-        this.st = ConexionSQL.conexion();
+    public static void MovimientoController() throws SQLException {
+        MovimientoController.st = ConexionSQL.conexion();
     }
 
     public static void main(String[] args) {
@@ -33,8 +33,12 @@ public class MovimientoController {
     }
 
     public static int registrarMovimiento(Movimientos movimiento) throws Exception {
+        
+        MovimientoController.MovimientoController();
 
         int mo = 0;
+        
+         String sql = "";
 //        
         String converFechaTransac = movimiento.getVarDateFechaTransac();
         String anioTransac = converFechaTransac.substring(0, 4);
@@ -49,7 +53,7 @@ public class MovimientoController {
 //        CONVERT(VARCHAR, '" + mesN+"/"+diaN+"/" +anioN +"', 103)"
         try {
 
-            String sql = "INSERT INTO  [BodegaDatos].[dbo].[movimientos] "
+            sql = "INSERT INTO  [BodegaDatos].[dbo].[movimientos] "
                     + "           ([varBin]"
                     + "           ,[varTarjeta]"
                     + "           ,[varNitEmpresa]"
@@ -126,7 +130,8 @@ public class MovimientoController {
 
         } catch (Exception e) {
 
-            throw e;
+//            throw e;.
+System.out.println("errror------"+e);
 
         } finally {
             ConexionSQL.CerrarConexion();
@@ -216,7 +221,11 @@ public class MovimientoController {
                 movimiento.setVarDescrpResp(texto.substring(237, 267));
                 movimiento.setVarCodAutoriza(texto.substring(267, 273));
                 movimiento.setVarFiller(texto.substring(273, 276));
-                movimiento.setVarFechAutoriza(texto.substring(276, 284));
+                if (texto.substring(276, 284).equals("00000000")) {
+                    movimiento.setVarFechAutoriza("00010101");
+                } else {
+                    movimiento.setVarFechAutoriza(texto.substring(276, 284));
+                }
                 movimiento.setVarHoraAutoriza(texto.substring(284, 293));
                 movimiento.setVarHortaDisposi(texto.substring(293, 299));
                 movimiento.setVarNumReferencia(texto.substring(299, 311));

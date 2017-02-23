@@ -70,6 +70,8 @@ public class NoMonetarias {
     private String varNumTarjeta;
 
     private String varTipoCuenta;
+    
+    private String NumeroCuenta;
 
     private Date dateFechNacimi;
 
@@ -105,7 +107,7 @@ public class NoMonetarias {
         this.intIdNoMonetarias = intIdNoMonetarias;
     }
 
-    public NoMonetarias(int intIdNoMonetarias, String varNitEmpresa, Date dateFechaEnvio, String varFechaEnvio, String varConsecutiEnvio, String varTipoIndentiCliente, String varNumIdentifCliente, String varCodEmpleado, String varDptoEmpresa, String varPrimerApellido, String varSegundoApellido, String varPrimerNombre, String varSegundoNombre, String varNombreCorto, String varDirResidencia, String varZonaPostalResidencia, String varCuidadResidencia, String varDirOficina, String varZonaPostalOficina, String varCuidadOficina, String varDirCorrespondencia, String varZonaPostalCorresponde, String varCuidadCorresponde, String varTelResidencia, String varTelOficina, String varTelCorrespondencia, String varOficina, String varNumTarjeta, String varTipoCuenta, Date dateFechNacimi, String varFechNacimi, String varNacionalidad, String varEstadoCivil, String varSexo, String varNivelEstudio, String varProfesion, Date dateFechaVinculacion, String varFechaVinculacion, String varTipoNovedad, String varEspaciosBlancos, String varReservado, String varCodError) {
+    public NoMonetarias(int intIdNoMonetarias, String varNitEmpresa, Date dateFechaEnvio, String varFechaEnvio, String varConsecutiEnvio, String varTipoIndentiCliente, String varNumIdentifCliente, String varCodEmpleado, String varDptoEmpresa, String varPrimerApellido, String varSegundoApellido, String varPrimerNombre, String varSegundoNombre, String varNombreCorto, String varDirResidencia, String varZonaPostalResidencia, String varCuidadResidencia, String varDirOficina, String varZonaPostalOficina, String varCuidadOficina, String varDirCorrespondencia, String varZonaPostalCorresponde, String varCuidadCorresponde, String varTelResidencia, String varTelOficina, String varTelCorrespondencia, String varOficina, String varNumTarjeta, String varTipoCuenta, String NumeroCuenta, Date dateFechNacimi, String varFechNacimi, String varNacionalidad, String varEstadoCivil, String varSexo, String varNivelEstudio, String varProfesion, Date dateFechaVinculacion, String varFechaVinculacion, String varTipoNovedad, String varEspaciosBlancos, String varReservado, String varCodError) {
         this.intIdNoMonetarias = intIdNoMonetarias;
         this.varNitEmpresa = varNitEmpresa;
         this.dateFechaEnvio = dateFechaEnvio;
@@ -135,6 +137,7 @@ public class NoMonetarias {
         this.varOficina = varOficina;
         this.varNumTarjeta = varNumTarjeta;
         this.varTipoCuenta = varTipoCuenta;
+        this.NumeroCuenta = NumeroCuenta;
         this.dateFechNacimi = dateFechNacimi;
         this.varFechNacimi = varFechNacimi;
         this.varNacionalidad = varNacionalidad;
@@ -149,13 +152,11 @@ public class NoMonetarias {
         this.varReservado = varReservado;
         this.varCodError = varCodError;
     }
-
-    //Getters and Setters
     public int getIntIdNoMonetarias() {
         return intIdNoMonetarias;
     }
 
-    public void setIntIdNoMonetarias(int intIdNoMonetarias) {
+    public void setIntIdNoMonetarias(int intIdNoMonetarias) {   
         this.intIdNoMonetarias = intIdNoMonetarias;
     }
 
@@ -383,6 +384,14 @@ public class NoMonetarias {
         this.varTipoCuenta = varTipoCuenta;
     }
 
+    public String getNumeroCuenta() {
+        return NumeroCuenta;
+    }
+
+    public void setNumeroCuenta(String NumeroCuenta) {
+        this.NumeroCuenta = NumeroCuenta;
+    }
+
     public Date getDateFechNacimi() {
         return dateFechNacimi;
     }
@@ -483,14 +492,17 @@ public class NoMonetarias {
         return varCodError;
     }
 
-    public void setVarCodError(String varCodError) {
+    //Getters and Setters
+    public void setVarCodError(String varCodError) {    
         this.varCodError = varCodError;
     }
 
     //To String
+
     @Override
     public String toString() {
-        return "NoMonetarias{" + "intIdNoMonetarias=" + intIdNoMonetarias + ", varNitEmpresa=" + varNitEmpresa + ", dateFechaEnvio=" + dateFechaEnvio + ", varFechaEnvio=" + varFechaEnvio + ", varConsecutiEnvio=" + varConsecutiEnvio + ", varTipoIndentiCliente=" + varTipoIndentiCliente + ", varNumIdentifCliente=" + varNumIdentifCliente + ", varCodEmpleado=" + varCodEmpleado + ", varDptoEmpresa=" + varDptoEmpresa + ", varPrimerApellido=" + varPrimerApellido + ", varSegundoApellido=" + varSegundoApellido + ", varPrimerNombre=" + varPrimerNombre + ", varSegundoNombre=" + varSegundoNombre + ", varNombreCorto=" + varNombreCorto + ", varDirResidencia=" + varDirResidencia + ", varZonaPostalResidencia=" + varZonaPostalResidencia + ", varCuidadResidencia=" + varCuidadResidencia + ", varDirOficina=" + varDirOficina + ", varZonaPostalOficina=" + varZonaPostalOficina + ", varCuidadOficina=" + varCuidadOficina + ", varDirCorrespondencia=" + varDirCorrespondencia + ", varZonaPostalCorresponde=" + varZonaPostalCorresponde + ", varCuidadCorresponde=" + varCuidadCorresponde + ", varTelResidencia=" + varTelResidencia + ", varTelOficina=" + varTelOficina + ", varTelCorrespondencia=" + varTelCorrespondencia + ", varOficina=" + varOficina + ", varNumTarjeta=" + varNumTarjeta + ", varTipoCuenta=" + varTipoCuenta + ", dateFechNacimi=" + dateFechNacimi + ", varFechNacimi=" + varFechNacimi + ", varNacionalidad=" + varNacionalidad + ", varEstadoCivil=" + varEstadoCivil + ", varSexo=" + varSexo + ", varNivelEstudio=" + varNivelEstudio + ", varProfesion=" + varProfesion + ", dateFechaVinculacion=" + dateFechaVinculacion + ", varFechaVinculacion=" + varFechaVinculacion + ", varTipoNovedad=" + varTipoNovedad + ", varEspaciosBlancos=" + varEspaciosBlancos + ", varReservado=" + varReservado + ", varCodError=" + varCodError + '}';
+        return "NoMonetarias{" + "intIdNoMonetarias=" + intIdNoMonetarias + ", varNitEmpresa=" + varNitEmpresa + ", dateFechaEnvio=" + dateFechaEnvio + ", varFechaEnvio=" + varFechaEnvio + ", varConsecutiEnvio=" + varConsecutiEnvio + ", varTipoIndentiCliente=" + varTipoIndentiCliente + ", varNumIdentifCliente=" + varNumIdentifCliente + ", varCodEmpleado=" + varCodEmpleado + ", varDptoEmpresa=" + varDptoEmpresa + ", varPrimerApellido=" + varPrimerApellido + ", varSegundoApellido=" + varSegundoApellido + ", varPrimerNombre=" + varPrimerNombre + ", varSegundoNombre=" + varSegundoNombre + ", varNombreCorto=" + varNombreCorto + ", varDirResidencia=" + varDirResidencia + ", varZonaPostalResidencia=" + varZonaPostalResidencia + ", varCuidadResidencia=" + varCuidadResidencia + ", varDirOficina=" + varDirOficina + ", varZonaPostalOficina=" + varZonaPostalOficina + ", varCuidadOficina=" + varCuidadOficina + ", varDirCorrespondencia=" + varDirCorrespondencia + ", varZonaPostalCorresponde=" + varZonaPostalCorresponde + ", varCuidadCorresponde=" + varCuidadCorresponde + ", varTelResidencia=" + varTelResidencia + ", varTelOficina=" + varTelOficina + ", varTelCorrespondencia=" + varTelCorrespondencia + ", varOficina=" + varOficina + ", varNumTarjeta=" + varNumTarjeta + ", varTipoCuenta=" + varTipoCuenta + ", NumeroCuenta=" + NumeroCuenta + ", dateFechNacimi=" + dateFechNacimi + ", varFechNacimi=" + varFechNacimi + ", varNacionalidad=" + varNacionalidad + ", varEstadoCivil=" + varEstadoCivil + ", varSexo=" + varSexo + ", varNivelEstudio=" + varNivelEstudio + ", varProfesion=" + varProfesion + ", dateFechaVinculacion=" + dateFechaVinculacion + ", varFechaVinculacion=" + varFechaVinculacion + ", varTipoNovedad=" + varTipoNovedad + ", varEspaciosBlancos=" + varEspaciosBlancos + ", varReservado=" + varReservado + ", varCodError=" + varCodError + '}';
     }
+    
 
 }

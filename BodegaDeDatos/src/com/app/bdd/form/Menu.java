@@ -58,20 +58,22 @@ public class Menu extends javax.swing.JFrame {
         setIconImages(null);
 
         dpnEscritorio.setBackground(new java.awt.Color(153, 153, 153));
+        dpnEscritorio.setPreferredSize(new java.awt.Dimension(350, 240));
 
         javax.swing.GroupLayout dpnEscritorioLayout = new javax.swing.GroupLayout(dpnEscritorio);
         dpnEscritorio.setLayout(dpnEscritorioLayout);
         dpnEscritorioLayout.setHorizontalGroup(
             dpnEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 625, Short.MAX_VALUE)
+            .addGap(0, 450, Short.MAX_VALUE)
         );
         dpnEscritorioLayout.setVerticalGroup(
             dpnEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 240, Short.MAX_VALUE)
         );
 
         jMenu5.setText("Inicio");
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Usuarios.png"))); // NOI18N
         jMenuItem6.setText("Cambio de Usuario");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +99,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CargadeArchivos.png"))); // NOI18N
         jMenuItem2.setText("Carga de Archivos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +108,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Buscar.png"))); // NOI18N
         jMenuItem10.setText("Historico Archivos Cargados");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +121,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu6.setText("Reportes");
 
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/GererarReportes.png"))); // NOI18N
         jMenuItem7.setText("Novedades Monetarias");
         jMenuItem7.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -130,6 +135,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem7);
 
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TextoPlano.png"))); // NOI18N
         jMenuItem9.setText("Novedades No Monetarias");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,11 +152,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dpnEscritorio)
+            .addComponent(dpnEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(dpnEscritorio)
+            .addComponent(dpnEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

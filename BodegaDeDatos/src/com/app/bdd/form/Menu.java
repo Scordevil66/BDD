@@ -121,7 +121,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu6.setText("Reportes");
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/GererarReportes.png"))); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TextoPlano.png"))); // NOI18N
         jMenuItem7.setText("Novedades Monetarias");
         jMenuItem7.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {

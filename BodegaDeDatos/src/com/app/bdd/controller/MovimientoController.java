@@ -6,6 +6,7 @@
 package com.app.bdd.controller;
 
 import com.app.bdd.conexion.ConexionSQL;
+import com.app.bdd.form.CargaMasivaMovimiento;
 import com.app.bdd.models.Movimientos;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -31,14 +32,13 @@ public class MovimientoController {
 //    public static void main(String[] args) {
 //        LeerArchivoMovimientoTxt();
 //    }
-
     public static int registrarMovimiento(Movimientos movimiento) throws Exception {
-        
+
         MovimientoController.MovimientoController();
 
         int mo = 0;
-        
-         String sql = "";
+
+        String sql = "";
 //        
         String converFechaTransac = movimiento.getVarDateFechaTransac();
         String anioTransac = converFechaTransac.substring(0, 4);
@@ -131,7 +131,7 @@ public class MovimientoController {
         } catch (Exception e) {
 
 //            throw e;.
-System.out.println("errror------"+e);
+            System.out.println("errror------" + e);
 
         } finally {
             ConexionSQL.CerrarConexion();
@@ -141,11 +141,17 @@ System.out.println("errror------"+e);
 
     }
 
-    public static int LeerArchivoMovimientoTxt(String ruta) {
+    public static int LeerArchivoMovimientoTxt(String ruta) throws Exception {
         //Creamos un String que va a contener todo el texto del archivo
         String texto = "";
-        
+        String texto1 = "";
+
         int resultado = 0;
+        int conteo = 0;
+        int totalLineas = 0;
+
+        CargaMasivaMovimiento cargaMasivaMovimientos = new CargaMasivaMovimiento();
+        
 
         Movimientos movimiento = new Movimientos();
 
@@ -155,11 +161,19 @@ System.out.println("errror------"+e);
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
             FileReader lector = new FileReader(ruta);
 
+            FileReader lector2 = new FileReader(ruta);
 //El contenido de lector se guarda en un BufferedReader
             BufferedReader contenido = new BufferedReader(lector);
+            BufferedReader contenido2 = new BufferedReader(lector2);
 
 //Con el siguiente ciclo extraemos todo el contenido del objeto "contenido" y lo mostramos
-            while ((texto = contenido.readLine()) != null) {
+            while ((texto1 = contenido.readLine()) != null) {
+                totalLineas++;
+            }
+            
+            cargaMasivaMovimientos.Conteo(conteo + "", totalLineas + "");
+            
+            while ((texto = contenido2.readLine()) != null) {
 
                 movimiento = new Movimientos();
                 decValTransaccion = 0;
@@ -244,6 +258,10 @@ System.out.println("errror------"+e);
                 movimiento.setVarFiller2(texto.substring(440, 450));
 
                 System.out.println(texto);
+
+                conteo++;
+
+                cargaMasivaMovimientos.Conteo(conteo + "", totalLineas + "");
 
                 resultado = registrarMovimiento(movimiento);
 

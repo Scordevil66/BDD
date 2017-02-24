@@ -126,7 +126,7 @@ public class SaldosController {
                 int resultado = registrarSaldo(saldo);
 
             }
-        } //Si se causa un error al leer cae aqui
+        } //Si se causa un error al leer cae aqui //Si se causa un error al leer cae aqui //Si se causa un error al leer cae aqui //Si se causa un error al leer cae aqui
         catch (Exception e) {
             System.out.println("Error al leer");
         }

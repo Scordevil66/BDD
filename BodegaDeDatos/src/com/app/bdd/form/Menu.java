@@ -167,14 +167,14 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-//        try {
-//            CargaArchivos cmau = new CargaArchivos();
-//            cmau.setLocationRelativeTo(null);
-////        dpnEscritorio.add(cmau);
-//cmau.setVisible(true);
-//        } catch (Exception ex) {
-//            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            CargaMasivaMovimiento cmm = new CargaMasivaMovimiento();
+            cmm.setLocationRelativeTo(null);
+//        dpnEscritorio.add(cmau);
+cmm.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed

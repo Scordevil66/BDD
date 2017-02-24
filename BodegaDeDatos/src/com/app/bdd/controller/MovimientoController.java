@@ -28,9 +28,9 @@ public class MovimientoController {
         MovimientoController.st = ConexionSQL.conexion();
     }
 
-    public static void main(String[] args) {
-        LeerArchivoMovimientoTxt();
-    }
+//    public static void main(String[] args) {
+//        LeerArchivoMovimientoTxt();
+//    }
 
     public static int registrarMovimiento(Movimientos movimiento) throws Exception {
         
@@ -141,9 +141,11 @@ System.out.println("errror------"+e);
 
     }
 
-    public static void LeerArchivoMovimientoTxt() {
+    public static int LeerArchivoMovimientoTxt(String ruta) {
         //Creamos un String que va a contener todo el texto del archivo
         String texto = "";
+        
+        int resultado = 0;
 
         Movimientos movimiento = new Movimientos();
 
@@ -151,7 +153,7 @@ System.out.println("errror------"+e);
 
         try {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-            FileReader lector = new FileReader("C:\\Users\\ce\\Desktop\\ProyectosCesar\\redeban\\Estructura archivo Movimientos\\T9500140211 movimientos.txt");
+            FileReader lector = new FileReader(ruta);
 
 //El contenido de lector se guarda en un BufferedReader
             BufferedReader contenido = new BufferedReader(lector);
@@ -243,12 +245,13 @@ System.out.println("errror------"+e);
 
                 System.out.println(texto);
 
-                int resultado = registrarMovimiento(movimiento);
+                resultado = registrarMovimiento(movimiento);
 
             }
         } //Si se causa un error al leer cae aqui
         catch (Exception e) {
             System.out.println("Error al leer");
         }
+        return resultado;
     }
 }

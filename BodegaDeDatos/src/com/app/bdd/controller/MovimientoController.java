@@ -8,6 +8,7 @@ package com.app.bdd.controller;
 import com.app.bdd.conexion.ConexionSQL;
 import com.app.bdd.form.CargaMasivaMovimiento;
 import com.app.bdd.form.Progress;
+import com.app.bdd.models.Contador;
 import com.app.bdd.models.Movimientos;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -152,7 +153,6 @@ public class MovimientoController {
         int totalLineas = 0;
 
         CargaMasivaMovimiento cargaMasivaMovimientos = new CargaMasivaMovimiento();
-        
 
         Movimientos movimiento = new Movimientos();
 
@@ -171,9 +171,18 @@ public class MovimientoController {
             while ((texto1 = contenido.readLine()) != null) {
                 totalLineas++;
             }
-            
-            cargaMasivaMovimientos.Conteo(conteo + "", totalLineas + "");
-            
+
+
+//            Contador.setTotalLineas(totalLineas);
+//            Progress frame = new Progress();
+//            javax.swing.SwingUtilities.invokeLater(new Runnable() {
+//                @Override
+//                public void run() {
+//                    frame.createAndShowGUI();
+//                }
+//            });
+
+
             while ((texto = contenido2.readLine()) != null) {
 
                 movimiento = new Movimientos();
@@ -263,11 +272,6 @@ public class MovimientoController {
                 conteo++;
 
 //                cargaMasivaMovimientos.Conteo(conteo + "", totalLineas + "");
-                
-
-                Progress progress = new Progress();
-                
-                progress.Progress();
 
                 resultado = registrarMovimiento(movimiento);
 

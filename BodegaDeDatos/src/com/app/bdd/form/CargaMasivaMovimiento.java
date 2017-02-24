@@ -287,10 +287,10 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
                 idArchivo = Integer.parseInt(idArechivoA[0]);
 
             }
-            if (idArchivo == 1) {
+            if (idArchivo == 0) {
                 valor = LeerArchivoMovimientoTxt(lPath.getText());
             } else {
-                if (idArchivo == 2) {
+                if (idArchivo == 1) {
                     valor = LeerArchivoNoMonetariasTxt(lPath.getText());
                 } else {
                     valor = LeerArchivoSaldosTxt(lPath.getText());

@@ -30,9 +30,9 @@ public class SaldosController {
         SaldosController.st = ConexionSQL.conexion();
     }
     
-     public static void main(String[] args) {
-        LeerArchivoSaldosTxt();
-    }
+//     public static void main(String[] args) {
+//        LeerArchivoSaldosTxt();
+//    }
 
     public static int registrarSaldo(TslSaldos saldo) throws Exception {
         
@@ -81,17 +81,18 @@ public class SaldosController {
 
     }
     
-      public static void LeerArchivoSaldosTxt() {
+      public static int LeerArchivoSaldosTxt(String ruta) {
         //Creamos un String que va a contener todo el texto del archivo
         String texto = "";
 
+         int resultado = 0;
         TslSaldos saldo = new TslSaldos();
 
      //   double decValTransaccion = 0, decValDispensado = 0, decValCarCobr = 0, decValIva = 0, decTotalCobrar = 0, decImpEmerEcono = 0;
 
         try {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-            FileReader lector = new FileReader("C:\\Users\\ce\\Desktop\\ProyectosCesar\\redeban\\Estructura archivo Movimientos\\TSL0140211 saldos.txt");
+            FileReader lector = new FileReader(ruta);
 
 //El contenido de lector se guarda en un BufferedReader
             BufferedReader contenido = new BufferedReader(lector);
@@ -123,13 +124,14 @@ public class SaldosController {
               
                 System.out.println(texto);
 
-                int resultado = registrarSaldo(saldo);
+                resultado = registrarSaldo(saldo);
 
             }
         } //Si se causa un error al leer cae aqui //Si se causa un error al leer cae aqui //Si se causa un error al leer cae aqui //Si se causa un error al leer cae aqui
         catch (Exception e) {
             System.out.println("Error al leer");
         }
+        return resultado;
     }
 
 }

@@ -8,6 +8,8 @@ package com.app.bdd.form;
 //import com.app.utils.LeerArchivoDeExcel;
 import com.app.bdd.controller.MovimientoController;
 import static com.app.bdd.controller.MovimientoController.LeerArchivoMovimientoTxt;
+import static com.app.bdd.controller.NomonetariasController.LeerArchivoNoMonetariasTxt;
+import static com.app.bdd.controller.SaldosController.LeerArchivoSaldosTxt;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -193,6 +195,12 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         jLabel3.setText("Seleccione tipo de Archivo");
 
         jL_cargando.setText("Cargando 0/0");
@@ -283,9 +291,9 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
                 valor = LeerArchivoMovimientoTxt(lPath.getText());
             } else {
                 if (idArchivo == 2) {
-                    valor = LeerArchivoMovimientoTxt(lPath.getText());
+                    valor = LeerArchivoNoMonetariasTxt(lPath.getText());
                 } else {
-                    valor = LeerArchivoMovimientoTxt(lPath.getText());
+                    valor = LeerArchivoSaldosTxt(lPath.getText());
                 }
             }
 
@@ -303,6 +311,10 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_bAceptarActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments

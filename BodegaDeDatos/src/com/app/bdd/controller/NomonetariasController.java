@@ -26,9 +26,9 @@ public class NomonetariasController {
         NomonetariasController.st = ConexionSQL.conexion();
     }
 
-    public static void main(String[] args) {
-        LeerArchivoNoMonetariasTxt();
-    }
+//    public static void main(String[] args) {
+//        LeerArchivoNoMonetariasTxt();
+//    }
 
     public static int registrarNoMonetaria(NoMonetarias nomonetarias) throws Exception {
 
@@ -135,17 +135,19 @@ public class NomonetariasController {
 
     }
 
-    public static void LeerArchivoNoMonetariasTxt() {
+    public static int LeerArchivoNoMonetariasTxt(String ruta) {
         //Creamos un String que va a contener todo el texto del archivo
         String texto = "";
 
+        int resultado = 0;
+        
         NoMonetarias nomonetaria = new NoMonetarias();
 
         double decValTransaccion = 0, decValDispensado = 0, decValCarCobr = 0, decValIva = 0, decTotalCobrar = 0, decImpEmerEcono = 0;
 
         try {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
-            FileReader lector = new FileReader("C:\\Users\\ce\\Desktop\\ProyectosCesar\\redeban\\Estructura archivo Movimientos\\TNN0140211 no monetarias.txt");
+            FileReader lector = new FileReader(ruta);
 
 //El contenido de lector se guarda en un BufferedReader
             BufferedReader contenido = new BufferedReader(lector);
@@ -206,13 +208,14 @@ public class NomonetariasController {
                  
                 System.out.println(texto);
 
-                int resultado = registrarNoMonetaria(nomonetaria);
+                resultado = registrarNoMonetaria(nomonetaria);
 
             }
         } //Si se causa un error al leer cae aqui
         catch (Exception e) {
             System.out.println("Error al leer");
         }
+        return resultado;
     }
 
 }

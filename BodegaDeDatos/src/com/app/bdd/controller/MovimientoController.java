@@ -7,6 +7,7 @@ package com.app.bdd.controller;
 
 import com.app.bdd.conexion.ConexionSQL;
 import com.app.bdd.form.CargaMasivaMovimiento;
+import com.app.bdd.form.Progress;
 import com.app.bdd.models.Movimientos;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -261,7 +262,12 @@ public class MovimientoController {
 
                 conteo++;
 
-                cargaMasivaMovimientos.Conteo(conteo + "", totalLineas + "");
+//                cargaMasivaMovimientos.Conteo(conteo + "", totalLineas + "");
+                
+
+                Progress progress = new Progress();
+                
+                progress.Progress();
 
                 resultado = registrarMovimiento(movimiento);
 

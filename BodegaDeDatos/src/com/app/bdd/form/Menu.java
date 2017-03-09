@@ -73,7 +73,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu5.setText("Inicio");
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Usuarios.png"))); // NOI18N
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Usuarios2.png"))); // NOI18N
         jMenuItem6.setText("Cambio de Usuario");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +82,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem6);
 
+        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Salir2.png"))); // NOI18N
         jMenuItem8.setText("Salir");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +100,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CargadeArchivos.png"))); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CargadeArchivos2.png"))); // NOI18N
         jMenuItem2.setText("Carga de Archivos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +109,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Buscar.png"))); // NOI18N
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Buscar2.png"))); // NOI18N
         jMenuItem10.setText("Historico Archivos Cargados");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +122,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu6.setText("Reportes");
 
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TextoPlano.png"))); // NOI18N
+        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TextoPlano2.png"))); // NOI18N
         jMenuItem7.setText("Novedades Monetarias");
         jMenuItem7.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentAdded(java.awt.event.ContainerEvent evt) {
@@ -135,7 +136,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem7);
 
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TextoPlano.png"))); // NOI18N
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TextoPlano2.png"))); // NOI18N
         jMenuItem9.setText("Novedades No Monetarias");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,7 +172,7 @@ public class Menu extends javax.swing.JFrame {
             CargaMasivaMovimiento cmm = new CargaMasivaMovimiento();
             cmm.setLocationRelativeTo(null);
 //        dpnEscritorio.add(cmau);
-cmm.setVisible(true);
+            cmm.setVisible(true);
         } catch (Exception ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -191,7 +192,16 @@ cmm.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
+
+        try {
+            FiltrosMonetarios fm = new FiltrosMonetarios();
+            dpnEscritorio.add(fm);
+            fm.setMaximum(true);
+            fm.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed

@@ -18,6 +18,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -142,7 +144,114 @@ public class MovimientoController {
         return mo;
 
     }
+    /* EJECUTA CONSULTA SALDO POR TARJETA  */
+    public List<Movimientos> consultaSaldoPorTarjeta(String NumTarjeta, String FechIni, String FechFin) throws SQLException {
 
+        List<Movimientos> movimientos = new ArrayList<>();
+        Movimientos movimiento = new Movimientos();
+
+        MovimientoController.MovimientoController();
+
+        String sql = "";
+
+        try {
+
+            sql = " SELECT mov.dateFechaTransac, mov.varTarjeta, mov.varNitEmpresa, mov.varSubtipo, mov.varDescriSubtipo, sa.decSaldoDispo,  sa.varEstadoTarjeta, sa.varDescripEsta, nomo.varNombreTarjetahabiente, nomo.varTipoDocumTatjetaHabiente, nomo.varNumDocumento, tipdoc.varDescripcionTipoDocumento\n"
+                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo,  tipodocumento as tipdoc\n"
+                    + "where mov.varTarjeta = sa.varTarjeta \n"
+                    + "and tipdoc.varCodigoTipoDocumento = nomo.varTipoDocumTatjetaHabiente \n"
+                    + "and mov.varSubtipo = sa.varSubtipo  \n"
+                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'   and mov.varTarjeta  = '"+NumTarjeta+"'\n"
+                    + "order by mov.dateFechaTransac asc   ";
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                movimientos.add(new Movimientos(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12)));
+
+            }
+
+        } catch (Exception e) {
+
+//            throw e;.
+            System.out.println("errror------" + e);
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return movimientos;
+    }
+    
+    /* FIN CONSULTA SALDO POR TARJETA */
+    /**/
+    /**/     
+    /* EJECUTA SALDO TARJETAS POR EMPRESA */
+
+    /**
+     *
+     * @param FechIni
+     * @param FechFin
+     * @param Nit
+     * @param SubTipo
+     * @param Bin
+     * @return 
+     * @throws java.sql.SQLException
+     */
+
+    
+     public List<Movimientos> consultaSaldoTarjetasEmpresa(String FechIni, String FechFin, String Nit, String SubTipo, String Bin) throws SQLException {
+
+        List<Movimientos> movimientos = new ArrayList<>();
+        Movimientos movimiento = new Movimientos();
+
+        MovimientoController.MovimientoController();
+
+        String sql = "";
+
+        try {
+
+            sql = " SELECT  mov.dateFechaTransac,mov.varBin, mov.varTarjeta, nomo.varNombreTarjetahabiente, nomo.varTipoDocumTatjetaHabiente, nomo.varNumDocumento,\n"
+                    + " mov.varNitEmpresa, mov.varSubtipo, mov.varDescriSubtipo,sa.decSaldoDispo, sa.varEstadoTarjeta, sa.varDescripEsta\n"
+                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, tipodocumento as tipdoc\n"
+                    + "where mov.varTarjeta = sa.varTarjeta\n"
+                    + "and tipdoc.varCodigoTipoDocumento = nomo.varTipoDocumTatjetaHabiente \n"
+                    + "and mov.varSubtipo = sa.varSubtipo\n"
+                    + "and mov.varNitEmpresa = '" + Nit + "' \n"
+                    + "and mov.varDescriSubtipo = '" + SubTipo + "'  \n"
+                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
+                    + "and mov.varBin = '" + Bin + "'  \n"
+                    + "order by mov.dateFechaTransac asc   ";
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                movimientos.add(new Movimientos(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12)));
+
+            }
+
+        } catch (Exception e) {
+
+//            throw e;.
+            System.out.println("errror------" + e);
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return movimientos;
+    }
+    
+    
+    
+    /* FIN CONSULTA SALDO TARJETAS POR EMPRESA */
+
+    
+    
     public static int LeerArchivoMovimientoTxt(String ruta) throws Exception {
         //Creamos un String que va a contener todo el texto del archivo
         String texto = "";
@@ -172,7 +281,6 @@ public class MovimientoController {
                 totalLineas++;
             }
 
-
 //            Contador.setTotalLineas(totalLineas);
 //            Progress frame = new Progress();
 //            javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -181,8 +289,6 @@ public class MovimientoController {
 //                    frame.createAndShowGUI();
 //                }
 //            });
-
-
             while ((texto = contenido2.readLine()) != null) {
 
                 movimiento = new Movimientos();
@@ -272,7 +378,6 @@ public class MovimientoController {
                 conteo++;
 
 //                cargaMasivaMovimientos.Conteo(conteo + "", totalLineas + "");
-
                 resultado = registrarMovimiento(movimiento);
 
             }
@@ -282,4 +387,12 @@ public class MovimientoController {
         }
         return resultado;
     }
+
+    //public List<Movimientos> consultaSaldoTarjetasEmpresa(String trim, String trim0, String trim1, String trim2, String trim3) {
+      //  throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   // }
+
+    //public List<Movimientos> consultaSaldoTarjetasEmpresa(String trim, String trim0, String trim1, String trim2) {
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //}
 }

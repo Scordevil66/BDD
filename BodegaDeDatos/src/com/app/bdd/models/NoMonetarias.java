@@ -12,94 +12,43 @@ import java.util.Date;
  * @author ce
  */
 public class NoMonetarias {
-
+    
     private int intIdNoMonetarias;
-
-    private String varNitEmpresa;
-
-    private Date dateFechaEnvio;
-
-    private String varFechaEnvio;
-
-    private String varConsecutiEnvio;
-
-    private String varTipoIndentiCliente;
-
-    private String varNumIdentifCliente;
-
-    private String varCodEmpleado;
-
-    private String varDptoEmpresa;
-
-    private String varPrimerApellido;
-
-    private String varSegundoApellido;
-
-    private String varPrimerNombre;
-
-    private String varSegundoNombre;
-
-    private String varNombreCorto;
-
-    private String varDirResidencia;
-
-    private String varZonaPostalResidencia;
-
-    private String varCuidadResidencia;
-
-    private String varDirOficina;
-
-    private String varZonaPostalOficina;
-
-    private String varCuidadOficina;
-
-    private String varDirCorrespondencia;
-
-    private String varZonaPostalCorresponde;
-
-    private String varCuidadCorresponde;
-
-    private String varTelResidencia;
-
-    private String varTelOficina;
-
-    private String varTelCorrespondencia;
-
-    private String varOficina;
-
+    
+    private String varTipoNovedad;
+    
+    private double dateFechaNovedad;
+        
+    private String vardateFechaNovedad;
+    
+    private String varCodFranquicia;
+    
+    private String varCodBin;
+    
     private String varNumTarjeta;
-
+    
+    private String varNombreTarjetahabiente;
+    
+    private String varSubTipo;
+    
     private String varTipoCuenta;
     
-    private String NumeroCuenta;
+    private String varNumeroCuenta;
+    
+    private String varOficina;
+    
+    private String varTipoDocumTatjetaHabiente;
+    
+    private String varNumDocumento;
+    
+    private String varNitEmpresa;
+    
+    private String varNombreEmpresa;
+    
+    private String varNumTarjetaAnterior;
+    
+    //Constructers 
 
-    private Date dateFechNacimi;
-
-    private String varFechNacimi;
-
-    private String varNacionalidad;
-
-    private String varEstadoCivil;
-
-    private String varSexo;
-
-    private String varNivelEstudio;
-
-    private String varProfesion;
-
-    private Date dateFechaVinculacion;
-
-    private String varFechaVinculacion;
-
-    private String varTipoNovedad;
-
-    private String varEspaciosBlancos;
-
-    private String varReservado;
-
-    private String varCodError;
-
-    //Contructers....
     public NoMonetarias() {
     }
 
@@ -107,361 +56,32 @@ public class NoMonetarias {
         this.intIdNoMonetarias = intIdNoMonetarias;
     }
 
-    public NoMonetarias(int intIdNoMonetarias, String varNitEmpresa, Date dateFechaEnvio, String varFechaEnvio, String varConsecutiEnvio, String varTipoIndentiCliente, String varNumIdentifCliente, String varCodEmpleado, String varDptoEmpresa, String varPrimerApellido, String varSegundoApellido, String varPrimerNombre, String varSegundoNombre, String varNombreCorto, String varDirResidencia, String varZonaPostalResidencia, String varCuidadResidencia, String varDirOficina, String varZonaPostalOficina, String varCuidadOficina, String varDirCorrespondencia, String varZonaPostalCorresponde, String varCuidadCorresponde, String varTelResidencia, String varTelOficina, String varTelCorrespondencia, String varOficina, String varNumTarjeta, String varTipoCuenta, String NumeroCuenta, Date dateFechNacimi, String varFechNacimi, String varNacionalidad, String varEstadoCivil, String varSexo, String varNivelEstudio, String varProfesion, Date dateFechaVinculacion, String varFechaVinculacion, String varTipoNovedad, String varEspaciosBlancos, String varReservado, String varCodError) {
+    public NoMonetarias(int intIdNoMonetarias, String varTipoNovedad, double dateFechaNovedad, String vardateFechaNovedad, String varCodFranquicia, String varCodBin, String varNumTarjeta, String varNombreTarjetahabiente, String varSubTipo, String varTipoCuenta, String varNumeroCuenta, String varOficina, String varTipoDocumTatjetaHabiente, String varNumDocumento, String varNitEmpresa, String varNombreEmpresa, String varNumTarjetaAnterior) {
         this.intIdNoMonetarias = intIdNoMonetarias;
-        this.varNitEmpresa = varNitEmpresa;
-        this.dateFechaEnvio = dateFechaEnvio;
-        this.varFechaEnvio = varFechaEnvio;
-        this.varConsecutiEnvio = varConsecutiEnvio;
-        this.varTipoIndentiCliente = varTipoIndentiCliente;
-        this.varNumIdentifCliente = varNumIdentifCliente;
-        this.varCodEmpleado = varCodEmpleado;
-        this.varDptoEmpresa = varDptoEmpresa;
-        this.varPrimerApellido = varPrimerApellido;
-        this.varSegundoApellido = varSegundoApellido;
-        this.varPrimerNombre = varPrimerNombre;
-        this.varSegundoNombre = varSegundoNombre;
-        this.varNombreCorto = varNombreCorto;
-        this.varDirResidencia = varDirResidencia;
-        this.varZonaPostalResidencia = varZonaPostalResidencia;
-        this.varCuidadResidencia = varCuidadResidencia;
-        this.varDirOficina = varDirOficina;
-        this.varZonaPostalOficina = varZonaPostalOficina;
-        this.varCuidadOficina = varCuidadOficina;
-        this.varDirCorrespondencia = varDirCorrespondencia;
-        this.varZonaPostalCorresponde = varZonaPostalCorresponde;
-        this.varCuidadCorresponde = varCuidadCorresponde;
-        this.varTelResidencia = varTelResidencia;
-        this.varTelOficina = varTelOficina;
-        this.varTelCorrespondencia = varTelCorrespondencia;
-        this.varOficina = varOficina;
-        this.varNumTarjeta = varNumTarjeta;
-        this.varTipoCuenta = varTipoCuenta;
-        this.NumeroCuenta = NumeroCuenta;
-        this.dateFechNacimi = dateFechNacimi;
-        this.varFechNacimi = varFechNacimi;
-        this.varNacionalidad = varNacionalidad;
-        this.varEstadoCivil = varEstadoCivil;
-        this.varSexo = varSexo;
-        this.varNivelEstudio = varNivelEstudio;
-        this.varProfesion = varProfesion;
-        this.dateFechaVinculacion = dateFechaVinculacion;
-        this.varFechaVinculacion = varFechaVinculacion;
         this.varTipoNovedad = varTipoNovedad;
-        this.varEspaciosBlancos = varEspaciosBlancos;
-        this.varReservado = varReservado;
-        this.varCodError = varCodError;
+        this.dateFechaNovedad = dateFechaNovedad;
+        this.vardateFechaNovedad = vardateFechaNovedad;
+        this.varCodFranquicia = varCodFranquicia;
+        this.varCodBin = varCodBin;
+        this.varNumTarjeta = varNumTarjeta;
+        this.varNombreTarjetahabiente = varNombreTarjetahabiente;
+        this.varSubTipo = varSubTipo;
+        this.varTipoCuenta = varTipoCuenta;
+        this.varNumeroCuenta = varNumeroCuenta;
+        this.varOficina = varOficina;
+        this.varTipoDocumTatjetaHabiente = varTipoDocumTatjetaHabiente;
+        this.varNumDocumento = varNumDocumento;
+        this.varNitEmpresa = varNitEmpresa;
+        this.varNombreEmpresa = varNombreEmpresa;
+        this.varNumTarjetaAnterior = varNumTarjetaAnterior;
     }
+        //Getters And Setters
     public int getIntIdNoMonetarias() {
         return intIdNoMonetarias;
     }
 
-    public void setIntIdNoMonetarias(int intIdNoMonetarias) {   
+    public void setIntIdNoMonetarias(int intIdNoMonetarias) {
         this.intIdNoMonetarias = intIdNoMonetarias;
-    }
-
-    public String getVarNitEmpresa() {
-        return varNitEmpresa;
-    }
-
-    public void setVarNitEmpresa(String varNitEmpresa) {
-        this.varNitEmpresa = varNitEmpresa;
-    }
-
-    public Date getDateFechaEnvio() {
-        return dateFechaEnvio;
-    }
-
-    public void setDateFechaEnvio(Date dateFechaEnvio) {
-        this.dateFechaEnvio = dateFechaEnvio;
-    }
-
-    public String getVarFechaEnvio() {
-        return varFechaEnvio;
-    }
-
-    public void setVarFechaEnvio(String varFechaEnvio) {
-        this.varFechaEnvio = varFechaEnvio;
-    }
-
-    public String getVarConsecutiEnvio() {
-        return varConsecutiEnvio;
-    }
-
-    public void setVarConsecutiEnvio(String varConsecutiEnvio) {
-        this.varConsecutiEnvio = varConsecutiEnvio;
-    }
-
-    public String getVarTipoIndentiCliente() {
-        return varTipoIndentiCliente;
-    }
-
-    public void setVarTipoIndentiCliente(String varTipoIndentiCliente) {
-        this.varTipoIndentiCliente = varTipoIndentiCliente;
-    }
-
-    public String getVarNumIdentifCliente() {
-        return varNumIdentifCliente;
-    }
-
-    public void setVarNumIdentifCliente(String varNumIdentifCliente) {
-        this.varNumIdentifCliente = varNumIdentifCliente;
-    }
-
-    public String getVarCodEmpleado() {
-        return varCodEmpleado;
-    }
-
-    public void setVarCodEmpleado(String varCodEmpleado) {
-        this.varCodEmpleado = varCodEmpleado;
-    }
-
-    public String getVarDptoEmpresa() {
-        return varDptoEmpresa;
-    }
-
-    public void setVarDptoEmpresa(String varDptoEmpresa) {
-        this.varDptoEmpresa = varDptoEmpresa;
-    }
-
-    public String getVarPrimerApellido() {
-        return varPrimerApellido;
-    }
-
-    public void setVarPrimerApellido(String varPrimerApellido) {
-        this.varPrimerApellido = varPrimerApellido;
-    }
-
-    public String getVarSegundoApellido() {
-        return varSegundoApellido;
-    }
-
-    public void setVarSegundoApellido(String varSegundoApellido) {
-        this.varSegundoApellido = varSegundoApellido;
-    }
-
-    public String getVarPrimerNombre() {
-        return varPrimerNombre;
-    }
-
-    public void setVarPrimerNombre(String varPrimerNombre) {
-        this.varPrimerNombre = varPrimerNombre;
-    }
-
-    public String getVarSegundoNombre() {
-        return varSegundoNombre;
-    }
-
-    public void setVarSegundoNombre(String varSegundoNombre) {
-        this.varSegundoNombre = varSegundoNombre;
-    }
-
-    public String getVarNombreCorto() {
-        return varNombreCorto;
-    }
-
-    public void setVarNombreCorto(String varNombreCorto) {
-        this.varNombreCorto = varNombreCorto;
-    }
-
-    public String getVarDirResidencia() {
-        return varDirResidencia;
-    }
-
-    public void setVarDirResidencia(String varDirResidencia) {
-        this.varDirResidencia = varDirResidencia;
-    }
-
-    public String getVarZonaPostalResidencia() {
-        return varZonaPostalResidencia;
-    }
-
-    public void setVarZonaPostalResidencia(String varZonaPostalResidencia) {
-        this.varZonaPostalResidencia = varZonaPostalResidencia;
-    }
-
-    public String getVarCuidadResidencia() {
-        return varCuidadResidencia;
-    }
-
-    public void setVarCuidadResidencia(String varCuidadResidencia) {
-        this.varCuidadResidencia = varCuidadResidencia;
-    }
-
-    public String getVarDirOficina() {
-        return varDirOficina;
-    }
-
-    public void setVarDirOficina(String varDirOficina) {
-        this.varDirOficina = varDirOficina;
-    }
-
-    public String getVarZonaPostalOficina() {
-        return varZonaPostalOficina;
-    }
-
-    public void setVarZonaPostalOficina(String varZonaPostalOficina) {
-        this.varZonaPostalOficina = varZonaPostalOficina;
-    }
-
-    public String getVarCuidadOficina() {
-        return varCuidadOficina;
-    }
-
-    public void setVarCuidadOficina(String varCuidadOficina) {
-        this.varCuidadOficina = varCuidadOficina;
-    }
-
-    public String getVarDirCorrespondencia() {
-        return varDirCorrespondencia;
-    }
-
-    public void setVarDirCorrespondencia(String varDirCorrespondencia) {
-        this.varDirCorrespondencia = varDirCorrespondencia;
-    }
-
-    public String getVarZonaPostalCorresponde() {
-        return varZonaPostalCorresponde;
-    }
-
-    public void setVarZonaPostalCorresponde(String varZonaPostalCorresponde) {
-        this.varZonaPostalCorresponde = varZonaPostalCorresponde;
-    }
-
-    public String getVarCuidadCorresponde() {
-        return varCuidadCorresponde;
-    }
-
-    public void setVarCuidadCorresponde(String varCuidadCorresponde) {
-        this.varCuidadCorresponde = varCuidadCorresponde;
-    }
-
-    public String getVarTelResidencia() {
-        return varTelResidencia;
-    }
-
-    public void setVarTelResidencia(String varTelResidencia) {
-        this.varTelResidencia = varTelResidencia;
-    }
-
-    public String getVarTelOficina() {
-        return varTelOficina;
-    }
-
-    public void setVarTelOficina(String varTelOficina) {
-        this.varTelOficina = varTelOficina;
-    }
-
-    public String getVarTelCorrespondencia() {
-        return varTelCorrespondencia;
-    }
-
-    public void setVarTelCorrespondencia(String varTelCorrespondencia) {
-        this.varTelCorrespondencia = varTelCorrespondencia;
-    }
-
-    public String getVarOficina() {
-        return varOficina;
-    }
-
-    public void setVarOficina(String varOficina) {
-        this.varOficina = varOficina;
-    }
-
-    public String getVarNumTarjeta() {
-        return varNumTarjeta;
-    }
-
-    public void setVarNumTarjeta(String varNumTarjeta) {
-        this.varNumTarjeta = varNumTarjeta;
-    }
-
-    public String getVarTipoCuenta() {
-        return varTipoCuenta;
-    }
-
-    public void setVarTipoCuenta(String varTipoCuenta) {
-        this.varTipoCuenta = varTipoCuenta;
-    }
-
-    public String getNumeroCuenta() {
-        return NumeroCuenta;
-    }
-
-    public void setNumeroCuenta(String NumeroCuenta) {
-        this.NumeroCuenta = NumeroCuenta;
-    }
-
-    public Date getDateFechNacimi() {
-        return dateFechNacimi;
-    }
-
-    public void setDateFechNacimi(Date dateFechNacimi) {
-        this.dateFechNacimi = dateFechNacimi;
-    }
-
-    public String getVarFechNacimi() {
-        return varFechNacimi;
-    }
-
-    public void setVarFechNacimi(String varFechNacimi) {
-        this.varFechNacimi = varFechNacimi;
-    }
-
-    public String getVarNacionalidad() {
-        return varNacionalidad;
-    }
-
-    public void setVarNacionalidad(String varNacionalidad) {
-        this.varNacionalidad = varNacionalidad;
-    }
-
-    public String getVarEstadoCivil() {
-        return varEstadoCivil;
-    }
-
-    public void setVarEstadoCivil(String varEstadoCivil) {
-        this.varEstadoCivil = varEstadoCivil;
-    }
-
-    public String getVarSexo() {
-        return varSexo;
-    }
-
-    public void setVarSexo(String varSexo) {
-        this.varSexo = varSexo;
-    }
-
-    public String getVarNivelEstudio() {
-        return varNivelEstudio;
-    }
-
-    public void setVarNivelEstudio(String varNivelEstudio) {
-        this.varNivelEstudio = varNivelEstudio;
-    }
-
-    public String getVarProfesion() {
-        return varProfesion;
-    }
-
-    public void setVarProfesion(String varProfesion) {
-        this.varProfesion = varProfesion;
-    }
-
-    public Date getDateFechaVinculacion() {
-        return dateFechaVinculacion;
-    }
-
-    public void setDateFechaVinculacion(Date dateFechaVinculacion) {
-        this.dateFechaVinculacion = dateFechaVinculacion;
-    }
-
-    public String getVarFechaVinculacion() {
-        return varFechaVinculacion;
-    }
-
-    public void setVarFechaVinculacion(String varFechaVinculacion) {
-        this.varFechaVinculacion = varFechaVinculacion;
     }
 
     public String getVarTipoNovedad() {
@@ -472,37 +92,137 @@ public class NoMonetarias {
         this.varTipoNovedad = varTipoNovedad;
     }
 
-    public String getVarEspaciosBlancos() {
-        return varEspaciosBlancos;
+    public double getDateFechaNovedad() {
+        return dateFechaNovedad;
     }
 
-    public void setVarEspaciosBlancos(String varEspaciosBlancos) {
-        this.varEspaciosBlancos = varEspaciosBlancos;
+    public void setDateFechaNovedad(double dateFechaNovedad) {
+        this.dateFechaNovedad = dateFechaNovedad;
     }
 
-    public String getVarReservado() {
-        return varReservado;
+    public String getVardateFechaNovedad() {
+        return vardateFechaNovedad;
     }
 
-    public void setVarReservado(String varReservado) {
-        this.varReservado = varReservado;
+    public void setVardateFechaNovedad(String vardateFechaNovedad) {
+        this.vardateFechaNovedad = vardateFechaNovedad;
     }
 
-    public String getVarCodError() {
-        return varCodError;
+    public String getVarCodFranquicia() {
+        return varCodFranquicia;
     }
 
-    //Getters and Setters
-    public void setVarCodError(String varCodError) {    
-        this.varCodError = varCodError;
+    public void setVarCodFranquicia(String varCodFranquicia) {
+        this.varCodFranquicia = varCodFranquicia;
     }
 
-    //To String
+    public String getVarCodBin() {
+        return varCodBin;
+    }
 
-    @Override
-    public String toString() {
-        return "NoMonetarias{" + "intIdNoMonetarias=" + intIdNoMonetarias + ", varNitEmpresa=" + varNitEmpresa + ", dateFechaEnvio=" + dateFechaEnvio + ", varFechaEnvio=" + varFechaEnvio + ", varConsecutiEnvio=" + varConsecutiEnvio + ", varTipoIndentiCliente=" + varTipoIndentiCliente + ", varNumIdentifCliente=" + varNumIdentifCliente + ", varCodEmpleado=" + varCodEmpleado + ", varDptoEmpresa=" + varDptoEmpresa + ", varPrimerApellido=" + varPrimerApellido + ", varSegundoApellido=" + varSegundoApellido + ", varPrimerNombre=" + varPrimerNombre + ", varSegundoNombre=" + varSegundoNombre + ", varNombreCorto=" + varNombreCorto + ", varDirResidencia=" + varDirResidencia + ", varZonaPostalResidencia=" + varZonaPostalResidencia + ", varCuidadResidencia=" + varCuidadResidencia + ", varDirOficina=" + varDirOficina + ", varZonaPostalOficina=" + varZonaPostalOficina + ", varCuidadOficina=" + varCuidadOficina + ", varDirCorrespondencia=" + varDirCorrespondencia + ", varZonaPostalCorresponde=" + varZonaPostalCorresponde + ", varCuidadCorresponde=" + varCuidadCorresponde + ", varTelResidencia=" + varTelResidencia + ", varTelOficina=" + varTelOficina + ", varTelCorrespondencia=" + varTelCorrespondencia + ", varOficina=" + varOficina + ", varNumTarjeta=" + varNumTarjeta + ", varTipoCuenta=" + varTipoCuenta + ", NumeroCuenta=" + NumeroCuenta + ", dateFechNacimi=" + dateFechNacimi + ", varFechNacimi=" + varFechNacimi + ", varNacionalidad=" + varNacionalidad + ", varEstadoCivil=" + varEstadoCivil + ", varSexo=" + varSexo + ", varNivelEstudio=" + varNivelEstudio + ", varProfesion=" + varProfesion + ", dateFechaVinculacion=" + dateFechaVinculacion + ", varFechaVinculacion=" + varFechaVinculacion + ", varTipoNovedad=" + varTipoNovedad + ", varEspaciosBlancos=" + varEspaciosBlancos + ", varReservado=" + varReservado + ", varCodError=" + varCodError + '}';
+    public void setVarCodBin(String varCodBin) {
+        this.varCodBin = varCodBin;
+    }
+
+    public String getVarNumTarjeta() {
+        return varNumTarjeta;
+    }
+
+    public void setVarNumTarjeta(String varNumTarjeta) {
+        this.varNumTarjeta = varNumTarjeta;
+    }
+
+    public String getVarNombreTarjetahabiente() {
+        return varNombreTarjetahabiente;
+    }
+
+    public void setVarNombreTarjetahabiente(String varNombreTarjetahabiente) {
+        this.varNombreTarjetahabiente = varNombreTarjetahabiente;
+    }
+
+    public String getVarSubTipo() {
+        return varSubTipo;
+    }
+
+    public void setVarSubTipo(String varSubTipo) {
+        this.varSubTipo = varSubTipo;
+    }
+
+    public String getVarTipoCuenta() {
+        return varTipoCuenta;
+    }
+
+    public void setVarTipoCuenta(String varTipoCuenta) {
+        this.varTipoCuenta = varTipoCuenta;
+    }
+
+    public String getVarNumeroCuenta() {
+        return varNumeroCuenta;
+    }
+
+    public void setVarNumeroCuenta(String varNumeroCuenta) {
+        this.varNumeroCuenta = varNumeroCuenta;
+    }
+
+    public String getVarOficina() {
+        return varOficina;
+    }
+
+    public void setVarOficina(String varOficina) {
+        this.varOficina = varOficina;
+    }
+
+    public String getVarTipoDocumTatjetaHabiente() {
+        return varTipoDocumTatjetaHabiente;
+    }
+
+    public void setVarTipoDocumTatjetaHabiente(String varTipoDocumTatjetaHabiente) {
+        this.varTipoDocumTatjetaHabiente = varTipoDocumTatjetaHabiente;
+    }
+
+    public String getVarNumDocumento() {
+        return varNumDocumento;
+    }
+
+    public void setVarNumDocumento(String varNumDocumento) {
+        this.varNumDocumento = varNumDocumento;
+    }
+
+    public String getVarNitEmpresa() {
+        return varNitEmpresa;
+    }
+
+    public void setVarNitEmpresa(String varNitEmpresa) {
+        this.varNitEmpresa = varNitEmpresa;
+    }
+
+    public String getVarNombreEmpresa() {
+        return varNombreEmpresa;
+    }
+
+    public void setVarNombreEmpresa(String varNombreEmpresa) {
+        this.varNombreEmpresa = varNombreEmpresa;
+    }
+
+    public String getVarNumTarjetaAnterior() {
+        return varNumTarjetaAnterior;
+    }
+
+    public void setVarNumTarjetaAnterior(String varNumTarjetaAnterior) {
+        this.varNumTarjetaAnterior = varNumTarjetaAnterior;
     }
     
-
-}
+    
+    //To_String 
+    
+    @Override
+    public String toString() {
+        return "NoMonetarias{" + "intIdNoMonetarias=" + intIdNoMonetarias + ", varTipoNovedad=" + varTipoNovedad + ", dateFechaNovedad=" + dateFechaNovedad + ", vardateFechaNovedad=" + vardateFechaNovedad + ", varCodFranquicia=" + varCodFranquicia + ", varCodBin=" + varCodBin + ", varNumTarjeta=" + varNumTarjeta + ", varNombreTarjetahabiente=" + varNombreTarjetahabiente + ", varSubTipo=" + varSubTipo + ", varTipoCuenta=" + varTipoCuenta + ", varNumeroCuenta=" + varNumeroCuenta + ", varOficina=" + varOficina + ", varTipoDocumTatjetaHabiente=" + varTipoDocumTatjetaHabiente + ", varNumDocumento=" + varNumDocumento + ", varNitEmpresa=" + varNitEmpresa + ", varNombreEmpresa=" + varNombreEmpresa + ", varNumTarjetaAnterior=" + varNumTarjetaAnterior + '}';
+    }
+    
+    
+    
+    
+    
+    
+    }

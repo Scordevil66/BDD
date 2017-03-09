@@ -30,7 +30,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/Usuarios.png"/>
+                  <Image iconType="3" name="/images/Usuarios2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Cambio de Usuario"/>
               </Properties>
@@ -40,6 +40,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem8">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/images/Salir2.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Salir"/>
               </Properties>
               <Events>
@@ -59,7 +62,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/CargadeArchivos.png"/>
+                  <Image iconType="3" name="/images/CargadeArchivos2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Carga de Archivos"/>
               </Properties>
@@ -70,7 +73,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem10">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/Buscar.png"/>
+                  <Image iconType="3" name="/images/Buscar2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Historico Archivos Cargados"/>
               </Properties>
@@ -88,7 +91,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem7">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/TextoPlano.png"/>
+                  <Image iconType="3" name="/images/TextoPlano2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Novedades Monetarias"/>
               </Properties>
@@ -100,7 +103,7 @@
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem9">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/images/TextoPlano.png"/>
+                  <Image iconType="3" name="/images/TextoPlano2.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Novedades No Monetarias"/>
               </Properties>

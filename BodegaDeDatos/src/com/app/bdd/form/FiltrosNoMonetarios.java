@@ -6,7 +6,9 @@
 package com.app.bdd.form;
 
 import com.app.bdd.controller.MovimientoController;
+import com.app.bdd.controller.NomonetariasController;
 import com.app.bdd.models.Movimientos;
+import com.app.bdd.models.NoMonetarias;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,12 +22,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ce
  */
-public class FiltrosMonetarios extends javax.swing.JInternalFrame {
+public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form FiltrosMonetarios
      */
-    public FiltrosMonetarios() {
+    public FiltrosNoMonetarios() {
         initComponents();
 
         init();
@@ -78,7 +80,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
 
         jLabel12.setText("SELECCIONE UN TIPO DE REPORTE");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE", "1 - EXTRACTO TARJETA", "2 - MOVIMIENTOS TARJETAS POR EMPRESA", "3 - MOVIMIENTOS TARJETAS POR ENTIDAD", "4 - SALDO POR TARJETA", "5 - CONSULTA SALDO TARJETAS POR EMPRESA", "6 - SALDO TARJETAS POR ENTIDAD" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE", "1 - EXTRACTO TARJETA", "2 - MOVIMIENTOS TARJETAS POR EMPRESA", "3 - MOVIMIENTOS TARJETAS POR ENTIDAD" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -299,62 +301,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                     SubTipo.setBackground(new java.awt.Color(238, 235, 235));
                     SubTipo.setEnabled(false);
 
-                } else {
-                    if (idTipoFiltro == 4) {
-
-                        NumTarj.setBackground(new java.awt.Color(255, 255, 255));
-                        NumTarj.setEnabled(true);
-                        FechFi.setBackground(new java.awt.Color(255, 255, 255));
-                        FechFi.setEnabled(true);
-                        FechIni.setBackground(new java.awt.Color(255, 255, 255));
-                        FechIni.setEnabled(true);
-                        Bin.setBackground(new java.awt.Color(238, 235, 235));
-                        Bin.setEnabled(false);
-                        Nit.setBackground(new java.awt.Color(238, 235, 235));
-                        Nit.setEnabled(false);
-                        SubTipo.setBackground(new java.awt.Color(238, 235, 235));
-                        SubTipo.setEnabled(false);
-
-                    } else {
-                        if (idTipoFiltro == 5) {
-
-                            NumTarj.setBackground(new java.awt.Color(238, 235, 235));
-                            NumTarj.setEnabled(false);
-                            FechFi.setBackground(new java.awt.Color(255, 255, 255));
-                            FechFi.setEnabled(true);
-                            FechIni.setBackground(new java.awt.Color(255, 255, 255));
-                            FechIni.setEnabled(true);
-                            Bin.setBackground(new java.awt.Color(255, 255, 255));
-                            Bin.setEnabled(true);
-                            Nit.setBackground(new java.awt.Color(255, 255, 255));
-                            Nit.setEnabled(true);
-                            SubTipo.setBackground(new java.awt.Color(255, 255, 255));
-                            SubTipo.setEnabled(true);
-
-                        } else {
-                            if (idTipoFiltro == 6) {
-
-                                NumTarj.setBackground(new java.awt.Color(255, 255, 255));
-                                NumTarj.setEnabled(true);
-                                FechFi.setBackground(new java.awt.Color(238, 235, 235));
-                                FechFi.setEnabled(false);
-                                FechIni.setBackground(new java.awt.Color(238, 235, 235));
-                                FechIni.setEnabled(false);
-                                Bin.setBackground(new java.awt.Color(255, 255, 255));
-                                Bin.setEnabled(true);
-                                Nit.setBackground(new java.awt.Color(238, 235, 235));
-                                Nit.setEnabled(false);
-                                SubTipo.setBackground(new java.awt.Color(238, 235, 235));
-                                SubTipo.setEnabled(false);
-
-                            } else {
-
-                            }
-
-                        }
-                    }
-
-                }
+                } 
 
             }
 
@@ -369,8 +316,8 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
 
-        List<Movimientos> movimientos = new ArrayList<>();
-        MovimientoController movimientoController = new MovimientoController();
+        List<NoMonetarias> nomonetarias = new ArrayList<>();
+        NomonetariasController nomovimientoController = new NomonetariasController();
         try {
 
             String idTipoFiltroS = (String) jComboBox1.getSelectedItem();
@@ -391,32 +338,42 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                             SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                             String fechFi = String.valueOf(sdf.format(date2));
 
-                            movimientos = movimientoController.consultaExtractoPorTarjeta(NumTarj.getText().trim(), fechIni, fechFi);
+                            nomonetarias = nomovimientoController.consultaPorTarjeta(NumTarj.getText().trim(), fechIni, fechFi);
 
                             DefaultTableModel modelo;
                             modelo = new DefaultTableModel();
 
                             jTable1.setModel(modelo);
 
-                            modelo.addColumn("Fecha Trasaccion");
-                            modelo.addColumn("Numero Tarjeta");
+                            modelo.addColumn("Fecha Novedad");
+                            modelo.addColumn("Tipo Novedad");
+                            modelo.addColumn(" Codigo Bin");
                             modelo.addColumn(" Nombre TarjetaHabiente");
-                            modelo.addColumn(" Tipo Documento");
+                            modelo.addColumn("SupTipo");
+                            modelo.addColumn("Codigo Oficina");
+                            modelo.addColumn("Tipo Documento");
                             modelo.addColumn("Numero Documento");
                             modelo.addColumn("Nit Empresa");
-                            modelo.addColumn("Sub Tipo");
-                            modelo.addColumn("Saldo Estado Tarjeta ");
-
-                            for (int i = 0; i < movimientos.size(); i++) {
-                                Object[] object = new Object[8];
-                                object[0] = movimientos.get(i).getVarDateFechaTransac();
-                                object[1] = movimientos.get(i).getVarTarjeta();
-                                object[2] = movimientos.get(i).getVarNombreTarjetahabiente();
-                                object[3] = movimientos.get(i).getVarDescripcionTipoDocumento();
-                                object[4] = movimientos.get(i).getVarNumDocumento();
-                                object[5] = movimientos.get(i).getVarNitEmpresa();
-                                object[6] = movimientos.get(i).getVarDescriSubtipo();
-                                object[7] = movimientos.get(i).getDecSaldoDispo();
+                            modelo.addColumn("Nombre Empresa");
+                            modelo.addColumn("Numero Tarjeta Anterior");
+                            modelo.addColumn("Valor Comision");
+                            modelo.addColumn("Estado Tarjeta");
+                                                        
+                            for (int i = 0; i < nomonetarias.size(); i++) {
+                                Object[] object = new Object[12];
+                                object[0] = nomonetarias.get(i).getDateFechaNovedad();
+                                object[1] = nomonetarias.get(i).getVarTipoNovedad();
+                                object[2] = nomonetarias.get(i).getVarCodBin();
+                                object[3] = nomonetarias.get(i).getVarNombreTarjetahabiente();
+                                object[4] = nomonetarias.get(i).getVarSubTipo();
+                                object[5] = nomonetarias.get(i).getVarOficina();
+                                object[6] = nomonetarias.get(i).getVarTipoDocumTatjetaHabiente();
+                                object[7] = nomonetarias.get(i).getVarNumDocumento();
+                                object[8] = nomonetarias.get(i).getVarNitEmpresa();
+                                object[9] = nomonetarias.get(i).getVarNombreEmpresa();
+                                object[10] = nomonetarias.get(i).getVarNumTarjetaAnterior();
+                                object[11] = nomonetarias.get(i).getDecValCarCobr();
+                                object[12] = nomonetarias.get(i).getVarDescripEsta();
 
                                 modelo.addRow(object);
                             }
@@ -437,7 +394,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                             SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                             String fechFi = String.valueOf(sdf.format(date2));
 
-                            movimientos = movimientoController.consultaSaldoTarjetasEmpresa(fechIni, fechFi, Nit.getText().trim(), SubTipo.getText().trim() ,Bin.getText().trim());
+                         //   movimientos = nomovimientoController.consultaSaldoTarjetasEmpresa(fechIni, fechFi, Nit.getText().trim(), SubTipo.getText().trim() ,Bin.getText().trim());
 
                             DefaultTableModel modelo;
                             modelo = new DefaultTableModel();
@@ -454,18 +411,18 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                             modelo.addColumn("Saldo Estado Tarjeta ");
                             
 
-                            for (int i = 0; i < movimientos.size(); i++) {
-                                Object[] object = new Object[8];
-                                object[0] = movimientos.get(i).getDateFechaTransac();
-                                object[1] = movimientos.get(i).getVarTarjeta();
-                                object[2] = movimientos.get(i).getVarNombreTarjetahabiente();
-                                object[3] = movimientos.get(i).getVarDescripcionTipoDocumento();
-                                object[4] = movimientos.get(i).getVarNumDocumento();
-                                object[5] = movimientos.get(i).getVarNitEmpresa();
+                            for (int i = 0; i < nomonetarias.size(); i++) {
+                             /*   Object[] object = new Object[8];
+                                object[0] = nomonetarias.get(i).getDateFechaTransac();
+                                object[1] = nomonetarias.get(i).getVarTarjeta();
+                                object[2] = nomonetarias.get(i).getVarNombreTarjetahabiente();
+                                object[3] = nomonetarias.get(i).getVarDescripcionTipoDocumento();
+                                object[4] = nomonetarias.get(i).getVarNumDocumento();
+                                object[5] = nomonetarias.get(i).getVarNitEmpresa();
                                 object[6] = movimientos.get(i).getVarDescriSubtipo();
                                 object[7] = movimientos.get(i).getDecSaldoDispo();
 
-                                modelo.addRow(object);
+                                modelo.addRow(object);*/
                             }
 
                 } else {
@@ -483,7 +440,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                             SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                             String fechFi = String.valueOf(sdf.format(date2));
 
-                            movimientos = movimientoController.consultaMovimientosTarjetaEMpresa(fechIni, fechFi, Bin.getText().trim(), Nit.getText().trim(), SubTipo.getText().trim());
+//                            movimientos = movimientoController.consultaMovimientosTarjetaEMpresa(fechIni, fechFi, Bin.getText().trim(), Nit.getText().trim(), SubTipo.getText().trim());
 
                             DefaultTableModel modelo;
                             modelo = new DefaultTableModel();
@@ -510,10 +467,10 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                             modelo.addColumn("Nombre Red Adquiriente");
                             modelo.addColumn("Saldo");
                            
-                            for (int i = 0; i < movimientos.size(); i++) {
-                                Object[] object = new Object[17];
-                                object[0] = movimientos.get(i).getDateFechaTransac();
-                                object[1] = movimientos.get(i).getVarTarjeta();
+                           for (int i = 0; i < nomonetarias.size(); i++) {
+                         /*        Object[] object = new Object[17];
+                                object[0] = nomonetarias.get(i).getDateFechaTransac();
+                                object[1] = nomonetarias.get(i).getVarTarjeta();
                                 object[2] = movimientos.get(i).getVarDescripEsta();
                                 object[3] = movimientos.get(i).getVarNumDocumento();
                                 object[4] = movimientos.get(i).getVarNombreTarjetahabiente();
@@ -530,162 +487,16 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                                 object[15] = movimientos.get(i).getVarRedAdquiriente();
                                 object[16] = movimientos.get(i).getDecSaldoDispo();
 
-                                modelo.addRow(object);
+                                modelo.addRow(object);*/
                             }
-                    } else {
-                        if (idTipoFiltro == 4) {
-
-                            String formato = FechIni.getDateFormatString();
-                            Date date = FechIni.getDate();
-
-                            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                            String fechIni = String.valueOf(sdf.format(date));
-                            
-                            String formato2 = FechFi.getDateFormatString();
-                            Date date2 = FechFi.getDate();
-
-                            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                            String fechFi = String.valueOf(sdf.format(date2));
-
-                            movimientos = movimientoController.consultaSaldoPorTarjeta(NumTarj.getText().trim(), fechIni, fechFi);
-
-                            DefaultTableModel modelo;
-                            modelo = new DefaultTableModel();
-
-                            jTable1.setModel(modelo);
-
-                            modelo.addColumn("Fecha Saldo");
-                            modelo.addColumn("Numero Tarjeta");
-                            modelo.addColumn(" Nombre TarjetaHabiente");
-                            modelo.addColumn(" Tipo Documento");
-                            modelo.addColumn("Numero Documento");
-                            modelo.addColumn("Nit Empresa");
-                            modelo.addColumn("Sub Tipo");
-                            modelo.addColumn("Saldo Estado Tarjeta ");
-
-                            for (int i = 0; i < movimientos.size(); i++) {
-                                Object[] object = new Object[8];
-                                object[0] = movimientos.get(i).getVarDateFechaTransac();
-                                object[1] = movimientos.get(i).getVarTarjeta();
-                                object[2] = movimientos.get(i).getVarNombreTarjetahabiente();
-                                object[3] = movimientos.get(i).getVarDescripcionTipoDocumento();
-                                object[4] = movimientos.get(i).getVarNumDocumento();
-                                object[5] = movimientos.get(i).getVarNitEmpresa();
-                                object[6] = movimientos.get(i).getVarDescriSubtipo();
-                                object[7] = movimientos.get(i).getDecSaldoDispo();
-
-                                modelo.addRow(object);
-                            }
-
-                        } else {
-                            if (idTipoFiltro == 5) {
-                                
-                                 String formato = FechIni.getDateFormatString();
-                            Date date = FechIni.getDate();
-
-                            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                            String fechIni = String.valueOf(sdf.format(date));
-                            
-                            String formato2 = FechFi.getDateFormatString();
-                            Date date2 = FechFi.getDate();
-
-                            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                            String fechFi = String.valueOf(sdf.format(date2));
-
-   movimientos = movimientoController.consultaSaldoTarjetasEmpresa(fechIni, fechFi, Nit.getText().trim(), SubTipo.getText().trim(), Bin.getText().trim());
-
-                                DefaultTableModel modelo;
-                                modelo = new DefaultTableModel();
-
-                                jTable1.setModel(modelo);
-
-                                modelo.addColumn("Fecha Saldo");
-                                modelo.addColumn("Numero Tarjeta");
-                                modelo.addColumn("Nombre TarjetaHabiente ");
-                                modelo.addColumn(" Tipo Documento");
-                                modelo.addColumn("Numero Documento");
-                                modelo.addColumn("Nit Empresa");
-                                modelo.addColumn("Sub Tipo");
-                                modelo.addColumn("Saldo ");
-                                modelo.addColumn("Estado Tarjeta ");
-
-                                for (int i = 0; i < movimientos.size(); i++) {
-                                    Object[] object = new Object[9];
-                                    object[0] = movimientos.get(i).getVarDateFechaTransac();
-                                    object[1] = movimientos.get(i).getVarTarjeta();
-                                    object[2] = movimientos.get(i).getVarNombreTarjetahabiente();
-                                    object[3] = movimientos.get(i).getVarDescripcionTipoDocumento();
-                                    object[4] = movimientos.get(i).getVarNumDocumento();
-                                    object[5] = movimientos.get(i).getVarNitEmpresa();
-                                    object[6] = movimientos.get(i).getVarDescriSubtipo();
-                                    object[7] = movimientos.get(i).getDecSaldoDispo();
-                                    object[8] = movimientos.get(i).getVarDescripEsta();
-
-                                    modelo.addRow(object);
-
-                                }
-
-                            } else {
-                                if (idTipoFiltro == 6) {
-    String formato = FechIni.getDateFormatString();
-                            Date date = FechIni.getDate();
-
-                            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                            String fechIni = String.valueOf(sdf.format(date));
-                            
-                            String formato2 = FechFi.getDateFormatString();
-                            Date date2 = FechFi.getDate();
-
-                            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                            String fechFi = String.valueOf(sdf.format(date2));
-
-   movimientos = movimientoController.consultaSaldoTarjetaEntidad(NumTarj.getText().trim(), Bin.getText().trim());
-
-                                DefaultTableModel modelo;
-                                modelo = new DefaultTableModel();
-
-                                jTable1.setModel(modelo);
-
-                                modelo.addColumn("Fecha Saldo");
-                                modelo.addColumn("Numero Tarjeta");
-                                modelo.addColumn("Nombre TarjetaHabiente ");
-                                modelo.addColumn(" Tipo Documento");
-                                modelo.addColumn("Numero Documento");
-                                modelo.addColumn("Nit Empresa");
-                                modelo.addColumn("Sub Tipo");
-                                modelo.addColumn("Saldo ");
-                                modelo.addColumn("Estado Tarjeta ");
-
-                                for (int i = 0; i < movimientos.size(); i++) {
-                                    Object[] object = new Object[9];
-                                    object[0] = movimientos.get(i).getVarDateFechaTransac();
-                                    object[1] = movimientos.get(i).getVarTarjeta();
-                                    object[2] = movimientos.get(i).getVarNombreTarjetahabiente();
-                                    object[3] = movimientos.get(i).getVarDescripcionTipoDocumento();
-                                    object[4] = movimientos.get(i).getVarNumDocumento();
-                                    object[5] = movimientos.get(i).getVarNitEmpresa();
-                                    object[6] = movimientos.get(i).getVarDescriSubtipo();
-                                    object[7] = movimientos.get(i).getDecSaldoDispo();
-                                    object[8] = movimientos.get(i).getVarDescripEsta();
-
-                                    modelo.addRow(object);
-
-                                }
-                                } else {
-
-                                }
-
-                            }
-                        }
-
-                    }
+                    } 
 
                 }
 
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(FiltrosMonetarios.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FiltrosNoMonetarios.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_button1ActionPerformed

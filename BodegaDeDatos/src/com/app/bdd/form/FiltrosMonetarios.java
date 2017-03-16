@@ -475,15 +475,15 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                             Date date = FechIni.getDate();
 
                             SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                            String fechIni = String.valueOf(sdf.format(date));
+                            String fechini = String.valueOf(sdf.format(date));
                             
                             String formato2 = FechFi.getDateFormatString();
                             Date date2 = FechFi.getDate();
 
                             SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                            String fechFi = String.valueOf(sdf.format(date2));
+                            String fechfi = String.valueOf(sdf.format(date2));
 
-                            movimientos = movimientoController.consultaMovimientosTarjetaEMpresa(fechIni, fechFi, Bin.getText().trim(), Nit.getText().trim(), SubTipo.getText().trim());
+                            movimientos = movimientoController.consultaMovimientosTarjetaEntidad(fechini, fechfi, Bin.getText().trim());
 
                             DefaultTableModel modelo;
                             modelo = new DefaultTableModel();

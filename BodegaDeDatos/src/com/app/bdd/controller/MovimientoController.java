@@ -226,7 +226,7 @@ public class MovimientoController {
                     + "and sa.varTarjeta = mov.varTarjeta\n"   
                     + "and mov.varTarjeta=nomo.varNumTarjeta \n"
                     + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
-                    + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 
+                    + "and nomo.varTipoDocumTatjetaHabiente=tipdoc.varCodigoTipoDocumento \n" 
                     + "and sa.varSubtipo =nomo.varSubTipo\n" 
                     + "order by mov.dateFechaTransac asc   ";
 
@@ -373,7 +373,7 @@ public class MovimientoController {
       
       // INICIO CONSULTA MOVIMIENTOS POR ENTIDAD 
       
-      public List<Movimientos> consultaMovimientosTarjetaEntidad(String FechIni, String FechFin, String Bin, String SubTipo) throws SQLException {
+      public List<Movimientos> consultaMovimientosTarjetaEntidad(String FechIni, String FechFin, String Bin) throws SQLException {
 
         List<Movimientos> movimientos = new ArrayList<>();
         Movimientos movimiento = new Movimientos();
@@ -388,12 +388,10 @@ public class MovimientoController {
                     + " mov.decValIva, mov.decImpEmerEcono,varIndicadorRever,mov.varRespuAutoriz,mov.varDescrpResp,mov.varCodAutoriza, mov.varRedAdquiriente,"
                     + " mov.varSubtipo, mov.varDescriSubtipo,  mov.varNumTarjSecundari, mov.varValorBaseDevIva,  sa.decSaldoDispo, sa.varEstadoTarjeta,"
                     + "   sa.varDescripEsta, nomo.varNombreTarjetahabiente, nomo.varNumDocumento,  comer.varCodigoComercio, comer.varNombreComercio  \n"
-                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer\n"
+                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer,tipodocumento as tipodoc\n"
                     + "where mov.varTarjeta = sa.varTarjeta\n"
                     + "and mov.varSubtipo = sa.varSubtipo \n"
                     + "and mov.varBin = '" + Bin + "'  \n"
-                    //+ "and mov.varBin = '" + Nit + "'  \n"
-                    + "and mov.varBin = '" + SubTipo + "'  \n"
                     + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
                     + "and sa.varTarjeta = mov.varTarjeta\n"   
                     + "and mov.varTarjeta=nomo.varNumTarjeta \n"

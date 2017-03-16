@@ -120,6 +120,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
         SubTipo.setEnabled(false);
 
         button1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        button1.setEnabled(false);
         button1.setLabel("Aplicar Filtro");
         button1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -252,10 +253,21 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         String idTipoFiltroS = (String) jComboBox1.getSelectedItem();
+
+        if (!(idTipoFiltroS.equals("Seleccione"))) {
+            button1.setEnabled(false);
+            Bin.setEnabled(false);
+            Nit.setEnabled(false);
+            SubTipo.setEnabled(false);
+            NumTarj.setEnabled(false);
+            FechFi.setEnabled(false);
+             FechFi.setEnabled(false);
+        }
         String[] idTipoFiltroV = idTipoFiltroS.split(" - ");
         int idTipoFiltro = Integer.parseInt(idTipoFiltroV[0]);
 
         if (idTipoFiltro == 1) {
+            button1.setEnabled(true);
             NumTarj.setBackground(new java.awt.Color(255, 255, 255));
             NumTarj.setEnabled(true);
             Bin.setBackground(new java.awt.Color(238, 235, 235));
@@ -271,7 +283,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
 
         } else {
             if (idTipoFiltro == 2) {
-
+                button1.setEnabled(true);
                 NumTarj.setBackground(new java.awt.Color(238, 235, 235));
                 NumTarj.setEnabled(false);
                 Bin.setBackground(new java.awt.Color(255, 255, 255));
@@ -287,7 +299,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
 
             } else {
                 if (idTipoFiltro == 3) {
-
+                    button1.setEnabled(true);
                     Bin.setBackground(new java.awt.Color(255, 255, 255));
                     Bin.setEnabled(true);
                     FechFi.setBackground(new java.awt.Color(255, 255, 255));
@@ -454,42 +466,42 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
 
                         DefaultTableModel modelo;
                         modelo = new DefaultTableModel();
-                        
-                         jTable1.setModel(modelo);
 
-                    modelo.addColumn("Fecha Novedad");
-                    modelo.addColumn("Tipo Novedad");
-                    modelo.addColumn(" Codigo Bin");
-                    modelo.addColumn(" Numero Tarjeta");
-                    modelo.addColumn(" Nombre TarjetaHabiente");
-                    modelo.addColumn("SupTipo");
-                    modelo.addColumn("Codigo Oficina");
-                    modelo.addColumn("Tipo Documento");
-                    modelo.addColumn("Numero Documento");
-                    modelo.addColumn("Nit Empresa");
-                    modelo.addColumn("Nombre Empresa");
-                    modelo.addColumn("Numero Tarjeta Anterior");
-                    modelo.addColumn("Valor Comision");
-                    modelo.addColumn("Estado Tarjeta");
+                        jTable1.setModel(modelo);
 
-                    for (int i = 0; i < nomonetarias.size(); i++) {
-                        Object[] object = new Object[14];
-                        object[0] = nomonetarias.get(i).getDateFechaNovedad();
-                        object[1] = nomonetarias.get(i).getVarDescripcionTipoNovedad();
-                        object[2] = nomonetarias.get(i).getVarCodBin();
-                        object[3] = nomonetarias.get(i).getVarNumTarjeta();
-                        object[4] = nomonetarias.get(i).getVarNombreTarjetahabiente();
-                        object[5] = nomonetarias.get(i).getVarDescriSubtipo();
-                        object[6] = nomonetarias.get(i).getVarOficina();
-                        object[7] = nomonetarias.get(i).getVarDescripcionTipoDocumento();
-                        object[8] = nomonetarias.get(i).getVarNumDocumento();
-                        object[9] = nomonetarias.get(i).getVarNitEmpresa();
-                        object[10] = nomonetarias.get(i).getVarNombreEmpresa();
-                        object[11] = nomonetarias.get(i).getVarNumTarjetaAnterior();
-                        object[12] = nomonetarias.get(i).getDecValCarCobr();
-                        object[13] = nomonetarias.get(i).getVarDescripEsta();
+                        modelo.addColumn("Fecha Novedad");
+                        modelo.addColumn("Tipo Novedad");
+                        modelo.addColumn(" Codigo Bin");
+                        modelo.addColumn(" Numero Tarjeta");
+                        modelo.addColumn(" Nombre TarjetaHabiente");
+                        modelo.addColumn("SupTipo");
+                        modelo.addColumn("Codigo Oficina");
+                        modelo.addColumn("Tipo Documento");
+                        modelo.addColumn("Numero Documento");
+                        modelo.addColumn("Nit Empresa");
+                        modelo.addColumn("Nombre Empresa");
+                        modelo.addColumn("Numero Tarjeta Anterior");
+                        modelo.addColumn("Valor Comision");
+                        modelo.addColumn("Estado Tarjeta");
 
-                        modelo.addRow(object);
+                        for (int i = 0; i < nomonetarias.size(); i++) {
+                            Object[] object = new Object[14];
+                            object[0] = nomonetarias.get(i).getDateFechaNovedad();
+                            object[1] = nomonetarias.get(i).getVarDescripcionTipoNovedad();
+                            object[2] = nomonetarias.get(i).getVarCodBin();
+                            object[3] = nomonetarias.get(i).getVarNumTarjeta();
+                            object[4] = nomonetarias.get(i).getVarNombreTarjetahabiente();
+                            object[5] = nomonetarias.get(i).getVarDescriSubtipo();
+                            object[6] = nomonetarias.get(i).getVarOficina();
+                            object[7] = nomonetarias.get(i).getVarDescripcionTipoDocumento();
+                            object[8] = nomonetarias.get(i).getVarNumDocumento();
+                            object[9] = nomonetarias.get(i).getVarNitEmpresa();
+                            object[10] = nomonetarias.get(i).getVarNombreEmpresa();
+                            object[11] = nomonetarias.get(i).getVarNumTarjetaAnterior();
+                            object[12] = nomonetarias.get(i).getDecValCarCobr();
+                            object[13] = nomonetarias.get(i).getVarDescripEsta();
+
+                            modelo.addRow(object);
                         }
                     }
                 }

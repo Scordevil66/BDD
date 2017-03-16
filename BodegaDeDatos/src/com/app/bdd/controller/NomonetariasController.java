@@ -23,7 +23,7 @@ import java.util.List;
  *
  * @author Gustavo
  */
-        public class NomonetariasController {
+public class NomonetariasController {
 
     static Statement st;
 
@@ -34,18 +34,17 @@ import java.util.List;
 //    public static void main(String[] args) {
 //        LeerArchivoNoMonetariasTxt("");
 //    }
-
     public static int registrarNoMonetaria(NoMonetarias nomonetarias) throws Exception {
 
         NomonetariasController.NomonetariasController();
 
         int no = 0;
-        
-        String sql="";
+
+        String sql = "";
 
         try {
 
-             sql = "INSERT INTO  [BodegaDatos].[dbo].[nomonetarias] "
+            sql = "INSERT INTO  [BodegaDatos].[dbo].[nomonetarias] "
                     + "           ([varTipoNovedad]"
                     + "           ,[dateFechaNovedad]"
                     + "           ,[varCodFranquicia]"
@@ -94,12 +93,11 @@ import java.util.List;
 
     }
 
-     /* EJECUTA CONSULTA SALDO POR TARJETA  */
+    /* EJECUTA CONSULTA SALDO POR TARJETA  */
     public List<NoMonetarias> consultaPorTarjeta(String NumTarjeta, String FechIni, String FechFin) throws SQLException {
 
         List<NoMonetarias> nomonetarias = new ArrayList<>();
         NoMonetarias nomonetaria = new NoMonetarias();
-        
 
         NomonetariasController.NomonetariasController();
 
@@ -107,42 +105,47 @@ import java.util.List;
 
         try {
 
-            sql = "  SELECT		nomo.varTipoNovedad, \n"+
-"                                       nomo.dateFechaNovedad, /*fecha*/\n" +                    
-"                                       nomo.varCodBin, /*Bin*/\n" +
-"					nomo.varNumTarjeta,/* tarjeta fulano*/\n"+                    
-"					nomo.varNombreTarjetahabiente, /*nombre fulnano*/\n" +
-"       				nomo.varOficina, /*oficina*/\n" +  
-"					nomo.varTipoDocumTatjetaHabiente, /*codigo tipo documento*/\n" +
-"					tipodoc.varDescripcionTipoDocumento,/*descp tipo doicumento*/\n" +                    
-"					nomo.varNumDocumento, /*documento */\n" +
-"					nomo.varNitEmpresa, /*nit empresa*/\n" +
-"					nomo.varNombreEmpresa, /*nombre empresa*/\n" +
-" 				        nomo.varNumTarjetaAnterior,/*tarjeta anterior*/\n"+
-"					mov.decValCarCobr,/*comision*/\n" +
-"                                       nomo.varSubTipo,/*codigo subtipo*/\n" +
-"					mov.varDescriSubtipo, /*Descripcion subtipo*/\n" +
-"					tip.varDescripcionTipoNovedad,/*tipó*/\n" +
-"					sa.varEstadoTarjeta,/*codigo estado trarjeta*/\n" +
-    "					sa.varDescripEsta /*descripcion estado tarjeta*/\n" +
- " FROM movimientos as mov, nomonetarias as nomo, saldos as sa, tiposnovedad  as tip, tipodocumento as tipodoc, comerciosred as comer \n"+
-                    
-                     " WHERE nomo.varNumTarjeta='" + NumTarjeta + "'\n"
-                    + " and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
-                    + " and sa.varTarjeta = mov.varTarjeta\n"
+            sql = "  SELECT		nomo.varTipoNovedad, \n"
+                    + "                                       nomo.dateFechaNovedad, /*fecha*/\n"
+                    + "                                       nomo.varCodBin, /*Bin*/\n"
+                    + "					nomo.varNumTarjeta,/* tarjeta fulano*/\n"
+                    + "					nomo.varNombreTarjetahabiente, /*nombre fulnano*/\n"
+                    + "       				nomo.varOficina, /*oficina*/\n"
+                    + "					nomo.varTipoDocumTatjetaHabiente, /*codigo tipo documento*/\n"
+                    + "					tipodoc.varDescripcionTipoDocumento,/*descp tipo doicumento*/\n"
+                    + "					nomo.varNumDocumento, /*documento */\n"
+                    + "					nomo.varNitEmpresa, /*nit empresa*/\n"
+                    + "					nomo.varNombreEmpresa, /*nombre empresa*/\n"
+                    + " 				        nomo.varNumTarjetaAnterior,/*tarjeta anterior*/\n"
+                    + "					mov.decValCarCobr,/*comision*/\n"
+                    + "                                       nomo.varSubTipo,/*codigo subtipo*/\n"
+                    + "					mov.varDescriSubtipo, /*Descripcion subtipo*/\n"
+                    + "					tip.varDescripcionTipoNovedad,/*tipó*/\n"
+                    + "					sa.varEstadoTarjeta,/*codigo estado trarjeta*/\n"
+                    + "					sa.varDescripEsta /*descripcion estado tarjeta*/\n"
+                    + " FROM movimientos as mov, nomonetarias as nomo, saldos as sa, tiposnovedad  as tip, tipodocumento as tipodoc, comerciosred as comer \n"
+                    + " WHERE "
+                    + " sa.varTarjeta = mov.varTarjeta\n"
                     + " and mov.varTarjeta=nomo.varNumTarjeta\n"
                     + " and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
                     + " and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento\n"
                     + " and sa.varSubtipo =nomo.varSubTipo\n"
                     + " and nomo.varTipoNovedad = tip.varCodigoTipoNovedad ";
 
+            if (!(NumTarjeta.equals(""))) {
+                sql = sql + " and nomo.varNumTarjeta='" + NumTarjeta + "'\n";
+            }
+
+            if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
+                sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
+            }
+
             ResultSet rs = null;
 
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-               nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
-          
+                nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
 
             }
 
@@ -157,15 +160,13 @@ import java.util.List;
 
         return nomonetarias;
     }
-    
+
     /* FIN CONSULTA SALDO POR TARJETA */
-    
-     /* EJECUTA CONSULTA SALDO POR EMPRESA  */
+ /* EJECUTA CONSULTA SALDO POR EMPRESA  */
     public List<NoMonetarias> consultaPorEmpresa(String Bin, String FechIni, String FechFin, String Nit, String Subtipo) throws SQLException {
 
-         List<NoMonetarias> nomonetarias = new ArrayList<>();
+        List<NoMonetarias> nomonetarias = new ArrayList<>();
         NoMonetarias nomonetaria = new NoMonetarias();
-        
 
         NomonetariasController.NomonetariasController();
 
@@ -173,44 +174,52 @@ import java.util.List;
 
         try {
 
-            sql = "  SELECT		nomo.varTipoNovedad, \n"+
-"                                       nomo.dateFechaNovedad, /*fecha*/\n" +                    
-"                                       nomo.varCodBin, /*Bin*/\n" +
-"					nomo.varNumTarjeta,/* tarjeta fulano*/\n"+                    
-"					nomo.varNombreTarjetahabiente, /*nombre fulnano*/\n" +
-"       				nomo.varOficina, /*oficina*/\n" +  
-"					nomo.varTipoDocumTatjetaHabiente, /*codigo tipo documento*/\n" +
-"					tipodoc.varDescripcionTipoDocumento,/*descp tipo doicumento*/\n" +                    
-"					nomo.varNumDocumento, /*documento */\n" +
-"					nomo.varNitEmpresa, /*nit empresa*/\n" +
-"					nomo.varNombreEmpresa, /*nombre empresa*/\n" +
-" 				        nomo.varNumTarjetaAnterior,/*tarjeta anterior*/\n"+
-"					mov.decValCarCobr,/*comision*/\n" +
-"                                       nomo.varSubTipo,/*codigo subtipo*/\n" +
-"					mov.varDescriSubtipo, /*Descripcion subtipo*/\n" +
-"					tip.varDescripcionTipoNovedad,/*tipó*/\n" +
-"					sa.varEstadoTarjeta,/*codigo estado trarjeta*/\n" +
-    "					sa.varDescripEsta /*descripcion estado tarjeta*/\n" +
- " FROM movimientos as mov, nomonetarias as nomo, saldos as sa, tiposnovedad  as tip, tipodocumento as tipodoc, comerciosred as comer \n"+
-                    
-                     " WHERE nomo.varCodBin='" + Bin + "'\n"+
-                     " and nomo.varNitEmpresa='" + Nit + "'\n"+
-                    " and mov.varDescriSubtipo='" + Subtipo + "'\n"
-                    + " and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
-                    + " and sa.varTarjeta = mov.varTarjeta\n"
+            sql = "  SELECT		nomo.varTipoNovedad, \n"
+                    + "                                       nomo.dateFechaNovedad, /*fecha*/\n"
+                    + "                                       nomo.varCodBin, /*Bin*/\n"
+                    + "					nomo.varNumTarjeta,/* tarjeta fulano*/\n"
+                    + "					nomo.varNombreTarjetahabiente, /*nombre fulnano*/\n"
+                    + "       				nomo.varOficina, /*oficina*/\n"
+                    + "					nomo.varTipoDocumTatjetaHabiente, /*codigo tipo documento*/\n"
+                    + "					tipodoc.varDescripcionTipoDocumento,/*descp tipo doicumento*/\n"
+                    + "					nomo.varNumDocumento, /*documento */\n"
+                    + "					nomo.varNitEmpresa, /*nit empresa*/\n"
+                    + "					nomo.varNombreEmpresa, /*nombre empresa*/\n"
+                    + " 				        nomo.varNumTarjetaAnterior,/*tarjeta anterior*/\n"
+                    + "					mov.decValCarCobr,/*comision*/\n"
+                    + "                                       nomo.varSubTipo,/*codigo subtipo*/\n"
+                    + "					mov.varDescriSubtipo, /*Descripcion subtipo*/\n"
+                    + "					tip.varDescripcionTipoNovedad,/*tipó*/\n"
+                    + "					sa.varEstadoTarjeta,/*codigo estado trarjeta*/\n"
+                    + "					sa.varDescripEsta /*descripcion estado tarjeta*/\n"
+                    + " FROM movimientos as mov, nomonetarias as nomo, saldos as sa, tiposnovedad  as tip, tipodocumento as tipodoc, comerciosred as comer \n"
+                    + " WHERE "
+                    + " sa.varTarjeta = mov.varTarjeta\n"
                     + " and mov.varTarjeta=nomo.varNumTarjeta\n"
                     + " and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
                     + " and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento\n"
                     + " and sa.varSubtipo =nomo.varSubTipo\n"
                     + " and nomo.varTipoNovedad = tip.varCodigoTipoNovedad ";
 
+            if (!(Bin.equals(""))) {
+                sql = sql + " nomo.varCodBin='" + Bin + "'\n";
+            }
+            if (!(Nit.equals(""))) {
+                sql = sql + " and nomo.varNitEmpresa='" + Nit + "'\n";
+            }
+            if (!(Subtipo.equals(""))) {
+                sql = sql + " and mov.varDescriSubtipo='" + Subtipo + "'\n";
+            }
+            if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
+                sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
+            }
+
             ResultSet rs = null;
 
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-               nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
-          
+                nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
 
             }
 
@@ -225,14 +234,13 @@ import java.util.List;
 
         return nomonetarias;
     }
-    
+
     /* FIN CONSULTA SALDO POR EMPRESA */
-    /* EJECUTA CONSULTA SALDO POR ENTIDAD  */
+ /* EJECUTA CONSULTA SALDO POR ENTIDAD  */
     public List<NoMonetarias> consultaPorEntidad(String Bin, String FechIni, String FechFin) throws SQLException {
 
         List<NoMonetarias> nomonetarias = new ArrayList<>();
-                NoMonetarias noMonetarias = new NoMonetarias();
-        
+        NoMonetarias noMonetarias = new NoMonetarias();
 
         NomonetariasController.NomonetariasController();
 
@@ -240,27 +248,26 @@ import java.util.List;
 
         try {
 
-            sql = " 	SELECT	nomo.varTipoNovedad, \n"+
-"                                       nomo.dateFechaNovedad, /*fecha*/\n" +                    
-"                                       nomo.varCodBin, /*Bin*/\n" +
-"					nomo.varNumTarjeta,/* tarjeta fulano*/\n"+                    
-"					nomo.varNombreTarjetahabiente, /*nombre fulnano*/\n" +
-"       				nomo.varOficina, /*oficina*/\n" +  
-"					nomo.varTipoDocumTatjetaHabiente, /*codigo tipo documento*/\n" +
-"					tipodoc.varDescripcionTipoDocumento,/*descp tipo doicumento*/\n" +                    
-"					nomo.varNumDocumento, /*documento */\n" +
-"					nomo.varNitEmpresa, /*nit empresa*/\n" +
-"					nomo.varNombreEmpresa, /*nombre empresa*/\n" +
-" 				        nomo.varNumTarjetaAnterior,/*tarjeta anterior*/\n"+
-"					mov.decValCarCobr,/*comision*/\n" +
-"                                       nomo.varSubTipo,/*codigo subtipo*/\n" +
-"					mov.varDescriSubtipo, /*Descripcion subtipo*/\n" +
-"					tip.varDescripcionTipoNovedad,/*tipó*/\n" +
-"					sa.varEstadoTarjeta,/*codigo estado trarjeta*/\n" +
-    "					sa.varDescripEsta /*descripcion estado tarjeta*/\n" +
- " FROM movimientos as mov, nomonetarias as nomo, saldos as sa, tiposnovedad  as tip, tipodocumento as tipodoc, comerciosred as comer \n"+
-                    " WHERE nomo.varCodBin='" + Bin + "'\n"
-                    + " and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
+            sql = " 	SELECT	nomo.varTipoNovedad, \n"
+                    + "                                       nomo.dateFechaNovedad, /*fecha*/\n"
+                    + "                                       nomo.varCodBin, /*Bin*/\n"
+                    + "					nomo.varNumTarjeta,/* tarjeta fulano*/\n"
+                    + "					nomo.varNombreTarjetahabiente, /*nombre fulnano*/\n"
+                    + "       				nomo.varOficina, /*oficina*/\n"
+                    + "					nomo.varTipoDocumTatjetaHabiente, /*codigo tipo documento*/\n"
+                    + "					tipodoc.varDescripcionTipoDocumento,/*descp tipo doicumento*/\n"
+                    + "					nomo.varNumDocumento, /*documento */\n"
+                    + "					nomo.varNitEmpresa, /*nit empresa*/\n"
+                    + "					nomo.varNombreEmpresa, /*nombre empresa*/\n"
+                    + " 				        nomo.varNumTarjetaAnterior,/*tarjeta anterior*/\n"
+                    + "					mov.decValCarCobr,/*comision*/\n"
+                    + "                                       nomo.varSubTipo,/*codigo subtipo*/\n"
+                    + "					mov.varDescriSubtipo, /*Descripcion subtipo*/\n"
+                    + "					tip.varDescripcionTipoNovedad,/*tipó*/\n"
+                    + "					sa.varEstadoTarjeta,/*codigo estado trarjeta*/\n"
+                    + "					sa.varDescripEsta /*descripcion estado tarjeta*/\n"
+                    + " FROM movimientos as mov, nomonetarias as nomo, saldos as sa, tiposnovedad  as tip, tipodocumento as tipodoc, comerciosred as comer \n"
+                    + " WHERE "
                     + " and sa.varTarjeta = mov.varTarjeta\n"
                     + " and mov.varTarjeta=nomo.varNumTarjeta\n"
                     + " and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
@@ -268,12 +275,19 @@ import java.util.List;
                     + " and sa.varSubtipo =nomo.varSubTipo\n"
                     + " and nomo.varTipoNovedad = tip.varCodigoTipoNovedad  ";
 
+            if (!(Bin.equals(""))) {
+                sql = sql + " nomo.varCodBin='" + Bin + "'\n";
+            }
+            if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
+                sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
+            }
+
             ResultSet rs = null;
 
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-           nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
+                nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
 
             }
 
@@ -288,20 +302,17 @@ import java.util.List;
 
         return nomonetarias;
     }
-    
+
     /* FIN CONSULTA SALDO POR ENTIDAD */
-    
-    
     public static int LeerArchivoNoMonetariasTxt(String ruta) {
         //Creamos un String que va a contener todo el texto del archivo
         String texto = "";
 
         int resultado = 0;
-        
+
         NoMonetarias nomonetaria = new NoMonetarias();
 
-       // double decValTransaccion = 0, decValDispensado = 0, decValCarCobr = 0, decValIva = 0, decTotalCobrar = 0, decImpEmerEcono = 0;
-
+        // double decValTransaccion = 0, decValDispensado = 0, decValCarCobr = 0, decValIva = 0, decTotalCobrar = 0, decImpEmerEcono = 0;
         try {
 //Creamos un archivo FileReader que obtiene lo que tenga el archivo
             FileReader lector = new FileReader(ruta);
@@ -333,20 +344,17 @@ import java.util.List;
                 nomonetaria.setVarNumDocumento(texto.substring(96, 111));
                 nomonetaria.setVarNitEmpresa(texto.substring(111, 126));
                 nomonetaria.setVarNombreEmpresa(texto.substring(126, 156));
-                
-                if(texto.length()>156){
-                    int ext = texto.length()-156;
+
+                if (texto.length() > 156) {
+                    int ext = texto.length() - 156;
                     int extn = 156 + ext;
-                    
+
                     nomonetaria.setVarNumTarjetaAnterior(texto.substring(156, extn));
-                }else{
+                } else {
                     nomonetaria.setVarNumTarjetaAnterior(" ");
                 }
-                
-               // nomonetaria.setVarNumTarjetaAnterior(texto.substring(156, 175));
-                
-                
-                 
+
+                // nomonetaria.setVarNumTarjetaAnterior(texto.substring(156, 175));
                 System.out.println(texto);
 
                 resultado = registrarNoMonetaria(nomonetaria);

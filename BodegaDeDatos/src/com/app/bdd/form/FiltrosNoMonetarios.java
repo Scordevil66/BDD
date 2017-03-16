@@ -301,7 +301,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
                     SubTipo.setBackground(new java.awt.Color(238, 235, 235));
                     SubTipo.setEnabled(false);
 
-                } 
+                }
 
             }
 
@@ -325,172 +325,173 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
             int idTipoFiltro = Integer.parseInt(idTipoFiltroV[0]);
 
             if (idTipoFiltro == 1) {
-               
+
                 String formato = FechIni.getDateFormatString();
-                            Date date = FechIni.getDate();
+                Date date = FechIni.getDate();
 
-                            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                            String fechIni = String.valueOf(sdf.format(date));
-                            
-                            String formato2 = FechFi.getDateFormatString();
-                            Date date2 = FechFi.getDate();
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String fechIni = String.valueOf(sdf.format(date));
 
-                            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                            String fechFi = String.valueOf(sdf.format(date2));
+                String formato2 = FechFi.getDateFormatString();
+                Date date2 = FechFi.getDate();
 
-                            nomonetarias = nomovimientoController.consultaPorTarjeta(NumTarj.getText().trim(), fechIni, fechFi);
+                SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                String fechFi = String.valueOf(sdf.format(date2));
 
-                            DefaultTableModel modelo;
-                            modelo = new DefaultTableModel();
+                nomonetarias = nomovimientoController.consultaPorTarjeta(NumTarj.getText().trim(), fechIni, fechFi);
 
-                            jTable1.setModel(modelo);
+                DefaultTableModel modelo;
+                modelo = new DefaultTableModel();
 
-                            modelo.addColumn("Fecha Novedad");
-                            modelo.addColumn("Tipo Novedad");
-                            modelo.addColumn(" Codigo Bin");
-                            modelo.addColumn(" Nombre TarjetaHabiente");
-                            modelo.addColumn("SupTipo");
-                            modelo.addColumn("Codigo Oficina");
-                            modelo.addColumn("Tipo Documento");
-                            modelo.addColumn("Numero Documento");
-                            modelo.addColumn("Nit Empresa");
-                            modelo.addColumn("Nombre Empresa");
-                            modelo.addColumn("Numero Tarjeta Anterior");
-                            modelo.addColumn("Valor Comision");
-                            modelo.addColumn("Estado Tarjeta");
-                                                        
-                            for (int i = 0; i < nomonetarias.size(); i++) {
-                                Object[] object = new Object[12];
-                                object[0] = nomonetarias.get(i).getDateFechaNovedad();
-                                object[1] = nomonetarias.get(i).getVarTipoNovedad();
-                                object[2] = nomonetarias.get(i).getVarCodBin();
-                                object[3] = nomonetarias.get(i).getVarNombreTarjetahabiente();
-                                object[4] = nomonetarias.get(i).getVarSubTipo();
-                                object[5] = nomonetarias.get(i).getVarOficina();
-                                object[6] = nomonetarias.get(i).getVarTipoDocumTatjetaHabiente();
-                                object[7] = nomonetarias.get(i).getVarNumDocumento();
-                                object[8] = nomonetarias.get(i).getVarNitEmpresa();
-                                object[9] = nomonetarias.get(i).getVarNombreEmpresa();
-                                object[10] = nomonetarias.get(i).getVarNumTarjetaAnterior();
-                                object[11] = nomonetarias.get(i).getDecValCarCobr();
-                                object[12] = nomonetarias.get(i).getVarDescripEsta();
+                jTable1.setModel(modelo);
 
-                                modelo.addRow(object);
-                            }
-                
+                modelo.addColumn("Fecha Novedad");
+                modelo.addColumn("Tipo Novedad");
+                modelo.addColumn(" Codigo Bin");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("SupTipo");
+                modelo.addColumn("Codigo Oficina");
+                modelo.addColumn("Tipo Documento");
+                modelo.addColumn("Numero Documento");
+                modelo.addColumn("Nit Empresa");
+                modelo.addColumn("Nombre Empresa");
+                modelo.addColumn("Numero Tarjeta Anterior");
+                modelo.addColumn("Valor Comision");
+                modelo.addColumn("Estado Tarjeta");
+
+                for (int i = 0; i < nomonetarias.size(); i++) {
+                    Object[] object = new Object[13];
+                    object[0] = nomonetarias.get(i).getDateFechaNovedad();
+                    object[1] = nomonetarias.get(i).getVarDescripcionTipoNovedad();
+                    object[2] = nomonetarias.get(i).getVarCodBin();
+                    object[3] = nomonetarias.get(i).getVarNombreTarjetahabiente();
+                    object[4] = nomonetarias.get(i).getVarDescriSubtipo();
+                    object[5] = nomonetarias.get(i).getVarOficina();
+                    object[6] = nomonetarias.get(i).getVarDescripcionTipoDocumento();
+                    object[7] = nomonetarias.get(i).getVarNumDocumento();
+                    object[8] = nomonetarias.get(i).getVarNitEmpresa();
+                    object[9] = nomonetarias.get(i).getVarNombreEmpresa();
+                    object[10] = nomonetarias.get(i).getVarNumTarjetaAnterior();
+                    object[11] = nomonetarias.get(i).getDecValCarCobr();
+                    object[12] = nomonetarias.get(i).getVarDescripEsta();
+
+                    modelo.addRow(object);
+                }
 
             } else {
                 if (idTipoFiltro == 2) {
 
                     String formato = FechIni.getDateFormatString();
-                            Date date = FechIni.getDate();
+                    Date date = FechIni.getDate();
 
-                            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                            String fechIni = String.valueOf(sdf.format(date));
-                            
-                            String formato2 = FechFi.getDateFormatString();
-                            Date date2 = FechFi.getDate();
+                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                    String fechIni = String.valueOf(sdf.format(date));
 
-                            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                            String fechFi = String.valueOf(sdf.format(date2));
+                    String formato2 = FechFi.getDateFormatString();
+                    Date date2 = FechFi.getDate();
 
-                         //   movimientos = nomovimientoController.consultaSaldoTarjetasEmpresa(fechIni, fechFi, Nit.getText().trim(), SubTipo.getText().trim() ,Bin.getText().trim());
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                    String fechFi = String.valueOf(sdf.format(date2));
 
-                            DefaultTableModel modelo;
-                            modelo = new DefaultTableModel();
+                    nomonetarias = nomovimientoController.consultaPorEmpresa(Bin.getText().trim(), fechIni, fechFi, Nit.getText().trim(), SubTipo.getText().trim());
 
-                            jTable1.setModel(modelo);
+                    DefaultTableModel modelo;
+                    modelo = new DefaultTableModel();
 
-                            modelo.addColumn("Fecha saldo");
-                            modelo.addColumn("Numero Tarjeta");
-                            modelo.addColumn(" Nombre TarjetaHabiente");
-                            modelo.addColumn(" Tipo  Documento");
-                            modelo.addColumn("Numero Documento");
-                            modelo.addColumn("Nit Empresa");
-                            modelo.addColumn("Sub Tipo");
-                            modelo.addColumn("Saldo Estado Tarjeta ");
-                            
+                    jTable1.setModel(modelo);
 
-                            for (int i = 0; i < nomonetarias.size(); i++) {
-                             /*   Object[] object = new Object[8];
-                                object[0] = nomonetarias.get(i).getDateFechaTransac();
-                                object[1] = nomonetarias.get(i).getVarTarjeta();
-                                object[2] = nomonetarias.get(i).getVarNombreTarjetahabiente();
-                                object[3] = nomonetarias.get(i).getVarDescripcionTipoDocumento();
-                                object[4] = nomonetarias.get(i).getVarNumDocumento();
-                                object[5] = nomonetarias.get(i).getVarNitEmpresa();
-                                object[6] = movimientos.get(i).getVarDescriSubtipo();
-                                object[7] = movimientos.get(i).getDecSaldoDispo();
+                    modelo.addColumn("Fecha Novedad");
+                    modelo.addColumn("Tipo Novedad");
+                    modelo.addColumn(" Codigo Bin");
+                    modelo.addColumn(" Numero Tarjeta");
+                    modelo.addColumn(" Nombre TarjetaHabiente");
+                    modelo.addColumn("SupTipo");
+                    modelo.addColumn("Codigo Oficina");
+                    modelo.addColumn("Tipo Documento");
+                    modelo.addColumn("Numero Documento");
+                    modelo.addColumn("Nit Empresa");
+                    modelo.addColumn("Nombre Empresa");
+                    modelo.addColumn("Numero Tarjeta Anterior");
+                    modelo.addColumn("Valor Comision");
+                    modelo.addColumn("Estado Tarjeta");
 
-                                modelo.addRow(object);*/
-                            }
+                    for (int i = 0; i < nomonetarias.size(); i++) {
+                        Object[] object = new Object[14];
+                        object[0] = nomonetarias.get(i).getDateFechaNovedad();
+                        object[1] = nomonetarias.get(i).getVarDescripcionTipoNovedad();
+                        object[2] = nomonetarias.get(i).getVarCodBin();
+                        object[3] = nomonetarias.get(i).getVarNumTarjeta();
+                        object[4] = nomonetarias.get(i).getVarNombreTarjetahabiente();
+                        object[5] = nomonetarias.get(i).getVarDescriSubtipo();
+                        object[6] = nomonetarias.get(i).getVarOficina();
+                        object[7] = nomonetarias.get(i).getVarDescripcionTipoDocumento();
+                        object[8] = nomonetarias.get(i).getVarNumDocumento();
+                        object[9] = nomonetarias.get(i).getVarNitEmpresa();
+                        object[10] = nomonetarias.get(i).getVarNombreEmpresa();
+                        object[11] = nomonetarias.get(i).getVarNumTarjetaAnterior();
+                        object[12] = nomonetarias.get(i).getDecValCarCobr();
+                        object[13] = nomonetarias.get(i).getVarDescripEsta();
+
+                        modelo.addRow(object);
+                    }
 
                 } else {
                     if (idTipoFiltro == 3) {
 
                         String formato = FechIni.getDateFormatString();
-                            Date date = FechIni.getDate();
+                        Date date = FechIni.getDate();
 
-                            SimpleDateFormat sdf = new SimpleDateFormat(formato);
-                            String fechIni = String.valueOf(sdf.format(date));
-                            
-                            String formato2 = FechFi.getDateFormatString();
-                            Date date2 = FechFi.getDate();
+                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                        String fechIni = String.valueOf(sdf.format(date));
 
-                            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
-                            String fechFi = String.valueOf(sdf.format(date2));
+                        String formato2 = FechFi.getDateFormatString();
+                        Date date2 = FechFi.getDate();
 
-//                            movimientos = movimientoController.consultaMovimientosTarjetaEMpresa(fechIni, fechFi, Bin.getText().trim(), Nit.getText().trim(), SubTipo.getText().trim());
+                        SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                        String fechFi = String.valueOf(sdf.format(date2));
 
-                            DefaultTableModel modelo;
-                            modelo = new DefaultTableModel();
+                        nomonetarias = nomovimientoController.consultaPorEntidad(Bin.getText().trim(), fechIni, fechFi);
 
-                            jTable1.setModel(modelo);
+                        DefaultTableModel modelo;
+                        modelo = new DefaultTableModel();
 
-                            modelo.addColumn("Fecha Transaccion");
-                            modelo.addColumn("Numero Tarjeta");
-                            modelo.addColumn(" Estado Tarjeta");
-                            modelo.addColumn(" Numero Documento");
-                            modelo.addColumn("Nombre TarjetaHabiente");
-                            modelo.addColumn("Tipo Transaccion");
-                            modelo.addColumn("Valor Transaccion");
-                            modelo.addColumn("Codigo Autorizacion ");
-                            modelo.addColumn("Respuesta Autorizacion ");
-                            modelo.addColumn("Valor Comision");
-                            modelo.addColumn("Codigo Establecimiento");
-                            modelo.addColumn("Nombre Establecimiento");
-                            modelo.addColumn("Indicador Reverso");
-                            modelo.addColumn("Impuesto Emergencia Economica");
-                            modelo.addColumn("Subtipo ");
-                            modelo.addColumn("Nit Empresa");
-                            modelo.addColumn("Valor Base Iva");
-                            modelo.addColumn("Nombre Red Adquiriente");
-                            modelo.addColumn("Saldo");
-                           
-                           for (int i = 0; i < nomonetarias.size(); i++) {
-                         /*        Object[] object = new Object[17];
-                                object[0] = nomonetarias.get(i).getDateFechaTransac();
-                                object[1] = nomonetarias.get(i).getVarTarjeta();
-                                object[2] = movimientos.get(i).getVarDescripEsta();
-                                object[3] = movimientos.get(i).getVarNumDocumento();
-                                object[4] = movimientos.get(i).getVarNombreTarjetahabiente();
-                                object[5] = movimientos.get(i).getVarDescTransac();
-                                object[6] = movimientos.get(i).getDecValTransaccion();
-                                object[7] = movimientos.get(i).getVarRespuAutoriz();
-                                object[8] = movimientos.get(i).getDecValCarCobr();
-                                object[9] = movimientos.get(i).getVarCodEstablecimiento();
-                                object[10] = movimientos.get(i).getVarNombreComercio();
-                                object[11] = movimientos.get(i).getVarIndicadorRever();
-                                object[12] = movimientos.get(i).getDecImpEmerEcono();
-                                object[13] = movimientos.get(i).getVarDescriSubtipo();
-                                object[14] = movimientos.get(i).getVarNitEmpresa();
-                                object[15] = movimientos.get(i).getVarRedAdquiriente();
-                                object[16] = movimientos.get(i).getDecSaldoDispo();
+                        jTable1.setModel(modelo);
 
-                                modelo.addRow(object);*/
-                            }
-                    } 
+                        modelo.addColumn("Fecha Novedad");
+                        modelo.addColumn("Tipo Novedad");
+                        modelo.addColumn(" Codigo Bin");
+                        modelo.addColumn(" Numero Tarjeta");
+                        modelo.addColumn(" Nombre TarjetaHabiente");
+                        modelo.addColumn("SupTipo");
+                        modelo.addColumn("Codigo Oficina");
+                        modelo.addColumn("Tipo Documento");
+                        modelo.addColumn("Numero Documento");
+                        modelo.addColumn("Nit Empresa");
+                        modelo.addColumn("Nombre Empresa");
+                        modelo.addColumn("Numero Tarjeta Anterior");
+                        modelo.addColumn("Valor Comision");
+                        modelo.addColumn("Estado Tarjeta");
 
+                        for (int i = 0; i < nomonetarias.size(); i++) {
+                            Object[] object = new Object[15];
+                            object[0] = nomonetarias.get(i).getDateFechaNovedad();
+                            object[1] = nomonetarias.get(i).getVarDescripcionTipoNovedad();
+                            object[2] = nomonetarias.get(i).getVarBin();
+                            object[4] = nomonetarias.get(i).getVarNumTarjeta();
+                            object[5] = nomonetarias.get(i).getVarNombreTarjetahabiente();
+                            object[6] = nomonetarias.get(i).getVarSubTipo();
+                            object[7] = nomonetarias.get(i).getVarOficina();
+                            object[8] = nomonetarias.get(i).getVarTipoDocumTatjetaHabiente();
+                            object[9] = nomonetarias.get(i).getVarNumDocumento();
+                            object[10] = nomonetarias.get(i).getVarNitEmpresa();
+                            object[11] = nomonetarias.get(i).getVarNombreEmpresa();
+                            object[12] = nomonetarias.get(i).getVarNumTarjetaAnterior();
+                            object[13] = nomonetarias.get(i).getDecValCarCobr();
+                            object[14] = nomonetarias.get(i).getVarDescripEsta();
+
+                            modelo.addRow(object);
+                        }
+                    }
                 }
 
             }

@@ -91,24 +91,33 @@ public class NoMonetarias {
     private String decSaldoDispo;
     private String varEstadoTarjeta;
     private String varDescripEsta;
+    private String varDescripcionTipoDocumento;
     
-    ///
-       public NoMonetarias(String varBin, String varTarjeta, String varNitEmpresa, double decValCarCobr, String varSubtipo, String varEstadoTarjeta, String varDescripEsta, String varTipoDocumTatjetaHabiente, String varNumDocumento, String vardateFechaNovedad, String varTipoNovedad, String varDescripcionTipoNovedad, String varOficina, String varNumTarjetaAnterior) {
-        this.varBin = varBin;
-        this.varTarjeta = varTarjeta;
+    /// consulta no monetarias por tarjeta
+
+    public NoMonetarias(String varTipoNovedad, double dateFechaNovedad, String varCodBin, String varNumTarjeta, String varNombreTarjetahabiente, String varOficina, String varTipoDocumTatjetaHabiente, String varDescripcionTipoDocumento, String varNumDocumento, String varNitEmpresa, String varNombreEmpresa, String varNumTarjetaAnterior, double decValCarCobr, String varSubtipo, String varDescriSubtipo, String varDescripcionTipoNovedad, String varEstadoTarjeta, String varDescripEsta) {
+        this.varTipoNovedad = varTipoNovedad;
+        this.dateFechaNovedad = dateFechaNovedad;
+        this.varCodBin = varCodBin;
+        this.varNumTarjeta = varNumTarjeta;
+        this.varNombreTarjetahabiente = varNombreTarjetahabiente;
+        this.varOficina = varOficina;
+        this.varTipoDocumTatjetaHabiente = varTipoDocumTatjetaHabiente;
+        this.varDescripcionTipoDocumento = varDescripcionTipoDocumento;
+        this.varNumDocumento = varNumDocumento;
         this.varNitEmpresa = varNitEmpresa;
+        this.varNombreEmpresa = varNombreEmpresa;
+        this.varNumTarjetaAnterior = varNumTarjetaAnterior;
         this.decValCarCobr = decValCarCobr;
         this.varSubtipo = varSubtipo;
+        this.varDescriSubtipo = varDescriSubtipo;
+        this.varDescripcionTipoNovedad = varDescripcionTipoNovedad;
         this.varEstadoTarjeta = varEstadoTarjeta;
         this.varDescripEsta = varDescripEsta;
-        this.varTipoDocumTatjetaHabiente = varTipoDocumTatjetaHabiente;
-        this.varNumDocumento = varNumDocumento;
-        this.vardateFechaNovedad = vardateFechaNovedad;
-        this.varTipoNovedad = varTipoNovedad;
-        this.varDescripcionTipoNovedad = varDescripcionTipoNovedad;
-        this.varOficina = varOficina;
-        this.varNumTarjetaAnterior = varNumTarjetaAnterior;
     }
+    
+    
+      
     
     
     /////
@@ -145,7 +154,7 @@ public class NoMonetarias {
     
     
     ////
-        //Getters And Setters
+
     public int getIntIdNoMonetarias() {
         return intIdNoMonetarias;
     }
@@ -282,12 +291,316 @@ public class NoMonetarias {
         this.varNumTarjetaAnterior = varNumTarjetaAnterior;
     }
 
+    public int getIntidMovimientos() {
+        return intidMovimientos;
+    }
+
+    public void setIntidMovimientos(int intidMovimientos) {
+        this.intidMovimientos = intidMovimientos;
+    }
+
+    public String getVarBin() {
+        return varBin;
+    }
+
+    public void setVarBin(String varBin) {
+        this.varBin = varBin;
+    }
+
+    public String getVarTarjeta() {
+        return varTarjeta;
+    }
+
+    public void setVarTarjeta(String varTarjeta) {
+        this.varTarjeta = varTarjeta;
+    }
+
+    public String getVarNumCuenta() {
+        return varNumCuenta;
+    }
+
+    public void setVarNumCuenta(String varNumCuenta) {
+        this.varNumCuenta = varNumCuenta;
+    }
+
+    public String getVarDispOrigen() {
+        return varDispOrigen;
+    }
+
+    public void setVarDispOrigen(String varDispOrigen) {
+        this.varDispOrigen = varDispOrigen;
+    }
+
+    public String getVarDesEstCoCargos() {
+        return varDesEstCoCargos;
+    }
+
+    public void setVarDesEstCoCargos(String varDesEstCoCargos) {
+        this.varDesEstCoCargos = varDesEstCoCargos;
+    }
+
+    public String getVarDescTransac() {
+        return varDescTransac;
+    }
+
+    public void setVarDescTransac(String varDescTransac) {
+        this.varDescTransac = varDescTransac;
+    }
+
+    public double getDecValTransaccion() {
+        return decValTransaccion;
+    }
+
+    public void setDecValTransaccion(double decValTransaccion) {
+        this.decValTransaccion = decValTransaccion;
+    }
+
+    public double getDecValDispensado() {
+        return decValDispensado;
+    }
+
+    public void setDecValDispensado(double decValDispensado) {
+        this.decValDispensado = decValDispensado;
+    }
+
+    public Date getDateFechaTransac() {
+        return dateFechaTransac;
+    }
+
+    public void setDateFechaTransac(Date dateFechaTransac) {
+        this.dateFechaTransac = dateFechaTransac;
+    }
+
+    public String getVarDateFechaTransac() {
+        return varDateFechaTransac;
+    }
+
+    public void setVarDateFechaTransac(String varDateFechaTransac) {
+        this.varDateFechaTransac = varDateFechaTransac;
+    }
+
     public double getDecValCarCobr() {
         return decValCarCobr;
     }
 
     public void setDecValCarCobr(double decValCarCobr) {
         this.decValCarCobr = decValCarCobr;
+    }
+
+    public double getDecValIva() {
+        return decValIva;
+    }
+
+    public void setDecValIva(double decValIva) {
+        this.decValIva = decValIva;
+    }
+
+    public double getDecTotalCobrar() {
+        return decTotalCobrar;
+    }
+
+    public void setDecTotalCobrar(double decTotalCobrar) {
+        this.decTotalCobrar = decTotalCobrar;
+    }
+
+    public double getDecImpEmerEcono() {
+        return decImpEmerEcono;
+    }
+
+    public void setDecImpEmerEcono(double decImpEmerEcono) {
+        this.decImpEmerEcono = decImpEmerEcono;
+    }
+
+    public String getVarIndicadorRever() {
+        return varIndicadorRever;
+    }
+
+    public void setVarIndicadorRever(String varIndicadorRever) {
+        this.varIndicadorRever = varIndicadorRever;
+    }
+
+    public String getVarRespuAutoriz() {
+        return varRespuAutoriz;
+    }
+
+    public void setVarRespuAutoriz(String varRespuAutoriz) {
+        this.varRespuAutoriz = varRespuAutoriz;
+    }
+
+    public String getVarDescrpResp() {
+        return varDescrpResp;
+    }
+
+    public void setVarDescrpResp(String varDescrpResp) {
+        this.varDescrpResp = varDescrpResp;
+    }
+
+    public String getVarCodAutoriza() {
+        return varCodAutoriza;
+    }
+
+    public void setVarCodAutoriza(String varCodAutoriza) {
+        this.varCodAutoriza = varCodAutoriza;
+    }
+
+    public String getVarFiller() {
+        return varFiller;
+    }
+
+    public void setVarFiller(String varFiller) {
+        this.varFiller = varFiller;
+    }
+
+    public Date getDateFechAutoriza() {
+        return dateFechAutoriza;
+    }
+
+    public void setDateFechAutoriza(Date dateFechAutoriza) {
+        this.dateFechAutoriza = dateFechAutoriza;
+    }
+
+    public String getVarFechAutoriza() {
+        return varFechAutoriza;
+    }
+
+    public void setVarFechAutoriza(String varFechAutoriza) {
+        this.varFechAutoriza = varFechAutoriza;
+    }
+
+    public String getVarHoraAutoriza() {
+        return varHoraAutoriza;
+    }
+
+    public void setVarHoraAutoriza(String varHoraAutoriza) {
+        this.varHoraAutoriza = varHoraAutoriza;
+    }
+
+    public String getVarHortaDisposi() {
+        return varHortaDisposi;
+    }
+
+    public void setVarHortaDisposi(String varHortaDisposi) {
+        this.varHortaDisposi = varHortaDisposi;
+    }
+
+    public String getVarNumReferencia() {
+        return varNumReferencia;
+    }
+
+    public void setVarNumReferencia(String varNumReferencia) {
+        this.varNumReferencia = varNumReferencia;
+    }
+
+    public String getVarRedAdquiriente() {
+        return varRedAdquiriente;
+    }
+
+    public void setVarRedAdquiriente(String varRedAdquiriente) {
+        this.varRedAdquiriente = varRedAdquiriente;
+    }
+
+    public String getVarNumDispos() {
+        return varNumDispos;
+    }
+
+    public void setVarNumDispos(String varNumDispos) {
+        this.varNumDispos = varNumDispos;
+    }
+
+    public String getVarCodEstablecimiento() {
+        return varCodEstablecimiento;
+    }
+
+    public void setVarCodEstablecimiento(String varCodEstablecimiento) {
+        this.varCodEstablecimiento = varCodEstablecimiento;
+    }
+
+    public String getVarSubtipo() {
+        return varSubtipo;
+    }
+
+    public void setVarSubtipo(String varSubtipo) {
+        this.varSubtipo = varSubtipo;
+    }
+
+    public String getVarDescriSubtipo() {
+        return varDescriSubtipo;
+    }
+
+    public void setVarDescriSubtipo(String varDescriSubtipo) {
+        this.varDescriSubtipo = varDescriSubtipo;
+    }
+
+    public String getVarNumTarjSecundari() {
+        return varNumTarjSecundari;
+    }
+
+    public void setVarNumTarjSecundari(String varNumTarjSecundari) {
+        this.varNumTarjSecundari = varNumTarjSecundari;
+    }
+
+    public String getVarValorPropina() {
+        return varValorPropina;
+    }
+
+    public void setVarValorPropina(String varValorPropina) {
+        this.varValorPropina = varValorPropina;
+    }
+
+    public String getVarValorIva() {
+        return varValorIva;
+    }
+
+    public void setVarValorIva(String varValorIva) {
+        this.varValorIva = varValorIva;
+    }
+
+    public String getVarValorBaseDevIva() {
+        return varValorBaseDevIva;
+    }
+
+    public void setVarValorBaseDevIva(String varValorBaseDevIva) {
+        this.varValorBaseDevIva = varValorBaseDevIva;
+    }
+
+    public String getVarNumCuotas() {
+        return varNumCuotas;
+    }
+
+    public void setVarNumCuotas(String varNumCuotas) {
+        this.varNumCuotas = varNumCuotas;
+    }
+
+    public String getVarFiller2() {
+        return varFiller2;
+    }
+
+    public void setVarFiller2(String varFiller2) {
+        this.varFiller2 = varFiller2;
+    }
+
+    public String getVarDescripcionTipoNovedad() {
+        return varDescripcionTipoNovedad;
+    }
+
+    public void setVarDescripcionTipoNovedad(String varDescripcionTipoNovedad) {
+        this.varDescripcionTipoNovedad = varDescripcionTipoNovedad;
+    }
+
+    public String getDecSaldoDispo() {
+        return decSaldoDispo;
+    }
+
+    public void setDecSaldoDispo(String decSaldoDispo) {
+        this.decSaldoDispo = decSaldoDispo;
+    }
+
+    public String getVarEstadoTarjeta() {
+        return varEstadoTarjeta;
+    }
+
+    public void setVarEstadoTarjeta(String varEstadoTarjeta) {
+        this.varEstadoTarjeta = varEstadoTarjeta;
     }
 
     public String getVarDescripEsta() {
@@ -297,21 +610,22 @@ public class NoMonetarias {
     public void setVarDescripEsta(String varDescripEsta) {
         this.varDescripEsta = varDescripEsta;
     }
-    
-    
-    
-    
-    //To_String 
+
+    public String getVarDescripcionTipoDocumento() {
+        return varDescripcionTipoDocumento;
+    }
+
+    public void setVarDescripcionTipoDocumento(String varDescripcionTipoDocumento) {
+        this.varDescripcionTipoDocumento = varDescripcionTipoDocumento;
+    }
 
     @Override
     public String toString() {
-        return "NoMonetarias{" + "intIdNoMonetarias=" + intIdNoMonetarias + ", varTipoNovedad=" + varTipoNovedad + ", dateFechaNovedad=" + dateFechaNovedad + ", vardateFechaNovedad=" + vardateFechaNovedad + ", varCodFranquicia=" + varCodFranquicia + ", varCodBin=" + varCodBin + ", varNumTarjeta=" + varNumTarjeta + ", varNombreTarjetahabiente=" + varNombreTarjetahabiente + ", varSubTipo=" + varSubTipo + ", varTipoCuenta=" + varTipoCuenta + ", varNumeroCuenta=" + varNumeroCuenta + ", varOficina=" + varOficina + ", varTipoDocumTatjetaHabiente=" + varTipoDocumTatjetaHabiente + ", varNumDocumento=" + varNumDocumento + ", varNitEmpresa=" + varNitEmpresa + ", varNombreEmpresa=" + varNombreEmpresa + ", varNumTarjetaAnterior=" + varNumTarjetaAnterior + ", intidMovimientos=" + intidMovimientos + ", varBin=" + varBin + ", varTarjeta=" + varTarjeta + ", varNumCuenta=" + varNumCuenta + ", varDispOrigen=" + varDispOrigen + ", varDesEstCoCargos=" + varDesEstCoCargos + ", varDescTransac=" + varDescTransac + ", decValTransaccion=" + decValTransaccion + ", decValDispensado=" + decValDispensado + ", dateFechaTransac=" + dateFechaTransac + ", varDateFechaTransac=" + varDateFechaTransac + ", decValCarCobr=" + decValCarCobr + ", decValIva=" + decValIva + ", decTotalCobrar=" + decTotalCobrar + ", decImpEmerEcono=" + decImpEmerEcono + ", varIndicadorRever=" + varIndicadorRever + ", varRespuAutoriz=" + varRespuAutoriz + ", varDescrpResp=" + varDescrpResp + ", varCodAutoriza=" + varCodAutoriza + ", varFiller=" + varFiller + ", dateFechAutoriza=" + dateFechAutoriza + ", varFechAutoriza=" + varFechAutoriza + ", varHoraAutoriza=" + varHoraAutoriza + ", varHortaDisposi=" + varHortaDisposi + ", varNumReferencia=" + varNumReferencia + ", varRedAdquiriente=" + varRedAdquiriente + ", varNumDispos=" + varNumDispos + ", varCodEstablecimiento=" + varCodEstablecimiento + ", varSubtipo=" + varSubtipo + ", varDescriSubtipo=" + varDescriSubtipo + ", varNumTarjSecundari=" + varNumTarjSecundari + ", varValorPropina=" + varValorPropina + ", varValorIva=" + varValorIva + ", varValorBaseDevIva=" + varValorBaseDevIva + ", varNumCuotas=" + varNumCuotas + ", varFiller2=" + varFiller2 + ", varDescripcionTipoNovedad=" + varDescripcionTipoNovedad + ", decSaldoDispo=" + decSaldoDispo + ", varEstadoTarjeta=" + varEstadoTarjeta + ", varDescripEsta=" + varDescripEsta + '}';
+        return "NoMonetarias{" + "intIdNoMonetarias=" + intIdNoMonetarias + ", varTipoNovedad=" + varTipoNovedad + ", dateFechaNovedad=" + dateFechaNovedad + ", vardateFechaNovedad=" + vardateFechaNovedad + ", varCodFranquicia=" + varCodFranquicia + ", varCodBin=" + varCodBin + ", varNumTarjeta=" + varNumTarjeta + ", varNombreTarjetahabiente=" + varNombreTarjetahabiente + ", varSubTipo=" + varSubTipo + ", varTipoCuenta=" + varTipoCuenta + ", varNumeroCuenta=" + varNumeroCuenta + ", varOficina=" + varOficina + ", varTipoDocumTatjetaHabiente=" + varTipoDocumTatjetaHabiente + ", varNumDocumento=" + varNumDocumento + ", varNitEmpresa=" + varNitEmpresa + ", varNombreEmpresa=" + varNombreEmpresa + ", varNumTarjetaAnterior=" + varNumTarjetaAnterior + ", intidMovimientos=" + intidMovimientos + ", varBin=" + varBin + ", varTarjeta=" + varTarjeta + ", varNumCuenta=" + varNumCuenta + ", varDispOrigen=" + varDispOrigen + ", varDesEstCoCargos=" + varDesEstCoCargos + ", varDescTransac=" + varDescTransac + ", decValTransaccion=" + decValTransaccion + ", decValDispensado=" + decValDispensado + ", dateFechaTransac=" + dateFechaTransac + ", varDateFechaTransac=" + varDateFechaTransac + ", decValCarCobr=" + decValCarCobr + ", decValIva=" + decValIva + ", decTotalCobrar=" + decTotalCobrar + ", decImpEmerEcono=" + decImpEmerEcono + ", varIndicadorRever=" + varIndicadorRever + ", varRespuAutoriz=" + varRespuAutoriz + ", varDescrpResp=" + varDescrpResp + ", varCodAutoriza=" + varCodAutoriza + ", varFiller=" + varFiller + ", dateFechAutoriza=" + dateFechAutoriza + ", varFechAutoriza=" + varFechAutoriza + ", varHoraAutoriza=" + varHoraAutoriza + ", varHortaDisposi=" + varHortaDisposi + ", varNumReferencia=" + varNumReferencia + ", varRedAdquiriente=" + varRedAdquiriente + ", varNumDispos=" + varNumDispos + ", varCodEstablecimiento=" + varCodEstablecimiento + ", varSubtipo=" + varSubtipo + ", varDescriSubtipo=" + varDescriSubtipo + ", varNumTarjSecundari=" + varNumTarjSecundari + ", varValorPropina=" + varValorPropina + ", varValorIva=" + varValorIva + ", varValorBaseDevIva=" + varValorBaseDevIva + ", varNumCuotas=" + varNumCuotas + ", varFiller2=" + varFiller2 + ", varDescripcionTipoNovedad=" + varDescripcionTipoNovedad + ", decSaldoDispo=" + decSaldoDispo + ", varEstadoTarjeta=" + varEstadoTarjeta + ", varDescripEsta=" + varDescripEsta + ", varDescripcionTipoDocumento=" + varDescripcionTipoDocumento + '}';
     }
+     
     
+   
     
-    
-    
-    
-    
-    
-    }
+}
+  

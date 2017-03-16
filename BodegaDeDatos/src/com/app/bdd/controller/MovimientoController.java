@@ -215,7 +215,7 @@ public class MovimientoController {
 
             sql = " SELECT  mov.dateFechaTransac,mov.varBin, mov.varTarjeta, nomo.varNombreTarjetahabiente, nomo.varTipoDocumTatjetaHabiente, nomo.varNumDocumento,\n"
                     + " mov.varNitEmpresa, mov.varSubtipo, mov.varDescriSubtipo,sa.decSaldoDispo, sa.varEstadoTarjeta, sa.varDescripEsta\n"
-                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, tipodocumento as tipdoc\n"
+                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, tipodocumento as tipdoc,comerciosred as comer\n"
                     + "where mov.varTarjeta = sa.varTarjeta\n"
                     + "and tipdoc.varCodigoTipoDocumento = nomo.varTipoDocumTatjetaHabiente \n"
                     + "and mov.varSubtipo = sa.varSubtipo\n"
@@ -333,7 +333,7 @@ public class MovimientoController {
                     + " mov.decValIva, mov.decImpEmerEcono,varIndicadorRever,mov.varRespuAutoriz,mov.varDescrpResp,mov.varCodAutoriza, mov.varRedAdquiriente,"
                     + " mov.varSubtipo, mov.varDescriSubtipo,  mov.varNumTarjSecundari, mov.varValorBaseDevIva,  sa.decSaldoDispo, sa.varEstadoTarjeta,"
                     + "   sa.varDescripEsta, nomo.varNombreTarjetahabiente, nomo.varNumDocumento,  comer.varCodigoComercio, comer.varNombreComercio  \n"
-                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer\n"
+                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer,tipodocumento as tipodoc\n"
                     + "where mov.varTarjeta = sa.varTarjeta\n"
                     + "and mov.varSubtipo = sa.varSubtipo \n"
                     + "and mov.varBin = '" + Bin + "'  \n"
@@ -344,7 +344,6 @@ public class MovimientoController {
                     + "and mov.varTarjeta=nomo.varNumTarjeta \n"
                     + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
                     + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 
-//                    + "and sa.varSubtipo =nomo.varSubTipo\n" 
                     + "order by mov.dateFechaTransac asc ";
 
             ResultSet rs = null;

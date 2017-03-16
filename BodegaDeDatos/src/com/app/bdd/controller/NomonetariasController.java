@@ -240,28 +240,40 @@ import java.util.List;
 
         try {
 
-            sql = " SELECT nomo.varCodBin, nomo.varNumTarjeta ,nomo.varNitEmpresa, mov.decValCarCobr,"
-                    + " nomo.varSubTipo, sa.varEstadoTarjeta, sa.varDescripEsta,nomo.varTipoDocumTatjetaHabiente, nomo.varNumDocumento,"
-                    + "nomo.dateFechaNovedad, nomo.varTipoNovedad, tip.varDescripcionTipoNovedad, nomo.varOficina,nomo.varNumTarjetaAnterior \n"
-                    + "FROM movimientos as mov, nomonetarias as nomo, saldos as sa, tiposnovedad  as tip,\n"
-                    + "	tipodocumento as tipodoc, comerciosred as comer\n"
-                    + "WHERE nomo.varNumTarjeta='" + Bin + "'\n"
-                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
-                   // + "and sa.varTarjeta ='" + Nit + "'\n"
-                    //+ "and sa.varTarjeta ='" + Subtipo+ "'\n"
-                    + "and sa.varTarjeta = mov.varTarjeta\n"
-                    + "and mov.varTarjeta=nomo.varNumTarjeta\n"
-                    + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
-                    + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento\n"
-                    + "and sa.varSubtipo =nomo.varSubTipo\n"
-                    + "and nomo.varTipoNovedad = tip.varCodigoTipoNovedad ";
+            sql = " 	SELECT	nomo.varTipoNovedad, \n"+
+"                                       nomo.dateFechaNovedad, /*fecha*/\n" +                    
+"                                       nomo.varCodBin, /*Bin*/\n" +
+"					nomo.varNumTarjeta,/* tarjeta fulano*/\n"+                    
+"					nomo.varNombreTarjetahabiente, /*nombre fulnano*/\n" +
+"       				nomo.varOficina, /*oficina*/\n" +  
+"					nomo.varTipoDocumTatjetaHabiente, /*codigo tipo documento*/\n" +
+"					tipodoc.varDescripcionTipoDocumento,/*descp tipo doicumento*/\n" +                    
+"					nomo.varNumDocumento, /*documento */\n" +
+"					nomo.varNitEmpresa, /*nit empresa*/\n" +
+"					nomo.varNombreEmpresa, /*nombre empresa*/\n" +
+" 				        nomo.varNumTarjetaAnterior,/*tarjeta anterior*/\n"+
+"					mov.decValCarCobr,/*comision*/\n" +
+"                                       nomo.varSubTipo,/*codigo subtipo*/\n" +
+"					mov.varDescriSubtipo, /*Descripcion subtipo*/\n" +
+"					tip.varDescripcionTipoNovedad,/*tipó*/\n" +
+"					sa.varEstadoTarjeta,/*codigo estado trarjeta*/\n" +
+    "					sa.varDescripEsta /*descripcion estado tarjeta*/\n" +
+ " FROM movimientos as mov, nomonetarias as nomo, saldos as sa, tiposnovedad  as tip, tipodocumento as tipodoc, comerciosred as comer \n"+
+                    " WHERE nomo.varCodBin='" + Bin + "'\n"
+                    + " and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
+                    + " and sa.varTarjeta = mov.varTarjeta\n"
+                    + " and mov.varTarjeta=nomo.varNumTarjeta\n"
+                    + " and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
+                    + " and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento\n"
+                    + " and sa.varSubtipo =nomo.varSubTipo\n"
+                    + " and nomo.varTipoNovedad = tip.varCodigoTipoNovedad  ";
 
             ResultSet rs = null;
 
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-           //     nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14)));
+           nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
 
             }
 

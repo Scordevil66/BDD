@@ -160,9 +160,20 @@ public class MovimientoController {
                     + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo,  tipodocumento as tipdoc\n"
                     + "where mov.varTarjeta = sa.varTarjeta \n"
                     + "and tipdoc.varCodigoTipoDocumento = nomo.varTipoDocumTatjetaHabiente \n"
-                    + "and mov.varSubtipo = sa.varSubtipo  \n"
-                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'   and mov.varTarjeta  = '"+NumTarjeta+"'\n"
-                    + "order by mov.dateFechaTransac asc   ";
+                    + "and mov.varSubtipo = sa.varSubtipo  \n";
+               //     + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'   and mov.varTarjeta  = '"+NumTarjeta+"'\n"
+                    
+            
+             if (!(NumTarjeta.equals(""))) {
+                sql = sql + " and mov.mov.varTarjeta='" + NumTarjeta + "'\n";
+            }
+            if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
+                sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
+            }
+            
+             sql = sql + "order by mov.dateFechaTransac asc   ";
+            
+            
 
             ResultSet rs = null;
 
@@ -219,16 +230,32 @@ public class MovimientoController {
                     + "where mov.varTarjeta = sa.varTarjeta\n"
                     + "and tipdoc.varCodigoTipoDocumento = nomo.varTipoDocumTatjetaHabiente \n"
                     + "and mov.varSubtipo = sa.varSubtipo\n"
-                    + "and mov.varNitEmpresa = '" + Nit + "' \n"
+                 /*   + "and mov.varNitEmpresa = '" + Nit + "' \n"
                     + "and mov.varDescriSubtipo = '" + SubTipo + "'  \n"
                     + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
-                    + "and mov.varBin = '" + Bin + "'  \n"
+                    + "and mov.varBin = '" + Bin + "'  \n"*/
                     + "and sa.varTarjeta = mov.varTarjeta\n"   
                     + "and mov.varTarjeta=nomo.varNumTarjeta \n"
                     + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
                     + "and nomo.varTipoDocumTatjetaHabiente=tipdoc.varCodigoTipoDocumento \n" 
-                    + "and sa.varSubtipo =nomo.varSubTipo\n" 
-                    + "order by mov.dateFechaTransac asc   ";
+                    + "and sa.varSubtipo =nomo.varSubTipo\n" ;
+            
+            
+            
+              if (!(Nit.equals(""))) {
+                sql = sql + " and mov.varNitEmpresa='" + Nit + "'\n";
+            }
+                if (!(SubTipo.equals(""))) {
+                sql = sql + " and mov.varDescriSubtipo='" + SubTipo + "'\n";
+            }
+                   if (!(Bin.equals(""))) {
+                sql = sql + " and mov.varBin='" + Bin + "'\n";
+            }
+            if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
+                sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
+            }
+            
+             sql = sql + "order by mov.dateFechaTransac asc   ";
 
             ResultSet rs = null;
 
@@ -285,14 +312,27 @@ public class MovimientoController {
                     + " mov.varSubtipo, mov.varDescriSubtipo,  mov.varNumTarjSecundari, mov.varValorBaseDevIva,  sa.decSaldoDispo, sa.varEstadoTarjeta,"
                     + "sa.varDescripEsta, nomo.varNombreTarjetahabiente, nomo.varNumDocumento,  comer.varCodigoComercio, comer.varNombreComercio  \n"
                     + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer, tipodocumento as tipodoc\n"
-                    + "where mov.varTarjeta = '" + NumTarjeta+ "'  \n"
-                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
+                   /* + "where mov.varTarjeta = '" + NumTarjeta+ "'  \n"
+                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"*/
                     + "and sa.varTarjeta = mov.varTarjeta\n"   
                     + "and mov.varTarjeta=nomo.varNumTarjeta \n"
                     + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
                     + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 
-                    + "and sa.varSubtipo =nomo.varSubTipo\n" 
-                    + "order by mov.dateFechaTransac asc ";
+                    + "and sa.varSubtipo =nomo.varSubTipo\n" ;
+                   
+            
+            
+            
+             if (!(NumTarjeta.equals(""))) {
+                sql = sql + " and mov.varTarjeta='" + NumTarjeta + "'\n";
+            }
+              
+            if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
+                sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
+            }
+            
+             sql = sql + "order by mov.dateFechaTransac asc   ";
+            
 
             ResultSet rs = null;
 
@@ -336,15 +376,31 @@ public class MovimientoController {
                     + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer,tipodocumento as tipodoc\n"
                     + "where mov.varTarjeta = sa.varTarjeta\n"
                     + "and mov.varSubtipo = sa.varSubtipo \n"
-                    + "and mov.varBin = '" + Bin + "'  \n"
-                    + "and mov.varBin = '" + Nit + "'  \n"
-                    + "and mov.varBin = '" + SubTipo + "'  \n"
-                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
+//                    + "and mov.varBin = '" + Bin + "'  \n"
+//                    + "and mov.varBin = '" + Nit + "'  \n"
+//                    + "and mov.varBin = '" + SubTipo + "'  \n"
+//                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
                     + "and sa.varTarjeta = mov.varTarjeta\n"   
                     + "and mov.varTarjeta=nomo.varNumTarjeta \n"
                     + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
-                    + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 
-                    + "order by mov.dateFechaTransac asc ";
+                    + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" ;
+            
+             if (!(Bin.equals(""))) {
+                sql = sql + " and mov.varTarjeta='" + Bin + "'\n";
+            }
+             if (!(Nit.equals(""))) {
+                sql = sql + " and mov.varTarjeta='" + Nit + "'\n";
+            } 
+             if (!(SubTipo.equals(""))) {
+                sql = sql + " and mov.varTarjeta='" + SubTipo + "'\n";
+            }
+            if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
+                sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
+            }
+            
+             sql = sql + "order by mov.dateFechaTransac asc   ";
+            
+            
 
             ResultSet rs = null;
 
@@ -391,15 +447,26 @@ public class MovimientoController {
                     + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer,tipodocumento as tipodoc\n"
                     + "where mov.varTarjeta = sa.varTarjeta\n"
                     + "and mov.varSubtipo = sa.varSubtipo \n"
-                    + "and mov.varBin = '" + Bin + "'  \n"
-                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
+//                    + "and mov.varBin = '" + Bin + "'  \n"
+//                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
                     + "and sa.varTarjeta = mov.varTarjeta\n"   
                     + "and mov.varTarjeta=nomo.varNumTarjeta \n"
                     + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
                     + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 
-                    + "and sa.varSubtipo =nomo.varSubTipo\n" 
-                    + "order by mov.dateFechaTransac asc ";
+                    + "and sa.varSubtipo =nomo.varSubTipo\n" ;
 
+            
+            if (!(Bin.equals(""))) {
+                sql = sql + " and mov.varTarjeta='" + Bin + "'\n";
+            }
+             
+            if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
+                sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
+            }
+            
+             sql = sql + "order by mov.dateFechaTransac asc   ";
+            
+            
             ResultSet rs = null;
 
             rs = st.executeQuery(sql);
@@ -442,15 +509,24 @@ public class MovimientoController {
                     + "where mov.varTarjeta = sa.varTarjeta \n"
                     + "and tipdoc.varCodigoTipoDocumento = nomo.varTipoDocumTatjetaHabiente \n"
                     + "and mov.varSubtipo = sa.varSubtipo  \n"
-                    +" and mov.varTarjeta = '"+NumTarjeta+"' \n"
-                    +" and mov.varTarjeta = '"+Bin+"' \n"
+//                    +" and mov.varTarjeta = '"+NumTarjeta+"' \n"
+//                    +" and mov.varTarjeta = '"+Bin+"' \n"
                     + "and sa.varTarjeta = mov.varTarjeta\n"   
                     + "and mov.varTarjeta=nomo.varNumTarjeta \n"
                     + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
                     + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 
-                    + "and sa.varSubtipo =nomo.varSubTipo\n" 
-                   // + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'   and mov.varTarjeta  = '"+NumTarjeta+"'\n"
-                    + "order by mov.dateFechaTransac asc   ";
+                    + "and sa.varSubtipo =nomo.varSubTipo\n" ;
+            
+            
+            
+            if (!(Bin.equals(""))) {
+                sql = sql + " and mov.varTarjeta='" + Bin + "'\n";
+            }
+             if (!(NumTarjeta.equals(""))) {
+                sql = sql + " and mov.varTarjeta='" + NumTarjeta + "'\n";
+            } 
+                        
+             sql = sql + "order by mov.dateFechaTransac asc   ";
 
             ResultSet rs = null;
 

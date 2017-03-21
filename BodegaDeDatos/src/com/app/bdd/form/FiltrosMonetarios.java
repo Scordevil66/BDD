@@ -250,10 +250,28 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         String idTipoFiltroS = (String) jComboBox1.getSelectedItem();
-        String[] idTipoFiltroV = idTipoFiltroS.split(" - ");
-        int idTipoFiltro = Integer.parseInt(idTipoFiltroV[0]);
+     
 
-        if (idTipoFiltro == 1) {
+        if ((idTipoFiltroS.equals("SELECCIONE"))) {
+            button1.setEnabled(false);
+            Bin.setEnabled(false);
+            Nit.setEnabled(false);
+            SubTipo.setEnabled(false);
+            NumTarj.setEnabled(false);
+            FechIni.setEnabled(false);
+            FechFi.setEnabled(false);
+            Bin.setBackground(new java.awt.Color(238, 235, 235));
+            Nit.setBackground(new java.awt.Color(238, 235, 235));
+            SubTipo.setBackground(new java.awt.Color(238, 235, 235));
+            NumTarj.setBackground(new java.awt.Color(238, 235, 235));
+            FechIni.setBackground(new java.awt.Color(238, 235, 235));
+            FechFi.setBackground(new java.awt.Color(238, 235, 235));
+        } 
+        else  {
+             String[] idTipoFiltroV = idTipoFiltroS.split(" - ");
+            int idTipoFiltro = Integer.parseInt(idTipoFiltroV[0]);
+              if (idTipoFiltro == 1) {
+                  
             NumTarj.setBackground(new java.awt.Color(255, 255, 255));
             NumTarj.setEnabled(true);
             Bin.setBackground(new java.awt.Color(238, 235, 235));
@@ -266,6 +284,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
             Nit.setEnabled(false);
             SubTipo.setBackground(new java.awt.Color(238, 235, 235));
             SubTipo.setEnabled(false);
+            button1.setEnabled(true);
 
         } else {
             if (idTipoFiltro == 2) {
@@ -282,6 +301,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                 Nit.setEnabled(true);
                 SubTipo.setBackground(new java.awt.Color(255, 255, 255));
                 SubTipo.setEnabled(true);
+                button1.setEnabled(true);
 
             } else {
                 if (idTipoFiltro == 3) {
@@ -298,8 +318,11 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                     Nit.setEnabled(false);
                     SubTipo.setBackground(new java.awt.Color(238, 235, 235));
                     SubTipo.setEnabled(false);
+                    button1.setEnabled(true);
 
                 } else {
+                     
+                
                     if (idTipoFiltro == 4) {
 
                         NumTarj.setBackground(new java.awt.Color(255, 255, 255));
@@ -314,6 +337,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                         Nit.setEnabled(false);
                         SubTipo.setBackground(new java.awt.Color(238, 235, 235));
                         SubTipo.setEnabled(false);
+                        button1.setEnabled(true);
 
                     } else {
                         if (idTipoFiltro == 5) {
@@ -330,6 +354,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                             Nit.setEnabled(true);
                             SubTipo.setBackground(new java.awt.Color(255, 255, 255));
                             SubTipo.setEnabled(true);
+                            button1.setEnabled(true);
 
                         } else {
                             if (idTipoFiltro == 6) {
@@ -346,6 +371,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                                 Nit.setEnabled(false);
                                 SubTipo.setBackground(new java.awt.Color(238, 235, 235));
                                 SubTipo.setEnabled(false);
+                                button1.setEnabled(true);
 
                             } else {
 
@@ -360,7 +386,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
 
         }
 
-
+        }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void NumTarjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumTarjActionPerformed
@@ -372,6 +398,8 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
         List<Movimientos> movimientos = new ArrayList<>();
         MovimientoController movimientoController = new MovimientoController();
         try {
+            
+            
 
             String idTipoFiltroS = (String) jComboBox1.getSelectedItem();
             String[] idTipoFiltroV = idTipoFiltroS.split(" - ");
@@ -471,7 +499,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                 } else {
                     if (idTipoFiltro == 3) {
 
-                        String formato = FechIni.getDateFormatString();
+                            String formato = FechIni.getDateFormatString();
                             Date date = FechIni.getDate();
 
                             SimpleDateFormat sdf = new SimpleDateFormat(formato);
@@ -627,7 +655,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
 
                             } else {
                                 if (idTipoFiltro == 6) {
-    String formato = FechIni.getDateFormatString();
+                            String formato = FechIni.getDateFormatString();
                             Date date = FechIni.getDate();
 
                             SimpleDateFormat sdf = new SimpleDateFormat(formato);

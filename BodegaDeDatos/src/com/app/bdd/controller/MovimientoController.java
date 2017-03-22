@@ -314,7 +314,7 @@ public class MovimientoController {
                     + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer, tipodocumento as tipodoc\n"
                    /* + "where mov.varTarjeta = '" + NumTarjeta+ "'  \n"
                     + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"*/
-                    + "and sa.varTarjeta = mov.varTarjeta\n"   
+                    + "where sa.varTarjeta = mov.varTarjeta\n"   
                     + "and mov.varTarjeta=nomo.varNumTarjeta \n"
                     + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
                     + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 

@@ -20,6 +20,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 
 /**
  *
@@ -53,6 +55,8 @@ public class MovimientoController {
         String anioAutoriza = convertergetVarFechAutoriza.substring(0, 4);
         String mesAutoriza = convertergetVarFechAutoriza.substring(4, 6);
         String diaAutoriza = convertergetVarFechAutoriza.substring(6, 8);
+        
+        
 
 //        CONVERT(VARCHAR, '" + mesN+"/"+diaN+"/" +anioN +"', 103)"
         try {
@@ -145,7 +149,8 @@ public class MovimientoController {
 
     }
     /* EJECUTA CONSULTA SALDO POR TARJETA  */
-    public List<Movimientos> consultaSaldoPorTarjeta(String NumTarjeta, String FechIni, String FechFin) throws SQLException {
+    
+    public List<Movimientos> consultaSaldoPorTarjeta(String NumTarjeta, String FechIni, String FechFin, String entity) throws SQLException {
 
         List<Movimientos> movimientos = new ArrayList<>();
         Movimientos movimiento = new Movimientos();
@@ -156,22 +161,44 @@ public class MovimientoController {
 
         try {
 
-            sql = " SELECT mov.dateFechaTransac, mov.varTarjeta, mov.varNitEmpresa, mov.varSubtipo, mov.varDescriSubtipo, sa.decSaldoDispo,  sa.varEstadoTarjeta, sa.varDescripEsta, nomo.varNombreTarjetahabiente, nomo.varTipoDocumTatjetaHabiente, nomo.varNumDocumento, tipdoc.varDescripcionTipoDocumento\n"
-                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo,  tipodocumento as tipdoc\n"
-                    + "where mov.varTarjeta = sa.varTarjeta \n"
-                    + "and tipdoc.varCodigoTipoDocumento = nomo.varTipoDocumTatjetaHabiente \n"
-                    + "and mov.varSubtipo = sa.varSubtipo  \n";
-               //     + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'   and mov.varTarjeta  = '"+NumTarjeta+"'\n"
-                    
-            
-             if (!(NumTarjeta.equals(""))) {
-                sql = sql + " and mov.mov.varTarjeta='" + NumTarjeta + "'\n";
+            sql = " select  sal.varNombTajHabiente, "
+                    + " mov.varTarjeta,"
+                    + " mov.varDispOrigen,"
+                    + " mov.varDesEstCoCargos, "
+                    + "mov.varDescTransac ,"
+                     +"mov.decValTransaccion,"
+                    + " mov.dateFechaTransac,"
+                    + "mov.decValIva,"
+                    +"mov.decTotalCobrar,"                    
+                    + "mov.decImpEmerEcono,"
+                    + "mov.varIndicadorRever,"
+                    + "mov.varDescrpResp,"
+                    + " mov.varCodAutoriza,"
+                    + "mov.varRedAdquiriente, "
+                     + " mov.varCodEstablecimiento,"
+                     + "mov.varDescriSubtipo,"
+                    + "mov.varNumTarjSecundari"
+                    + ",mov.varValorBaseDevIva,"
+                    + "sal.decSaldoDispo,"
+                    + "sal.varDescripEsta,"
+                    + "comer.varNombreComercio  \n"
+                    + " from saldos as sal, movimientos as mov,comerciosred as comer\n"
+                    + " where sal.varTarjeta= mov.varTarjeta\n"
+                    + " and comer.varCodigoComercio=mov.varCodEstablecimiento\n"
+                    + " and mov.varBin= sal.varBin\n"
+                    + " and mov.varSubtipo=sal.varSubtipo\n";
+              if (!(NumTarjeta.equals(""))) {
+                sql = sql + " and mov.varTarjeta='" + NumTarjeta + "'\n";
             }
-            if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
+               if (!((entity+"").equals(""))) {
+                sql = sql + " and mov.varBin ='"+ entity +"' \n";
+            }
+               if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
             }
-            
+          
              sql = sql + "order by mov.dateFechaTransac asc   ";
+            
             
             
 
@@ -180,7 +207,7 @@ public class MovimientoController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                movimientos.add(new Movimientos(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12)));
+      movimientos.add(new Movimientos(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)  ));
 
             }
 
@@ -213,7 +240,7 @@ public class MovimientoController {
      */
 
     
-     public List<Movimientos> consultaSaldoTarjetasEmpresa(String FechIni, String FechFin, String Nit, String SubTipo, String Bin) throws SQLException {
+     public List<Movimientos> consultaSaldoTarjetasEmpresa(String FechIni, String FechFin, String Nit, String SubTipo, String Bin, String entity) throws SQLException {
 
         List<Movimientos> movimientos = new ArrayList<>();
         Movimientos movimiento = new Movimientos();
@@ -224,45 +251,54 @@ public class MovimientoController {
 
         try {
 
-            sql = " SELECT  mov.dateFechaTransac,mov.varBin, mov.varTarjeta, nomo.varNombreTarjetahabiente, nomo.varTipoDocumTatjetaHabiente, nomo.varNumDocumento,\n"
-                    + " mov.varNitEmpresa, mov.varSubtipo, mov.varDescriSubtipo,sa.decSaldoDispo, sa.varEstadoTarjeta, sa.varDescripEsta\n"
-                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, tipodocumento as tipdoc,comerciosred as comer\n"
-                    + "where mov.varTarjeta = sa.varTarjeta\n"
-                    + "and tipdoc.varCodigoTipoDocumento = nomo.varTipoDocumTatjetaHabiente \n"
-                    + "and mov.varSubtipo = sa.varSubtipo\n"
-                 /*   + "and mov.varNitEmpresa = '" + Nit + "' \n"
-                    + "and mov.varDescriSubtipo = '" + SubTipo + "'  \n"
-                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
-                    + "and mov.varBin = '" + Bin + "'  \n"*/
-                    + "and sa.varTarjeta = mov.varTarjeta\n"   
-                    + "and mov.varTarjeta=nomo.varNumTarjeta \n"
-                    + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
-                    + "and nomo.varTipoDocumTatjetaHabiente=tipdoc.varCodigoTipoDocumento \n" 
-                    + "and sa.varSubtipo =nomo.varSubTipo\n" ;
-            
-            
-            
-              if (!(Nit.equals(""))) {
-                sql = sql + " and mov.varNitEmpresa='" + Nit + "'\n";
+                sql=" select  sal.varNombTajHabiente, "
+                    + " mov.varTarjeta,"
+                    + " mov.varDispOrigen,"
+                    + " mov.varDesEstCoCargos, "
+                    + "mov.varDescTransac ,"
+                     +"mov.decValTransaccion,"
+                    + " mov.dateFechaTransac,"
+                    + "mov.decValIva,"
+                    +"mov.decTotalCobrar,"                    
+                    + "mov.decImpEmerEcono,"
+                    + "mov.varIndicadorRever,"
+                    + "mov.varDescrpResp,"
+                    + " mov.varCodAutoriza,"
+                    + "mov.varRedAdquiriente, "
+                     + " mov.varCodEstablecimiento,"
+                     + "mov.varDescriSubtipo,"
+                    + "mov.varNumTarjSecundari"
+                    + ",mov.varValorBaseDevIva,"
+                    + "sal.decSaldoDispo,"
+                    + "sal.varDescripEsta,"
+                    + "comer.varNombreComercio  \n"
+                    + " from saldos as sal, movimientos as mov,comerciosred as comer\n"
+                    + " where sal.varTarjeta= mov.varTarjeta\n"
+                    + " and comer.varCodigoComercio=mov.varCodEstablecimiento\n"
+                    + " and mov.varBin= sal.varBin\n"
+                    + " and mov.varSubtipo=sal.varSubtipo\n";
+               if (!(Nit.equals(""))) {
+                sql = sql + " and mov.varTarjeta='" + Nit + "'\n";
             }
                 if (!(SubTipo.equals(""))) {
-                sql = sql + " and mov.varDescriSubtipo='" + SubTipo + "'\n";
+                sql = sql + " and mov.varTarjeta='" + SubTipo + "'\n";
             }
-                   if (!(Bin.equals(""))) {
-                sql = sql + " and mov.varBin='" + Bin + "'\n";
+                    if (!((entity+"").equals(""))) {
+                sql = sql + " and mov.varBin ='"+ entity +"' \n";
             }
+              
             if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
             }
-            
+          
              sql = sql + "order by mov.dateFechaTransac asc   ";
-
+            
             ResultSet rs = null;
 
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                movimientos.add(new Movimientos(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12)));
+                movimientos.add(new Movimientos(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)  ));
 
             }
 
@@ -287,16 +323,16 @@ public class MovimientoController {
      
       /**
      *
+     * @param NumTarjeta
      * @param FechIni
      * @param FechFin
-     * @param Nit
-     * @param SubTipo
-     * @param Bin
+     * @param codigoBin
+     * @param entity
      * @return 
      * @throws java.sql.SQLException
      */
      
-     public List<Movimientos> consultaExtractoPorTarjeta(String NumTarjeta, String FechIni, String FechFin) throws SQLException {
+     public List<Movimientos> consultaExtractoPorTarjeta(String NumTarjeta, String FechIni, String FechFin, String codigoBin, String entity) throws SQLException {
 
         List<Movimientos> movimientos = new ArrayList<>();
         Movimientos movimiento = new Movimientos();
@@ -306,31 +342,44 @@ public class MovimientoController {
         String sql = "";
 
         try {
+            sql = " select  sal.varNombTajHabiente, "
+                    + " mov.varTarjeta,"
+                    + " mov.varDispOrigen,"
+                    + " mov.varDesEstCoCargos, "
+                    + "mov.varDescTransac ,"
+                     +"mov.decValTransaccion,"
+                    + " mov.dateFechaTransac,"
+                    + "mov.decValIva,"
+                    +"mov.decTotalCobrar,"                    
+                    + "mov.decImpEmerEcono,"
+                    + "mov.varIndicadorRever,"
+                    + "mov.varDescrpResp,"
+                    + " mov.varCodAutoriza,"
+                    + "mov.varRedAdquiriente, "
+                     + " mov.varCodEstablecimiento,"
+                     + "mov.varDescriSubtipo,"
+                    + "mov.varNumTarjSecundari"
+                    + ",mov.varValorBaseDevIva,"
+                    + "sal.decSaldoDispo,"
+                    + "sal.varDescripEsta,"
+                    + "comer.varNombreComercio  \n"
+                    + " from saldos as sal, movimientos as mov,comerciosred as comer\n"
+                    + " where sal.varTarjeta= mov.varTarjeta\n"
+                    + " and comer.varCodigoComercio=mov.varCodEstablecimiento\n"
+                    + " and mov.varBin= sal.varBin\n"
+                    + " and mov.varSubtipo=sal.varSubtipo\n";
 
-            sql = " SELECT  mov.dateFechaTransac, mov.varTarjeta, nomo.varNitEmpresa,tipodoc.varDescripcionTipoDocumento, mov.varDispOrigen,mov.varDesEstCoCargos, mov.varDescTransac,  mov.decValTransaccion, mov.decValCarCobr, mov.varCodEstablecimiento,   "
-                    + " mov.decValIva, mov.decImpEmerEcono,varIndicadorRever,mov.varRespuAutoriz,mov.varDescrpResp,mov.varCodAutoriza, mov.varRedAdquiriente,"
-                    + " mov.varSubtipo, mov.varDescriSubtipo,  mov.varNumTarjSecundari, mov.varValorBaseDevIva,  sa.decSaldoDispo, sa.varEstadoTarjeta,"
-                    + "sa.varDescripEsta, nomo.varNombreTarjetahabiente, nomo.varNumDocumento,  comer.varCodigoComercio, comer.varNombreComercio  \n"
-                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer, tipodocumento as tipodoc\n"
-                   /* + "where mov.varTarjeta = '" + NumTarjeta+ "'  \n"
-                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"*/
-                    + "where sa.varTarjeta = mov.varTarjeta\n"   
-                    + "and mov.varTarjeta=nomo.varNumTarjeta \n"
-                    + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
-                    + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 
-                    + "and sa.varSubtipo =nomo.varSubTipo\n" ;
-                   
-            
-            
-            
-             if (!(NumTarjeta.equals(""))) {
+                    if (!(NumTarjeta.equals(""))) {
                 sql = sql + " and mov.varTarjeta='" + NumTarjeta + "'\n";
+            }
+                    if (!((entity+"").equals(""))) {
+                sql = sql + " and mov.varBin ='"+ entity +"' \n";
             }
               
             if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
             }
-            
+          
              sql = sql + "order by mov.dateFechaTransac asc   ";
             
 
@@ -339,9 +388,8 @@ public class MovimientoController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-              movimientos.add(new Movimientos(rs.getString(1), rs.getString(2),  rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), rs.getString(7), rs.getDouble(8),  rs.getDouble(9), rs.getString(10), rs.getDouble(11), rs.getDouble(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(18), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27)));
-
-            }
+                movimientos.add(new Movimientos(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), Double.parseDouble(rs.getString(6)), rs.getString(7), Double.parseDouble(rs.getString(8)), Double.parseDouble(rs.getString(9)), Double.parseDouble(rs.getString(10)), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16),rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),  rs.getString(21)));
+             }
 
         } catch (Exception e) {
 
@@ -358,7 +406,7 @@ public class MovimientoController {
      
      // INICIO CONSULTA  MOVIMIENTOS TARJETA POR EMPRESA
      
-      public List<Movimientos> consultaMovimientosTarjetaEMpresa(String FechIni, String FechFin, String Bin, String Nit, String SubTipo) throws SQLException {
+      public List<Movimientos> consultaMovimientosTarjetaEMpresa(String FechIni, String FechFin, String Bin, String Nit, String SubTipo, int codigoBin,String entity) throws SQLException {
 
         List<Movimientos> movimientos = new ArrayList<>();
         Movimientos movimiento = new Movimientos();
@@ -369,21 +417,32 @@ public class MovimientoController {
 
         try {
 
-            sql = " SELECT  mov.dateFechaTransac, mov.varTarjeta, mov.varDispOrigen,mov.varDesEstCoCargos, mov.varDescTransac,  mov.decValTransaccion, mov.decValCarCobr, mov.varCodEstablecimiento,   "
-                    + " mov.decValIva, mov.decImpEmerEcono,varIndicadorRever,mov.varRespuAutoriz,mov.varDescrpResp,mov.varCodAutoriza, mov.varRedAdquiriente,"
-                    + " mov.varSubtipo, mov.varDescriSubtipo,  mov.varNumTarjSecundari, mov.varValorBaseDevIva,  sa.decSaldoDispo, sa.varEstadoTarjeta,"
-                    + "   sa.varDescripEsta, nomo.varNombreTarjetahabiente, nomo.varNumDocumento,  comer.varCodigoComercio, comer.varNombreComercio  \n"
-                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer,tipodocumento as tipodoc\n"
-                    + "where mov.varTarjeta = sa.varTarjeta\n"
-                    + "and mov.varSubtipo = sa.varSubtipo \n"
-//                    + "and mov.varBin = '" + Bin + "'  \n"
-//                    + "and mov.varBin = '" + Nit + "'  \n"
-//                    + "and mov.varBin = '" + SubTipo + "'  \n"
-//                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
-                    + "and sa.varTarjeta = mov.varTarjeta\n"   
-                    + "and mov.varTarjeta=nomo.varNumTarjeta \n"
-                    + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
-                    + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" ;
+            sql = " select  sal.varNombTajHabiente, "
+                    + " mov.varTarjeta,"
+                    + " mov.varDispOrigen,"
+                    + " mov.varDesEstCoCargos, "
+                    + "mov.varDescTransac ,"
+                     +"mov.decValTransaccion,"
+                    + " mov.dateFechaTransac,"
+                    + "mov.decValIva,"
+                    +"mov.decTotalCobrar,"                    
+                    + "mov.decImpEmerEcono,"
+                    + "mov.varIndicadorRever,"
+                    + "mov.varDescrpResp,"
+                    + " mov.varCodAutoriza,"
+                    + "mov.varRedAdquiriente, "
+                     + " mov.varCodEstablecimiento,"
+                     + "mov.varDescriSubtipo,"
+                    + "mov.varNumTarjSecundari"
+                    + ",mov.varValorBaseDevIva,"
+                    + "sal.decSaldoDispo,"
+                    + "sal.varDescripEsta,"
+                    + "comer.varNombreComercio  \n"
+                    + " from saldos as sal, movimientos as mov,comerciosred as comer\n"
+                    + " where sal.varTarjeta= mov.varTarjeta\n"
+                    + " and comer.varCodigoComercio=mov.varCodEstablecimiento\n"
+                    + " and mov.varBin= sal.varBin\n"
+                    + " and mov.varSubtipo=sal.varSubtipo\n";
             
              if (!(Bin.equals(""))) {
                 sql = sql + " and mov.varTarjeta='" + Bin + "'\n";
@@ -391,6 +450,9 @@ public class MovimientoController {
              if (!(Nit.equals(""))) {
                 sql = sql + " and mov.varTarjeta='" + Nit + "'\n";
             } 
+              if (!((entity+"").equals(""))) {
+                sql = sql + " and mov.varBin ='"+ entity +"' \n";
+            }
              if (!(SubTipo.equals(""))) {
                 sql = sql + " and mov.varTarjeta='" + SubTipo + "'\n";
             }
@@ -407,9 +469,9 @@ public class MovimientoController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-              movimientos.add(new Movimientos(rs.getString(1), rs.getString(2),  rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), rs.getString(7), rs.getDouble(8),  rs.getDouble(9), rs.getString(10), rs.getDouble(11), rs.getDouble(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(18), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27)));
-
-            }
+              movimientos.add(new Movimientos(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), Double.parseDouble(rs.getString(6)), rs.getString(7), Double.parseDouble(rs.getString(8)), Double.parseDouble(rs.getString(9)), Double.parseDouble(rs.getString(10)), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16),rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),  rs.getString(21)));
+         //                                  String varTarjeta, String varDesEstCoCargos, String varDateFechaTransac, double decValCarCobr, double decValIva, double decImpEmerEcono, String varIndicadorRever, String varDescrpResp, String varCodAutoriza, String varRedAdquiriente, String varNumDispos, String varCodEstablecimiento, String varDescriSubtipo, String varNumTarjSecundari, String varValorBaseDevIva, String decSaldoDispo, String varDescripEsta, String varNombreComercio
+             }
 
         } catch (Exception e) {
 
@@ -429,7 +491,7 @@ public class MovimientoController {
       
       // INICIO CONSULTA MOVIMIENTOS POR ENTIDAD 
       
-      public List<Movimientos> consultaMovimientosTarjetaEntidad(String FechIni, String FechFin, String Bin) throws SQLException {
+      public List<Movimientos> consultaMovimientosTarjetaEntidad(String FechIni, String FechFin, String Bin, String entity) throws SQLException {
 
         List<Movimientos> movimientos = new ArrayList<>();
         Movimientos movimiento = new Movimientos();
@@ -440,29 +502,45 @@ public class MovimientoController {
 
         try {
 
-            sql = " SELECT  mov.dateFechaTransac, mov.varTarjeta, mov.varDispOrigen,mov.varDesEstCoCargos, mov.varDescTransac,  mov.decValTransaccion, mov.decValCarCobr, mov.varCodEstablecimiento,   "
-                    + " mov.decValIva, mov.decImpEmerEcono,varIndicadorRever,mov.varRespuAutoriz,mov.varDescrpResp,mov.varCodAutoriza, mov.varRedAdquiriente,"
-                    + " mov.varSubtipo, mov.varDescriSubtipo,  mov.varNumTarjSecundari, mov.varValorBaseDevIva,  sa.decSaldoDispo, sa.varEstadoTarjeta,"
-                    + "   sa.varDescripEsta, nomo.varNombreTarjetahabiente, nomo.varNumDocumento,  comer.varCodigoComercio, comer.varNombreComercio  \n"
-                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo, comerciosred as comer,tipodocumento as tipodoc\n"
-                    + "where mov.varTarjeta = sa.varTarjeta\n"
-                    + "and mov.varSubtipo = sa.varSubtipo \n"
-//                    + "and mov.varBin = '" + Bin + "'  \n"
-//                    + "and mov.dateFechaTransac  BETWEEN '"+FechIni+"' AND '"+FechFin+"'\n"
-                    + "and sa.varTarjeta = mov.varTarjeta\n"   
-                    + "and mov.varTarjeta=nomo.varNumTarjeta \n"
-                    + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
-                    + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 
-                    + "and sa.varSubtipo =nomo.varSubTipo\n" ;
+            sql = " select  sal.varNombTajHabiente, "
+                    + " mov.varTarjeta,"
+                    + " mov.varDispOrigen,"
+                    + " mov.varDesEstCoCargos, "
+                    + "mov.varDescTransac ,"
+                     +"mov.decValTransaccion,"
+                    + " mov.dateFechaTransac,"
+                    + "mov.decValIva,"
+                    +"mov.decTotalCobrar,"                    
+                    + "mov.decImpEmerEcono,"
+                    + "mov.varIndicadorRever,"
+                    + "mov.varDescrpResp,"
+                    + " mov.varCodAutoriza,"
+                    + "mov.varRedAdquiriente, "
+                     + " mov.varCodEstablecimiento,"
+                     + "mov.varDescriSubtipo,"
+                    + "mov.varNumTarjSecundari"
+                    + ",mov.varValorBaseDevIva,"
+                    + "sal.decSaldoDispo,"
+                    + "sal.varDescripEsta,"
+                    + "comer.varNombreComercio  \n"
+                    + " from saldos as sal, movimientos as mov,comerciosred as comer\n"
+                    + " where sal.varTarjeta= mov.varTarjeta\n"
+                    + " and comer.varCodigoComercio=mov.varCodEstablecimiento\n"
+                    + " and mov.varBin= sal.varBin\n"
+                    + " and mov.varSubtipo=sal.varSubtipo\n";
 
             
             if (!(Bin.equals(""))) {
                 sql = sql + " and mov.varTarjeta='" + Bin + "'\n";
             }
+            if (!((entity+"").equals(""))) {
+                sql = sql + " and mov.varBin ='"+ entity +"' \n";
+            }
              
             if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
             }
+            
             
              sql = sql + "order by mov.dateFechaTransac asc   ";
             
@@ -472,7 +550,7 @@ public class MovimientoController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-              movimientos.add(new Movimientos(rs.getString(1), rs.getString(2),  rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), rs.getString(7), rs.getDouble(8),  rs.getDouble(9), rs.getString(10), rs.getDouble(11), rs.getDouble(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(18), rs.getString(20), rs.getString(21), rs.getString(22), rs.getString(23), rs.getString(24), rs.getString(25), rs.getString(26), rs.getString(27)));
+               movimientos.add(new Movimientos(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), Double.parseDouble(rs.getString(6)), rs.getString(7), Double.parseDouble(rs.getString(8)), Double.parseDouble(rs.getString(9)), Double.parseDouble(rs.getString(10)), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16),rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),  rs.getString(21)));
 
             }
 
@@ -493,7 +571,7 @@ public class MovimientoController {
       
       // INICIO CONSULTA SALDO TARJETAS POR ENTIDAD
       
-       public List<Movimientos> consultaSaldoTarjetaEntidad(String NumTarjeta, String Bin) throws SQLException {
+       public List<Movimientos> consultaSaldoTarjetaEntidad(String NumTarjeta, String Bin, String entity) throws SQLException {
 
         List<Movimientos> movimientos = new ArrayList<>();
         Movimientos movimiento = new Movimientos();
@@ -504,23 +582,40 @@ public class MovimientoController {
 
         try {
 
-            sql = " SELECT mov.dateFechaTransac, mov.varTarjeta, mov.varNitEmpresa, mov.varSubtipo, mov.varDescriSubtipo, sa.decSaldoDispo,  sa.varEstadoTarjeta, sa.varDescripEsta, nomo.varNombreTarjetahabiente, nomo.varTipoDocumTatjetaHabiente, nomo.varNumDocumento, tipdoc.varDescripcionTipoDocumento\n"
-                    + "FROM movimientos as mov, saldos as sa, nomonetarias as nomo,  tipodocumento as tipdoc\n"
-                    + "where mov.varTarjeta = sa.varTarjeta \n"
-                    + "and tipdoc.varCodigoTipoDocumento = nomo.varTipoDocumTatjetaHabiente \n"
-                    + "and mov.varSubtipo = sa.varSubtipo  \n"
-//                    +" and mov.varTarjeta = '"+NumTarjeta+"' \n"
-//                    +" and mov.varTarjeta = '"+Bin+"' \n"
-                    + "and sa.varTarjeta = mov.varTarjeta\n"   
-                    + "and mov.varTarjeta=nomo.varNumTarjeta \n"
-                    + "and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
-                    + "and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento \n" 
-                    + "and sa.varSubtipo =nomo.varSubTipo\n" ;
+            sql = " select  sal.varNombTajHabiente, "
+                    + " mov.varTarjeta,"
+                    + " mov.varDispOrigen,"
+                    + " mov.varDesEstCoCargos, "
+                    + "mov.varDescTransac ,"
+                     +"mov.decValTransaccion,"
+                    + " mov.dateFechaTransac,"
+                    + "mov.decValIva,"
+                    +"mov.decTotalCobrar,"                    
+                    + "mov.decImpEmerEcono,"
+                    + "mov.varIndicadorRever,"
+                    + "mov.varDescrpResp,"
+                    + " mov.varCodAutoriza,"
+                    + "mov.varRedAdquiriente, "
+                     + " mov.varCodEstablecimiento,"
+                     + "mov.varDescriSubtipo,"
+                    + "mov.varNumTarjSecundari"
+                    + ",mov.varValorBaseDevIva,"
+                    + "sal.decSaldoDispo,"
+                    + "sal.varDescripEsta,"
+                    + "comer.varNombreComercio  \n"
+                    + " from saldos as sal, movimientos as mov,comerciosred as comer\n"
+                    + " where sal.varTarjeta= mov.varTarjeta\n"
+                    + " and comer.varCodigoComercio=mov.varCodEstablecimiento\n"
+                    + " and mov.varBin= sal.varBin\n"
+                    + " and mov.varSubtipo=sal.varSubtipo\n";
             
             
             
             if (!(Bin.equals(""))) {
                 sql = sql + " and mov.varTarjeta='" + Bin + "'\n";
+            }
+            if (!((entity+"").equals(""))) {
+                sql = sql + " and mov.varBin ='"+ entity +"' \n";
             }
              if (!(NumTarjeta.equals(""))) {
                 sql = sql + " and mov.varTarjeta='" + NumTarjeta + "'\n";
@@ -533,7 +628,7 @@ public class MovimientoController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                movimientos.add(new Movimientos(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12)));
+                 movimientos.add(new Movimientos(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), Double.parseDouble(rs.getString(6)), rs.getString(7), Double.parseDouble(rs.getString(8)), Double.parseDouble(rs.getString(9)), Double.parseDouble(rs.getString(10)), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16),rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),  rs.getString(21)));
 
             }
 
@@ -551,7 +646,54 @@ public class MovimientoController {
       
       // FIN SONSULTA SALDOS TARJETA POR ENTIDAD
      
-     
+     // TRAER LISTADO ENTIDADES
+       
+         public static List<Movimientos> consultaEntidades() throws SQLException {
+
+        List<Movimientos> entidades = new ArrayList<>();
+        Movimientos entidad = new Movimientos();
+
+        MovimientoController.MovimientoController();
+
+        String sql = "";
+
+        try {
+
+            sql = "SELECT [idBinbanco]\n"
+                    + "      ,[codBanco]\n"
+                    + "      ,[CodBin]\n"
+                    + "      ,[nombreBanco]\n"
+                    + "  FROM [BodegaDatos].[dbo].[codigosbines] ";
+            
+            
+
+            ResultSet rs = null;
+
+            rs = st.executeQuery(sql);
+
+            while (rs.next()) {
+                entidades.add(new Movimientos( rs.getInt(1) ,rs.getString(2), rs.getString(3) , rs.getString(4)));
+
+            }
+
+        } catch (Exception e) {
+
+//            throw e;.
+            System.out.println("errror------" + e);
+
+        } finally {
+            ConexionSQL.CerrarConexion();
+        }
+
+        return entidades;
+    }
+       
+       
+       
+     // FIN LISTADO ENTIDADES  
+       
+       
+       
     
     public static int LeerArchivoMovimientoTxt(String ruta) throws Exception {
         //Creamos un String que va a contener todo el texto del archivo
@@ -600,8 +742,36 @@ public class MovimientoController {
                 decTotalCobrar = 0;
                 decImpEmerEcono = 0;
 
-                movimiento.setVarBin(texto.substring(0, 9));
-                movimiento.setVarTarjeta(texto.substring(9, 28));
+              
+                String primer= substring(0,4);
+                primer =primer+"XXXX";
+                String restobin = texto.substring(4, 9);
+                movimiento.setVarBin(primer+restobin);
+                
+            
+              if((texto.substring(9, 28)).length() > 16){
+                  String corte= substring(9,13);
+                corte=corte+"XXXX";
+                String codigobin = texto.substring(13, 18);
+                String varTarjeta = substring(18, 21); 
+                varTarjeta = varTarjeta + "XXX";
+                varTarjeta = corte + codigobin + varTarjeta  + texto.substring(21, 28); 
+                movimiento.setVarTarjeta(varTarjeta);
+                  
+              }else{
+                  
+                String ntarjeta = (texto.substring(9, 28));
+                String corte= ntarjeta.substring(0,3);
+                corte=corte+"XXX";
+                String codigobin = texto.substring(3, 8);
+                String varTarjeta = substring(8, 11); 
+                varTarjeta = varTarjeta + "XXX";
+                varTarjeta = corte + codigobin + varTarjeta  + texto.substring(11, 16); 
+                movimiento.setVarTarjeta(varTarjeta);
+              
+              }              
+                 
+                 
                 movimiento.setVarNitEmpresa(texto.substring(28, 43));
                 movimiento.setVarNumCuenta(texto.substring(43, 62));
                 movimiento.setVarDispOrigen(texto.substring(62, 64));
@@ -613,7 +783,7 @@ public class MovimientoController {
                 String cadenaValTransaccion = enteroValTransaccion + "." + decimalValTransaccion;
                 decValTransaccion = Double.parseDouble(cadenaValTransaccion);
 
-//                decValTransaccion = Double.parseDouble(texto.substring(124, 141));
+//              decValTransaccion = Double.parseDouble(texto.substring(124, 141));
                 String enteroValDispensado = texto.substring(141, 156);
                 String decimalValDispensado = texto.substring(156, 158);
                 String cadenaValDispensado = enteroValDispensado + "." + decimalValDispensado;
@@ -696,4 +866,6 @@ public class MovimientoController {
     //public List<Movimientos> consultaSaldoTarjetasEmpresa(String trim, String trim0, String trim1, String trim2) {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     //}
+
+
 }

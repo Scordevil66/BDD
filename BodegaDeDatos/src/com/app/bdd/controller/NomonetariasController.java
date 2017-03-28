@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 
 /**
  *
@@ -333,8 +334,53 @@ public class NomonetariasController {
                 nomonetaria.setVarTipoNovedad(texto.substring(0, 3));
                 nomonetaria.setVardateFechaNovedad(texto.substring(3, 11));
                 nomonetaria.setVarCodFranquicia(texto.substring(11, 14));
-                nomonetaria.setVarCodBin(texto.substring(14, 23));
-                nomonetaria.setVarNumTarjeta(texto.substring(23, 42));
+                //nomonetaria.setVarCodBin(texto.substring(14, 23));
+                
+                String primer= substring(14,18);
+                primer =primer+"XXXX";
+                String restobin = texto.substring(18, 23);
+                nomonetaria.setVarCodBin(primer+restobin);
+                
+                
+               /* String codigobin = texto.substring(9, 18);
+                String varTarjeta = substring(18, 23); 
+                varTarjeta = varTarjeta + "xxxx";
+                varTarjeta = codigobin + varTarjeta  + texto.substring(23, 28); 
+                movimiento.setVarTarjeta(varTarjeta*/
+                
+//                String codigobin = texto.substring(23, 32);
+//                String varTarjeta = substring(32,37);
+//                 varTarjeta = varTarjeta + "XXXX";
+//                String varnumtarjeta =(substring(23, 37));
+//                varnumtarjeta= codigobin + varTarjeta + (texto.substring(37, 42));
+//                
+//              nomonetaria.setVarNumTarjeta(varnumtarjeta);
+              
+                if((texto.substring(23, 42)).length() > 16){
+                  String corte= substring(23,27);
+                corte=corte+"XXXX";
+                String codigobin = texto.substring(27, 32);
+                String varTarjeta = substring(32, 35); 
+                varTarjeta = varTarjeta + "XXX";
+                varTarjeta = corte + codigobin + varTarjeta  + texto.substring(35, 42); 
+                nomonetaria.setVarNumTarjeta(varTarjeta);
+                  
+              }else{
+                  
+                String ntarjeta = (texto.substring(23, 42));
+                String corte= ntarjeta.substring(0,3);
+                corte=corte+"XXX";
+                String codigobin = texto.substring(3, 8);
+                String varTarjeta = substring(8, 11); 
+                varTarjeta = varTarjeta + "XXX";
+                varTarjeta = corte + codigobin + varTarjeta  + texto.substring(11, 16); 
+                nomonetaria.setVarNumTarjeta(varTarjeta);
+              
+              } 
+              
+              
+                
+                
                 nomonetaria.setVarNombreTarjetahabiente(texto.substring(42, 64));
                 nomonetaria.setVarSubTipo(texto.substring(64, 67));
                 nomonetaria.setVarTipoCuenta(texto.substring(67, 70));

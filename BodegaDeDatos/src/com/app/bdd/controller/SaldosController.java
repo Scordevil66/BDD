@@ -17,6 +17,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import static jdk.nashorn.internal.objects.NativeString.substring;
 
 /**
  *
@@ -105,9 +106,47 @@ public class SaldosController {
                  double DecSaldoDispo = 0 ;
                    
                    
-              saldo.setVarBin(texto.substring(0, 9));
+//              saldo.setVarBin(texto.substring(0, 9));
+                String primer= substring(0,4);
+                primer =primer+"XXXX";
+                String restobin = texto.substring(4, 9);
+                saldo.setVarBin(primer+restobin);
+                
+
               saldo.setVarNitEMpresa(texto.substring(9, 24));
-              saldo.setVarTarjeta(texto.substring(24, 43));
+              
+              if((texto.substring(24, 43)).length() > 16){
+                String corte = substring(24,28);
+                corte=corte+"XXXX";
+                String codigobin = texto.substring(28, 33);
+                String varTarjeta = substring(33, 36); 
+                varTarjeta = varTarjeta + "XXX";
+                varTarjeta = corte + codigobin + varTarjeta  + texto.substring(36, 43); 
+                saldo.setVarTarjeta(varTarjeta);
+                  
+              }else{
+                  
+                String ntarjeta = (texto.substring(24, 43));
+                String corte= ntarjeta.substring(0,3);
+                corte=corte+"XXX";
+                String codigobin = texto.substring(3, 8);
+                String varTarjeta = substring(8, 11); 
+                varTarjeta = varTarjeta + "XXX";
+                varTarjeta = corte + codigobin + varTarjeta  + texto.substring(11, 16); 
+                saldo.setVarTarjeta(varTarjeta);
+              
+              } 
+              
+              
+//              String codigobin = (texto.substring(24, 33));
+//              String varnumtarjeta =(substring(24, 38));
+//              
+//                varnumtarjeta= varnumtarjeta + "XXXX";
+//               varnumtarjeta= codigobin + varnumtarjeta + (texto.substring(38, 43));
+//                saldo.setVarTarjeta(varnumtarjeta);
+              
+             // saldo.setVarTarjeta(texto.substring(24, 43));
+              
               saldo.setVarMiembro(texto.substring(43, 46));
               saldo.setVarNombTajHabiente(texto.substring(46, 73));
               
@@ -116,7 +155,7 @@ public class SaldosController {
                 String decimalSaldoDispo = texto.substring(88, 90);
                 String cadenaSaldoDispo = enteroSaldoDispo + "." + decimalSaldoDispo;
                 DecSaldoDispo = Double.parseDouble(cadenaSaldoDispo);
-              saldo.setDecSaldoDispo(DecSaldoDispo);
+               saldo.setDecSaldoDispo(DecSaldoDispo);
                saldo.setVarEstadoTarjeta(texto.substring(90, 93));
                saldo.setVarDescripEsta(texto.substring(93, 123));
                saldo.setVarSubtipo(texto.substring(123, 126));

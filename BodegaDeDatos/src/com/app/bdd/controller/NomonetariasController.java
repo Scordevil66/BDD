@@ -95,7 +95,7 @@ public class NomonetariasController {
     }
 
     /* EJECUTA CONSULTA SALDO POR TARJETA  */
-    public List<NoMonetarias> consultaPorTarjeta(String NumTarjeta, String FechIni, String FechFin) throws SQLException {
+    public List<NoMonetarias> consultaPorTarjeta(String NumTarjeta, String FechIni, String FechFin, String entidad) throws SQLException {
 
         List<NoMonetarias> nomonetarias = new ArrayList<>();
         NoMonetarias nomonetaria = new NoMonetarias();
@@ -136,6 +136,10 @@ public class NomonetariasController {
             if (!(NumTarjeta.equals(""))) {
                 sql = sql + " and nomo.varNumTarjeta='" + NumTarjeta + "'\n";
             }
+            
+             if (!((entidad+"").equals(""))) {
+                sql = sql + " and mov.varBin ='"+ entidad +"' \n";
+            }
 
             if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
@@ -146,7 +150,7 @@ public class NomonetariasController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
+                nomonetarias.add(new NoMonetarias(rs.getString(1), Double.parseDouble(rs.getString(2)), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), Double.parseDouble(rs.getString(13)), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
 
             }
 
@@ -164,7 +168,7 @@ public class NomonetariasController {
 
     /* FIN CONSULTA SALDO POR TARJETA */
  /* EJECUTA CONSULTA SALDO POR EMPRESA  */
-    public List<NoMonetarias> consultaPorEmpresa(String Bin, String FechIni, String FechFin, String Nit, String Subtipo) throws SQLException {
+    public List<NoMonetarias> consultaPorEmpresa(String Bin, String FechIni, String FechFin, String Nit, String Subtipo, String entidad) throws SQLException {
 
         List<NoMonetarias> nomonetarias = new ArrayList<>();
         NoMonetarias nomonetaria = new NoMonetarias();
@@ -211,6 +215,11 @@ public class NomonetariasController {
             if (!(Subtipo.equals(""))) {
                 sql = sql + " and mov.varDescriSubtipo='" + Subtipo + "'\n";
             }
+            
+            if (!((entidad+"").equals(""))) {
+                sql = sql + " and mov.varBin ='"+ entidad +"' \n";
+            }
+            
             if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
             }
@@ -220,7 +229,7 @@ public class NomonetariasController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
+                nomonetarias.add(new NoMonetarias(rs.getString(1), Double.parseDouble(rs.getString(2)), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), Double.parseDouble(rs.getString(13)), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
 
             }
 
@@ -238,7 +247,7 @@ public class NomonetariasController {
 
     /* FIN CONSULTA SALDO POR EMPRESA */
  /* EJECUTA CONSULTA SALDO POR ENTIDAD  */
-    public List<NoMonetarias> consultaPorEntidad(String Bin, String FechIni, String FechFin) throws SQLException {
+    public List<NoMonetarias> consultaPorEntidad(String Bin, String FechIni, String FechFin, String entidad) throws SQLException {
 
         List<NoMonetarias> nomonetarias = new ArrayList<>();
         NoMonetarias noMonetarias = new NoMonetarias();
@@ -282,13 +291,17 @@ public class NomonetariasController {
             if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
             }
+            
+            if (!((entidad+"").equals(""))) {
+                sql = sql + " and mov.varBin ='"+ entidad +"' \n";
+            }
 
             ResultSet rs = null;
 
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                nomonetarias.add(new NoMonetarias(rs.getString(1), rs.getDouble(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getDouble(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
+                nomonetarias.add(new NoMonetarias(rs.getString(1), Double.parseDouble(rs.getString(2)), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), Double.parseDouble(rs.getString(13)), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)));
 
             }
 

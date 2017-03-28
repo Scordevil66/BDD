@@ -36,12 +36,29 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
     }
 
     public void init() {
-        NumTarj.setBackground(new java.awt.Color(238, 235, 235));
-        Bin.setBackground(new java.awt.Color(238, 235, 235));
-        FechFi.setBackground(new java.awt.Color(238, 235, 235));
-        FechIni.setBackground(new java.awt.Color(238, 235, 235));
-        Nit.setBackground(new java.awt.Color(238, 235, 235));
-        SubTipo.setBackground(new java.awt.Color(238, 235, 235));
+        try {
+            NumTarj.setBackground(new java.awt.Color(238, 235, 235));
+            Bin.setBackground(new java.awt.Color(238, 235, 235));
+            FechFi.setBackground(new java.awt.Color(238, 235, 235));
+            FechIni.setBackground(new java.awt.Color(238, 235, 235));
+            Nit.setBackground(new java.awt.Color(238, 235, 235));
+            SubTipo.setBackground(new java.awt.Color(238, 235, 235));
+            
+            
+            List<Movimientos> entidades = new ArrayList<>();
+            
+            MovimientoController movimientoController = new MovimientoController();
+
+            entidades = MovimientoController.consultaEntidades();
+
+            jComboBox2.addItem("Seleccione");
+
+            for (int i = 0; i < entidades.size(); i++) {
+                jComboBox2.addItem(entidades.get(i).getCodBin() + " - " + entidades.get(i).getNombreBanco());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(FiltrosNoMonetarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
@@ -74,7 +91,10 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
         button1 = new java.awt.Button();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
+        setClosable(true);
         setMaximizable(true);
         setResizable(true);
         setPreferredSize(new java.awt.Dimension(1024, 485));
@@ -142,6 +162,14 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabel7.setText("Entidad:");
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -150,9 +178,19 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(filler1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBox1, 0, 1, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel7)
+                                .addGap(18, 18, 18)
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,16 +211,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
                                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(FechIni, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(34, 34, 34))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(300, 300, 300))
-                                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addGap(34, 34, 34)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -192,7 +221,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(FechFi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(130, 130, 130)
+                        .addGap(174, 174, 174)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -203,26 +232,30 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(button1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(FechIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NumTarj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(FechFi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1))
+                        .addGap(4, 4, 4))
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(FechIni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(FechFi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(NumTarj, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -339,6 +372,14 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
         List<NoMonetarias> nomonetarias = new ArrayList<>();
         NomonetariasController nomovimientoController = new NomonetariasController();
         try {
+            
+            String idEntidadS = (String) jComboBox2.getSelectedItem();
+            if(idEntidadS.trim().equals("Seleccione")){
+                JOptionPane.showMessageDialog(rootPane,"Es necesario que seleccione una Entidad");
+            }else{
+            String[] idEntidadV = idEntidadS.split(" - ");
+            String entidad = idEntidadV[0];
+           
 
             if (FechIni.getDate() == null || FechFi.getDate() == null) {
             JOptionPane.showMessageDialog(rootPane,"Los rangos de fecha no pueden estar vacios");
@@ -362,7 +403,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
                     SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                     String fechFi = String.valueOf(sdf.format(date2));
 
-                    nomonetarias = nomovimientoController.consultaPorTarjeta(NumTarj.getText().trim(), fechIni, fechFi);
+                    nomonetarias = nomovimientoController.consultaPorTarjeta(NumTarj.getText().trim(), fechIni, fechFi, entidad);
 
                     DefaultTableModel modelo;
                     modelo = new DefaultTableModel();
@@ -417,7 +458,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
                         SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                         String fechFi = String.valueOf(sdf.format(date2));
 
-                        nomonetarias = nomovimientoController.consultaPorEmpresa(Bin.getText().trim(), fechIni, fechFi, Nit.getText().trim(), SubTipo.getText().trim());
+                        nomonetarias = nomovimientoController.consultaPorEmpresa(Bin.getText().trim(), fechIni, fechFi, Nit.getText().trim(), SubTipo.getText().trim(), entidad);
 
                         DefaultTableModel modelo;
                         modelo = new DefaultTableModel();
@@ -474,7 +515,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
                             SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                             String fechFi = String.valueOf(sdf.format(date2));
 
-                            nomonetarias = nomovimientoController.consultaPorEntidad(Bin.getText().trim(), fechIni, fechFi);
+                            nomonetarias = nomovimientoController.consultaPorEntidad(Bin.getText().trim(), fechIni, fechFi, entidad);
 
                             DefaultTableModel modelo;
                             modelo = new DefaultTableModel();
@@ -520,12 +561,17 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
 
                 }
             }
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(FiltrosNoMonetarios.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -540,6 +586,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -547,6 +594,7 @@ public class FiltrosNoMonetarios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

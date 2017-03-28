@@ -192,10 +192,52 @@ public class Movimientos {
         this.varDescripEsta = varDescripEsta;
         this.varNombreComercio = varNombreComercio;
     }
+    ////movimientos tarjeta empresa
+    public Movimientos(String varNitEmpresa, String varNombTajHabiente, String varTarjeta,
+            String varDispOrigen,
+            String varDesEstCoCargos,
+            String varDescTransac,
+            double decValTransaccion,
+            String varDateFechaTransac,
+            double decValIva,
+            double decTotalCobrar,
+            double decImpEmerEcono,
+            String varIndicadorRever,
+            String varDescrpResp,
+            String varCodAutoriza,
+            String varRedAdquiriente,
+            String varCodEstablecimiento,
+            String varDescriSubtipo,
+            String varNumTarjSecundari,
+            String varValorBaseDevIva,
+            String decSaldoDispo,
+            String varDescripEsta,
+            String varNombreComercio) {
+        this.varNitEmpresa = varNitEmpresa;
+        this.varNombTajHabiente=varNombTajHabiente;//
+        this.varTarjeta = varTarjeta;//
+        this.varDispOrigen = varDispOrigen;//
+        this.varDesEstCoCargos = varDesEstCoCargos;//
+        this.varDescTransac = varDescTransac;//
+        this.decValTransaccion = decValTransaccion;
+        this.varDateFechaTransac = varDateFechaTransac;
+        this.decValIva = decValIva;
+        this.decTotalCobrar = decTotalCobrar;
+        this.decImpEmerEcono = decImpEmerEcono;
+        this.varIndicadorRever = varIndicadorRever;
+        this.varDescrpResp = varDescrpResp;
+        this.varCodAutoriza = varCodAutoriza;
+        this.varRedAdquiriente = varRedAdquiriente;
+        this.varCodEstablecimiento = varCodEstablecimiento;
+        this.varDescriSubtipo = varDescriSubtipo;
+        this.varNumTarjSecundari = varNumTarjSecundari;
+        this.varValorBaseDevIva = varValorBaseDevIva;
+        this.decSaldoDispo = decSaldoDispo;
+        this.varDescripEsta = varDescripEsta;
+        this.varNombreComercio = varNombreComercio;
+    }
 
    
-    
-    
     
     // FIN CONSUlTA NO MONETARIA POR TARJETA
 

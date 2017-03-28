@@ -497,7 +497,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                     SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                     String fechFi = String.valueOf(sdf.format(date2));
 
-                    movimientos = movimientoController.consultaSaldoTarjetasEmpresa(fechIni, fechFi,codigoBin, Nit.getText().trim(), SubTipo.getText().trim(), Bin.getText().trim());
+                    movimientos = movimientoController.consultaSaldoTarjetasEmpresa(fechIni, fechFi,codigoBin, Nit.getText().trim(), SubTipo.getText().trim(), Bin.getText().trim(),codigoBin ,NumTarj.getText().trim());
 
                     DefaultTableModel modelo;
                     modelo = new DefaultTableModel();
@@ -505,20 +505,20 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                     jTable1.setModel(modelo);
 
                     modelo.addColumn("Fecha Trasaccion");
-                    modelo.addColumn("Numero Tarjeta");
-                    modelo.addColumn(" Nombre TarjetaHabiente");
-                    modelo.addColumn("Nit Empresa");
-                    modelo.addColumn("Estado");
-                    modelo.addColumn("Saldo Estado Tarjeta ");
+                modelo.addColumn("Numero Tarjeta");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("Nit Empresa");
+                modelo.addColumn("Estado");
+                modelo.addColumn("Saldo Estado Tarjeta ");
 
-                    for (int i = 0; i < movimientos.size(); i++) {
-                        Object[] object = new Object[6];
-                        object[0] = movimientos.get(i).getVarDateFechaTransac();
-                        object[1] = movimientos.get(i).getVarTarjeta();
-                        object[2] = movimientos.get(i).getVarNombTajHabiente();
-                        object[3] = movimientos.get(i).getVarDescripEsta();
-                        object[4] = movimientos.get(i).getVarDescriSubtipo();
-                        object[5] = movimientos.get(i).getDecSaldoDispo();
+                for (int i = 0; i < movimientos.size(); i++) {
+                    Object[] object = new Object[6];
+                    object[0] = movimientos.get(i).getVarDateFechaTransac();
+                    object[1] = movimientos.get(i).getVarTarjeta();
+                    object[2] = movimientos.get(i).getVarNombTajHabiente();
+                    object[3] = movimientos.get(i).getVarDescripEsta();
+                    object[4] = movimientos.get(i).getVarDescriSubtipo();
+                    object[5] = movimientos.get(i).getDecSaldoDispo();
 
                         modelo.addRow(object);
                     }
@@ -609,25 +609,21 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
 
                             jTable1.setModel(modelo);
 
-                            modelo.addColumn("Fecha Saldo");
-                            modelo.addColumn("Numero Tarjeta");
-                            modelo.addColumn(" Nombre TarjetaHabiente");
-                            modelo.addColumn(" Tipo Documento");
-                            modelo.addColumn("Numero Documento");
-                            modelo.addColumn("Nit Empresa");
-                            modelo.addColumn("Sub Tipo");
-                            modelo.addColumn("Saldo Estado Tarjeta ");
+                                           modelo.addColumn("Fecha Trasaccion");
+                modelo.addColumn("Numero Tarjeta");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("Estado Tarjeta");
+                modelo.addColumn("Suptipo");
+                modelo.addColumn("Saldo Tarjeta ");
 
-                            for (int i = 0; i < movimientos.size(); i++) {
-                                Object[] object = new Object[8];
-                                object[0] = movimientos.get(i).getVarDateFechaTransac();
-                                object[1] = movimientos.get(i).getVarTarjeta();
-                                object[2] = movimientos.get(i).getVarNombreTarjetahabiente();
-                                object[3] = movimientos.get(i).getVarDescripcionTipoDocumento();
-                                object[4] = movimientos.get(i).getVarNumDocumento();
-                                object[5] = movimientos.get(i).getVarNitEmpresa();
-                                object[6] = movimientos.get(i).getVarDescriSubtipo();
-                                object[7] = movimientos.get(i).getDecSaldoDispo();
+                for (int i = 0; i < movimientos.size(); i++) {
+                    Object[] object = new Object[6];
+                    object[0] = movimientos.get(i).getVarDateFechaTransac();
+                    object[1] = movimientos.get(i).getVarTarjeta();
+                    object[2] = movimientos.get(i).getVarNombTajHabiente();
+                    object[3] = movimientos.get(i).getVarDescripEsta();
+                    object[4] = movimientos.get(i).getVarDescriSubtipo();
+                    object[5] = movimientos.get(i).getDecSaldoDispo();
 
                                 modelo.addRow(object);
                             }
@@ -647,34 +643,28 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                                 SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
                                 String fechFi = String.valueOf(sdf.format(date2));
 
-                                movimientos = movimientoController.consultaSaldoTarjetasEmpresa(fechIni,codigoBin, fechFi, Nit.getText().trim(), SubTipo.getText().trim(), Bin.getText().trim());
+                                movimientos = movimientoController.consultaSaldoTarjetasEmpresa(fechIni, fechFi,codigoBin, Nit.getText().trim(), SubTipo.getText().trim(), Bin.getText().trim(),codigoBin ,NumTarj.getText().trim());
 
                                 DefaultTableModel modelo;
                                 modelo = new DefaultTableModel();
 
                                 jTable1.setModel(modelo);
 
-                                modelo.addColumn("Fecha Saldo");
-                                modelo.addColumn("Numero Tarjeta");
-                                modelo.addColumn("Nombre TarjetaHabiente ");
-                                modelo.addColumn(" Tipo Documento");
-                                modelo.addColumn("Numero Documento");
-                                modelo.addColumn("Nit Empresa");
-                                modelo.addColumn("Sub Tipo");
-                                modelo.addColumn("Saldo ");
-                                modelo.addColumn("Estado Tarjeta ");
+                                modelo.addColumn("Fecha Trasaccion");
+                modelo.addColumn("Numero Tarjeta");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("Estado Tarjeta");
+                modelo.addColumn("Suptipo");
+                modelo.addColumn("Saldo Tarjeta ");
 
-                                for (int i = 0; i < movimientos.size(); i++) {
-                                    Object[] object = new Object[9];
-                                    object[0] = movimientos.get(i).getVarDateFechaTransac();
-                                    object[1] = movimientos.get(i).getVarTarjeta();
-                                    object[2] = movimientos.get(i).getVarNombreTarjetahabiente();
-                                    object[3] = movimientos.get(i).getVarDescripcionTipoDocumento();
-                                    object[4] = movimientos.get(i).getVarNumDocumento();
-                                    object[5] = movimientos.get(i).getVarNitEmpresa();
-                                    object[6] = movimientos.get(i).getVarDescriSubtipo();
-                                    object[7] = movimientos.get(i).getDecSaldoDispo();
-                                    object[8] = movimientos.get(i).getVarDescripEsta();
+                for (int i = 0; i < movimientos.size(); i++) {
+                    Object[] object = new Object[6];
+                    object[0] = movimientos.get(i).getVarDateFechaTransac();
+                    object[1] = movimientos.get(i).getVarTarjeta();
+                    object[2] = movimientos.get(i).getVarNombTajHabiente();
+                    object[3] = movimientos.get(i).getVarDescripEsta();
+                    object[4] = movimientos.get(i).getVarDescriSubtipo();
+                    object[5] = movimientos.get(i).getDecSaldoDispo();
 
                                     modelo.addRow(object);
 
@@ -701,27 +691,21 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
 
                                     jTable1.setModel(modelo);
 
-                                    modelo.addColumn("Fecha Saldo");
-                                    modelo.addColumn("Numero Tarjeta");
-                                    modelo.addColumn("Nombre TarjetaHabiente ");
-                                    modelo.addColumn(" Tipo Documento");
-                                    modelo.addColumn("Numero Documento");
-                                    modelo.addColumn("Nit Empresa");
-                                    modelo.addColumn("Sub Tipo");
-                                    modelo.addColumn("Saldo ");
-                                    modelo.addColumn("Estado Tarjeta ");
+                                    modelo.addColumn("Fecha Trasaccion");
+                modelo.addColumn("Numero Tarjeta");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("Nit Empresa");
+                modelo.addColumn("Estado");
+                modelo.addColumn("Saldo Estado Tarjeta ");
 
-                                    for (int i = 0; i < movimientos.size(); i++) {
-                                        Object[] object = new Object[9];
-                                        object[0] = movimientos.get(i).getVarDateFechaTransac();
-                                        object[1] = movimientos.get(i).getVarTarjeta();
-                                        object[2] = movimientos.get(i).getVarNombreTarjetahabiente();
-                                        object[3] = movimientos.get(i).getVarNitEmpresa();
-                                        object[4] = movimientos.get(i).getVarNumDocumento();
-                                        object[5] = movimientos.get(i).getVarNitEmpresa();
-                                        object[6] = movimientos.get(i).getVarDescriSubtipo();
-                                        object[7] = movimientos.get(i).getDecSaldoDispo();
-                                        object[8] = movimientos.get(i).getVarDescripEsta();
+                for (int i = 0; i < movimientos.size(); i++) {
+                    Object[] object = new Object[6];
+                    object[0] = movimientos.get(i).getVarDateFechaTransac();
+                    object[1] = movimientos.get(i).getVarTarjeta();
+                    object[2] = movimientos.get(i).getVarNombTajHabiente();
+                    object[3] = movimientos.get(i).getVarDescripEsta();
+                    object[4] = movimientos.get(i).getVarDescriSubtipo();
+                    object[5] = movimientos.get(i).getDecSaldoDispo();
 
                                         modelo.addRow(object);
 

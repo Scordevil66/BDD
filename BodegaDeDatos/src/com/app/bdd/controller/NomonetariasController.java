@@ -125,8 +125,7 @@ public class NomonetariasController {
                     + "					sa.varEstadoTarjeta,/*codigo estado trarjeta*/\n"
                     + "					sa.varDescripEsta /*descripcion estado tarjeta*/\n"
                     + " FROM movimientos as mov, nomonetarias as nomo, saldos as sa, tiposnovedad  as tip, tipodocumento as tipodoc, comerciosred as comer \n"
-                    + " WHERE "
-                    + " sa.varTarjeta = mov.varTarjeta\n"
+                    + " WHERE  sa.varTarjeta = mov.varTarjeta\n"
                     + " and mov.varTarjeta=nomo.varNumTarjeta\n"
                     + " and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
                     + " and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento\n"
@@ -201,7 +200,7 @@ public class NomonetariasController {
                     + " WHERE "
                     + " sa.varTarjeta = mov.varTarjeta\n"
                     + " and mov.varTarjeta=nomo.varNumTarjeta\n"
-                    + " and mov.varCodEstablecimiento=comer.varCodigoComercio\n"
+                    + " and saldos.varNombTajHabiente = nomonetarias.varNombreTarjetahabiente\n"
                     + " and nomo.varTipoDocumTatjetaHabiente=tipodoc.varCodigoTipoDocumento\n"
                     + " and sa.varSubtipo =nomo.varSubTipo\n"
                     + " and nomo.varTipoNovedad = tip.varCodigoTipoNovedad ";

@@ -34,6 +34,7 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
 
     /**
      * Creates new form CargaMasivaUsuario
+     * @throws java.lang.Exception
      */
     public CargaMasivaMovimiento() throws Exception {
         initComponents();

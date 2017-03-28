@@ -131,7 +131,6 @@ public class Progress extends JPanel
         /**
      * Create the GUI and show it. As with all GUI code, this must run
      * on the event-dispatching thread.
-     * @param Total
      */
     public  static void createAndShowGUI() {
         //Create and set up the window.

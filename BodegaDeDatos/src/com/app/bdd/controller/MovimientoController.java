@@ -196,8 +196,7 @@ public class MovimientoController {
                if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
             }
-          
-             sql = sql + "order by mov.dateFechaTransac asc   ";
+               sql = sql + "order by mov.dateFechaTransac asc   ";
             
             
             
@@ -207,7 +206,7 @@ public class MovimientoController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-      movimientos.add(new Movimientos(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)  ));
+      movimientos.add(new Movimientos(rs.getString(1),rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), Double.parseDouble(rs.getString(6)), rs.getString(7), Double.parseDouble(rs.getString(8)), Double.parseDouble(rs.getString(9)), Double.parseDouble(rs.getString(10)), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16),rs.getString(17), rs.getString(18), rs.getString(19), rs.getString(20),  rs.getString(21)));
 
             }
 
@@ -235,12 +234,15 @@ public class MovimientoController {
      * @param Nit
      * @param SubTipo
      * @param Bin
+     * @param NumTarjeta
+     * @param entity
+     * @param codigoBin
      * @return 
      * @throws java.sql.SQLException
      */
 
     
-     public List<Movimientos> consultaSaldoTarjetasEmpresa(String FechIni, String FechFin, String Nit, String SubTipo, String Bin, String entity) throws SQLException {
+     public List<Movimientos> consultaSaldoTarjetasEmpresa(String FechIni, String FechFin, String Nit, String Bin, String entity, String NumTarjeta, String SubTipo,String codigoBin) throws SQLException {
 
         List<Movimientos> movimientos = new ArrayList<>();
         Movimientos movimiento = new Movimientos();
@@ -251,7 +253,7 @@ public class MovimientoController {
 
         try {
 
-                sql=" select  sal.varNombTajHabiente, "
+                sql=" select  mov.varNitEmpresa, sal.varNombTajHabiente, "
                     + " mov.varTarjeta,"
                     + " mov.varDispOrigen,"
                     + " mov.varDesEstCoCargos, "
@@ -279,8 +281,8 @@ public class MovimientoController {
                     + " and mov.varSubtipo=sal.varSubtipo\n";
                if (!(Nit.equals(""))) {
                 sql = sql + " and mov.varTarjeta='" + Nit + "'\n";
-            }
-                if (!(SubTipo.equals(""))) {
+          }
+               if (!(SubTipo.equals(""))) {
                 sql = sql + " and mov.varTarjeta='" + SubTipo + "'\n";
             }
                     if (!((entity+"").equals(""))) {
@@ -298,7 +300,7 @@ public class MovimientoController {
             rs = st.executeQuery(sql);
 
             while (rs.next()) {
-                movimientos.add(new Movimientos(rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17), rs.getString(18)  ));
+                movimientos.add(new Movimientos(rs.getString(1) ,rs.getString(2),rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), Double.parseDouble(rs.getString(7)), rs.getString(8), Double.parseDouble(rs.getString(9)), Double.parseDouble(rs.getString(10)), Double.parseDouble(rs.getString(11)), rs.getString(12), rs.getString(13), rs.getString(14), rs.getString(15), rs.getString(16), rs.getString(17),rs.getString(18), rs.getString(19), rs.getString(20), rs.getString(21),  rs.getString(22)));
 
             }
 

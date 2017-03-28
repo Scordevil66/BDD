@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,7 +24,8 @@ import java.util.logging.Logger;
 public class ConexionSQL {
 
     //static String clave = "yU7eywfXILoZjtaD";
-    static String clave = "qwerty";
+  // static String clave = "qwerty";
+     static String clave = "wstinol";
     static Statement ST = null;
     static Connection cn = null;
     static String user = "";
@@ -45,27 +47,33 @@ public class ConexionSQL {
             // RUTA DE LA BASE DE DATOS
             //  149.56.93.6
             //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
-            String url = "jdbc:sqlserver://localhost:1433;databaseName=BodegaDatos";
+           //String rsl = "jdbc:sqlserver://localhost:1433;databaseName=BodegaDatos";
+           String rsl = "jdbc:sqlserver://10.9.200.189:1499;databaseName=BodegaBPO";
             // CONECCION A LA BASE DE DATOS
-            cn = DriverManager.getConnection(url, "sa", clave);
+         //   System.out.print("vamos a conectar");
+           cn = DriverManager.getConnection(rsl, "HSI", clave);
             // TRAE LOS DATOS
             Statement st = cn.createStatement();
-
+             
             ST = st;
 
             System.out.print("-------------------consulta BD:" + ST);
 
         } catch (ClassNotFoundException ex) {
-            System.out.print("Error en el Driver");
+             JOptionPane.showMessageDialog(null, "No se logro conectar a la base de datos");
+            //System.out.print("No se logro conectar a la Base de datos");
         } catch (SQLException e) {
+           
             System.out.print(e.getMessage());
         }
 //		finally {
 //			cerrarConexion();
 //		   }
+        //System.out.println("Conectao");
         return ST;
 
     }
+    
     public static Connection CerrarConexion() throws SQLException {
 
         try {
@@ -84,3 +92,4 @@ public class ConexionSQL {
         conexion();
     }
 }
+

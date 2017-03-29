@@ -34,6 +34,7 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
 
     /**
      * Creates new form CargaMasivaUsuario
+     *
      * @throws java.lang.Exception
      */
     public CargaMasivaMovimiento() throws Exception {
@@ -57,9 +58,9 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
 //            jComboBox1.addItem(areas.get(i).getIdArea() + " - " + areas.get(i).getArea());
 //        }
     }
-    
-    public void Conteo(String valor,String total){
-        this.jL_cargando.setText("Cargando "+valor+"/"+total);
+
+    public void Conteo(String valor, String total) {
+        this.jL_cargando.setText("Cargando " + valor + "/" + total);
     }
 
     public void SeleccionArchivo() {
@@ -181,14 +182,22 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione el Archivo: ");
 
-        jButton1.setText("Examinar");
+        jButton1.setForeground(new java.awt.Color(240, 240, 240));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Examinar.png"))); // NOI18N
+        jButton1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        bAceptar.setText("Aceptar");
+        bAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Aceptar1.png"))); // NOI18N
+        bAceptar.setToolTipText("");
+        bAceptar.setBorderPainted(false);
+        bAceptar.setContentAreaFilled(false);
         bAceptar.setEnabled(false);
         bAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,8 +212,6 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Seleccione tipo de Archivo");
-
-        jL_cargando.setText("Cargando 0/0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -223,17 +230,18 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(99, 99, 99)
                                     .addComponent(lPath, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(l_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(bAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(bAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(10, 10, 10)
+                                    .addComponent(l_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(28, 28, 28)
                             .addComponent(jLabel1))))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,15 +256,15 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(l_nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(l_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bAceptar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lPath, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jL_cargando, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -273,42 +281,55 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
 
-        try {
+       
+          //  jL_cargando.setText("Cargando... por favor espere.");
 
-            int valor = 0;
+            //if (jL_cargando.getText().equals("Cargando... por favor espere.")) {
 
-            int idArchivo = 0;
+                // JOptionPane.showMessageDialog(null, "Cargando....Por favor espere" );
+                int valor = 0;
 
-            String idArchivoS = (String) jComboBox1.getSelectedItem();
+                int idArchivo = 0;
+    try {
+                String idArchivoS = (String) jComboBox1.getSelectedItem();
 
-            if (idArchivoS.equals("") || idArchivoS.equals("Seleccione")) {
-                idArchivo = 0;
-            } else {
-                String[] idArechivoA = idArchivoS.split(" - ");
-                idArchivo = Integer.parseInt(idArechivoA[0]);
+                if (idArchivoS.equals("") || idArchivoS.equals("Seleccione")) {
+                    idArchivo = 0;
 
-            }
-            if (idArchivo == 0) {
-                valor = LeerArchivoMovimientoTxt(lPath.getText());
-            } else {
-                if (idArchivo == 1) {
-                    valor = LeerArchivoNoMonetariasTxt(lPath.getText());
                 } else {
-                    valor = LeerArchivoSaldosTxt(lPath.getText());
+                    String[] idArechivoA = idArchivoS.split(" - ");
+                    idArchivo = Integer.parseInt(idArechivoA[0]);
+
                 }
-            }
+                if (idArchivo == 0) {
+//                JOptionPane.showMessageDialog(null, "Por favor espere" );
+                    valor = LeerArchivoMovimientoTxt(lPath.getText());
+                } else {
+//                JOptionPane.showMessageDialog(null, "Por favor espere" );
+                    if (idArchivo == 1) {
+                        valor = LeerArchivoNoMonetariasTxt(lPath.getText());
 
-            if (valor > 0) {
-                JOptionPane.showMessageDialog(null, "Registro realizado satisfactoriamente");
+                    } else {
+//                    JOptionPane.showMessageDialog(null, "Por favor espere" );
+                        valor = LeerArchivoSaldosTxt(lPath.getText());
+                    }
 
-                l_nombre.setText("");
-                bAceptar.setEnabled(false);
-                jComboBox1.setSelectedIndex(0);
+                }
 
-            }
+                if (valor > 0) {
+                    JOptionPane.showMessageDialog(null, "Registro realizado satisfactoriamente");
+
+                    l_nombre.setText("");
+                    bAceptar.setEnabled(false);
+                    jComboBox1.setSelectedIndex(0);
+
+                }
+
+//            }
 
         } catch (Exception ex) {
             Logger.getLogger(CargaMasivaMovimiento.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
 
     }//GEN-LAST:event_bAceptarActionPerformed

@@ -21,6 +21,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import static jdk.nashorn.internal.objects.NativeString.substring;
 
 /**
@@ -32,13 +33,24 @@ public class MovimientoController {
     static Statement st;
 
     public static void MovimientoController() throws SQLException {
-        MovimientoController.st = ConexionSQL.conexion();
+       // MovimientoController.st = ConexionSQL.conexion();
+        try {
+            MovimientoController.st = ConexionSQL.conexion();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+ {
+             }
     }
 
 //    public static void main(String[] args) {
 //        LeerArchivoMovimientoTxt();
 //    }
     public static int registrarMovimiento(Movimientos movimiento) throws Exception {
+        
+
+        
+      //   JOptionPane.showMessageDialog(null, "Por favor espere" );
 
         MovimientoController.MovimientoController();
 
@@ -849,14 +861,17 @@ public class MovimientoController {
                 System.out.println(texto);
 
                 conteo++;
+              
 
-//                cargaMasivaMovimientos.Conteo(conteo + "", totalLineas + "");
-                resultado = registrarMovimiento(movimiento);
+               // cargaMasivaMovimientos.Conteo(conteo + "", totalLineas + "");
+                
+        resultado = registrarMovimiento(movimiento);
 
             }
         } //Si se causa un error al leer cae aqui
         catch (Exception e) {
-            System.out.println("Error al leer");
+            JOptionPane.showMessageDialog(null,"  Error al intentar cargar el archivo, Valide nuevamente ");
+          //  System.out.println("Error al leer");
         }
         return resultado;
     }

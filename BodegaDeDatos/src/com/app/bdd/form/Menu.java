@@ -22,7 +22,7 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-//        dpnEscritorio.setBorder(new ImagenFondo());
+        dpnEscritorio.setBorder(new ImagenFondo());
         this.setExtendedState(this.MAXIMIZED_BOTH);
 
     }

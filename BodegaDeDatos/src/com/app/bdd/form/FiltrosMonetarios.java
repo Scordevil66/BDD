@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -85,11 +86,12 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
         Nit = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         SubTipo = new javax.swing.JTextField();
-        button1 = new java.awt.Button();
+        button12 = new java.awt.Button();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         entity = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        button1 = new javax.swing.JButton();
 
         setMaximizable(true);
         setResizable(true);
@@ -141,11 +143,12 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
 
         SubTipo.setEnabled(false);
 
-        button1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        button1.setLabel("Aplicar Filtro");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        button12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        button12.setEnabled(false);
+        button12.setVisible(false);
+        button12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                button12ActionPerformed(evt);
             }
         });
 
@@ -170,80 +173,93 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Entidad");
 
+        button1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/AplicarFiltro.png"))); // NOI18N
+        button1.setBorderPainted(false);
+        button1.setContentAreaFilled(false);
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(78, 78, 78)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(filler1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(Bin, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(224, 224, 224))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(Bin, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(224, 224, 224))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(NumTarj, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(21, 21, 21)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(entity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(Nit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(FechIni, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                        .addGap(34, 34, 34)))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(NumTarj, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(SubTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(21, 21, 21)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(entity, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(Nit, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(FechIni, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(34, 34, 34)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(SubTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(button1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(FechFi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(130, 130, 130)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jScrollPane1)))
-                .addGap(16, 16, 16))
+                                        .addComponent(FechFi, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(button12, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(130, 130, 130)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filler2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(entity)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(button1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(entity)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(button12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(button1))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -267,10 +283,9 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(SubTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
+                        .addGap(78, 78, 78)
                         .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -278,8 +293,10 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(25, 25, 25)
                                 .addComponent(filler3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -290,7 +307,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
         String idTipoFiltroS = (String) jComboBox1.getSelectedItem();
 
         if ((idTipoFiltroS.equals("SELECCIONE"))) {
-            button1.setEnabled(false);
+            button12.setEnabled(false);
             Bin.setEnabled(false);
             Nit.setEnabled(false);
             SubTipo.setEnabled(false);
@@ -320,7 +337,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                 Nit.setEnabled(false);
                 SubTipo.setBackground(new java.awt.Color(238, 235, 235));
                 SubTipo.setEnabled(false);
-                button1.setEnabled(true);
+                button12.setEnabled(true);
 
             } else {
                 if (idTipoFiltro == 2) {
@@ -337,7 +354,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                     Nit.setEnabled(true);
                     SubTipo.setBackground(new java.awt.Color(255, 255, 255));
                     SubTipo.setEnabled(true);
-                    button1.setEnabled(true);
+                    button12.setEnabled(true);
 
                 } else {
                     if (idTipoFiltro == 3) {
@@ -354,7 +371,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                         Nit.setEnabled(false);
                         SubTipo.setBackground(new java.awt.Color(238, 235, 235));
                         SubTipo.setEnabled(false);
-                        button1.setEnabled(true);
+                        button12.setEnabled(true);
 
                     } else {
 
@@ -372,7 +389,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                             Nit.setEnabled(false);
                             SubTipo.setBackground(new java.awt.Color(238, 235, 235));
                             SubTipo.setEnabled(false);
-                            button1.setEnabled(true);
+                            button12.setEnabled(true);
 
                         } else {
                             if (idTipoFiltro == 5) {
@@ -389,7 +406,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                                 Nit.setEnabled(true);
                                 SubTipo.setBackground(new java.awt.Color(255, 255, 255));
                                 SubTipo.setEnabled(true);
-                                button1.setEnabled(true);
+                                button12.setEnabled(true);
 
                             } else {
                                 if (idTipoFiltro == 6) {
@@ -406,7 +423,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
                                     Nit.setEnabled(false);
                                     SubTipo.setBackground(new java.awt.Color(238, 235, 235));
                                     SubTipo.setEnabled(false);
-                                    button1.setEnabled(true);
+                                    button12.setEnabled(true);
 
                                 } else {
 
@@ -428,7 +445,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NumTarjActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void button12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button12ActionPerformed
 
         List<Movimientos> movimientos = new ArrayList<>();
         MovimientoController movimientoController = new MovimientoController();
@@ -727,7 +744,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
             Logger.getLogger(FiltrosMonetarios.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_button1ActionPerformed
+    }//GEN-LAST:event_button12ActionPerformed
 
     private void entityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entityActionPerformed
         // TODO add your handling code here:
@@ -739,6 +756,317 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BinActionPerformed
 
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+       
+         List<Movimientos> movimientos = new ArrayList<>();
+        MovimientoController movimientoController = new MovimientoController();
+        try {
+
+            String idEntidadS = (String) entity.getSelectedItem();
+            if(idEntidadS.trim().equals("Seleccione")){
+                JOptionPane.showMessageDialog(rootPane,"Es necesario que seleccione una Entidad");
+            }else{
+            String[] idEntidadV = idEntidadS.split(" - ");
+            String entidad = idEntidadV[0];
+           
+
+            if (FechIni.getDate() == null || FechFi.getDate() == null) {
+            JOptionPane.showMessageDialog(rootPane,"Los rangos de fecha no pueden estar vacios");
+            } else {
+
+                String idTipoFiltroS = (String) jComboBox1.getSelectedItem();
+                String[] idTipoFiltroV = idTipoFiltroS.split(" - ");
+                int idTipoFiltro = Integer.parseInt(idTipoFiltroV[0]);
+
+            if (idTipoFiltro == 1) {
+
+                String formato = FechIni.getDateFormatString();
+                Date date = FechIni.getDate();
+
+                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                String fechIni = String.valueOf(sdf.format(date));
+
+                String formato2 = FechFi.getDateFormatString();
+                Date date2 = FechFi.getDate();
+
+                SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                String fechFi = String.valueOf(sdf.format(date2));
+
+                movimientos = movimientoController.consultaExtractoPorTarjeta(NumTarj.getText().trim(), fechIni, fechFi, entidad,entidad);
+
+                DefaultTableModel modelo;
+                modelo = new DefaultTableModel();
+
+                jTable1.setModel(modelo);
+
+                modelo.addColumn("Fecha Trasaccion");
+                modelo.addColumn("Numero Tarjeta");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("Nit Empresa");
+                modelo.addColumn("Estado");
+                modelo.addColumn("Saldo Estado Tarjeta ");
+
+                for (int i = 0; i < movimientos.size(); i++) {
+                    Object[] object = new Object[6];
+                    object[0] = movimientos.get(i).getVarDateFechaTransac();
+                    object[1] = movimientos.get(i).getVarTarjeta();
+                    object[2] = movimientos.get(i).getVarNombTajHabiente();
+                    object[3] = movimientos.get(i).getVarDescripEsta();
+                    object[4] = movimientos.get(i).getVarDescriSubtipo();
+                    object[5] = movimientos.get(i).getDecSaldoDispo();
+
+                    modelo.addRow(object);
+                }
+
+            } else {
+                if (idTipoFiltro == 2) {
+
+                    String formato = FechIni.getDateFormatString();
+                    Date date = FechIni.getDate();
+
+                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                    String fechIni = String.valueOf(sdf.format(date));
+
+                    String formato2 = FechFi.getDateFormatString();
+                    Date date2 = FechFi.getDate();
+
+                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                    String fechFi = String.valueOf(sdf.format(date2));
+
+                    movimientos = movimientoController.consultaSaldoTarjetasEmpresa(fechIni, fechFi,entidad, Nit.getText().trim(), SubTipo.getText().trim(), Bin.getText().trim(),entidad ,NumTarj.getText().trim());
+
+                    DefaultTableModel modelo;
+                    modelo = new DefaultTableModel();
+
+                    jTable1.setModel(modelo);
+
+                    modelo.addColumn("Fecha Trasaccion");
+                modelo.addColumn("Numero Tarjeta");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("Nit Empresa");
+                modelo.addColumn("Estado");
+                modelo.addColumn("Saldo Estado Tarjeta ");
+
+                for (int i = 0; i < movimientos.size(); i++) {
+                    Object[] object = new Object[6];
+                    object[0] = movimientos.get(i).getVarDateFechaTransac();
+                    object[1] = movimientos.get(i).getVarTarjeta();
+                    object[2] = movimientos.get(i).getVarNombTajHabiente();
+                    object[3] = movimientos.get(i).getVarDescripEsta();
+                    object[4] = movimientos.get(i).getVarDescriSubtipo();
+                    object[5] = movimientos.get(i).getDecSaldoDispo();
+
+                        modelo.addRow(object);
+                    }
+
+                } else {
+                    if (idTipoFiltro == 3) {
+
+                        String formato = FechIni.getDateFormatString();
+                        Date date = FechIni.getDate();
+
+                        SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                        String fechini = String.valueOf(sdf.format(date));
+
+                        String formato2 = FechFi.getDateFormatString();
+                        Date date2 = FechFi.getDate();
+
+                        SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                        String fechfi = String.valueOf(sdf.format(date2));
+
+                        movimientos = movimientoController.consultaMovimientosTarjetaEntidad(fechini,entidad, fechfi, Bin.getText().trim());
+
+                        DefaultTableModel modelo;
+                        modelo = new DefaultTableModel();
+
+                        jTable1.setModel(modelo);
+
+                        modelo.addColumn("Fecha Transaccion");
+                        modelo.addColumn("Numero Tarjeta");
+                        modelo.addColumn(" Estado Tarjeta");
+                        modelo.addColumn(" Numero Documento");
+                        modelo.addColumn("Nombre TarjetaHabiente");
+                        modelo.addColumn("Tipo Transaccion");
+                        modelo.addColumn("Valor Transaccion");
+                        modelo.addColumn("Codigo Autorizacion ");
+                        modelo.addColumn("Respuesta Autorizacion ");
+                        modelo.addColumn("Valor Comision");
+                        modelo.addColumn("Codigo Establecimiento");
+                        modelo.addColumn("Nombre Establecimiento");
+                        modelo.addColumn("Indicador Reverso");
+                        modelo.addColumn("Impuesto Emergencia Economica");
+                        modelo.addColumn("Subtipo ");
+                        modelo.addColumn("Nit Empresa");
+                        modelo.addColumn("Valor Base Iva");
+                        modelo.addColumn("Nombre Red Adquiriente");
+                        modelo.addColumn("Saldo");
+
+                        for (int i = 0; i < movimientos.size(); i++) {
+                            Object[] object = new Object[17];
+                            object[0] = movimientos.get(i).getDateFechaTransac();
+                            object[1] = movimientos.get(i).getVarTarjeta();
+                            object[2] = movimientos.get(i).getVarDescripEsta();
+                            object[3] = movimientos.get(i).getVarNumDocumento();
+                            object[4] = movimientos.get(i).getVarNombreTarjetahabiente();
+                            object[5] = movimientos.get(i).getVarDescTransac();
+                            object[6] = movimientos.get(i).getDecValTransaccion();
+                            object[7] = movimientos.get(i).getVarRespuAutoriz();
+                            object[8] = movimientos.get(i).getDecValCarCobr();
+                            object[9] = movimientos.get(i).getVarCodEstablecimiento();
+                            object[10] = movimientos.get(i).getVarNombreComercio();
+                            object[11] = movimientos.get(i).getVarIndicadorRever();
+                            object[12] = movimientos.get(i).getDecImpEmerEcono();
+                            object[13] = movimientos.get(i).getVarDescriSubtipo();
+                            object[14] = movimientos.get(i).getVarNitEmpresa();
+                            object[15] = movimientos.get(i).getVarRedAdquiriente();
+                            object[16] = movimientos.get(i).getDecSaldoDispo();
+
+                            modelo.addRow(object);
+                        }
+                    } else {
+                        if (idTipoFiltro == 4) {
+
+                            String formato = FechIni.getDateFormatString();
+                            Date date = FechIni.getDate();
+
+                            SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                            String fechIni = String.valueOf(sdf.format(date));
+
+                            String formato2 = FechFi.getDateFormatString();
+                            Date date2 = FechFi.getDate();
+
+                            SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                            String fechFi = String.valueOf(sdf.format(date2));
+
+                            movimientos = movimientoController.consultaSaldoPorTarjeta(NumTarj.getText().trim(), fechIni, fechFi, entidad);
+
+                            DefaultTableModel modelo;
+                            modelo = new DefaultTableModel();
+
+                            jTable1.setModel(modelo);
+
+                                           modelo.addColumn("Fecha Trasaccion");
+                modelo.addColumn("Numero Tarjeta");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("Estado Tarjeta");
+                modelo.addColumn("Suptipo");
+                modelo.addColumn("Saldo Tarjeta ");
+
+                for (int i = 0; i < movimientos.size(); i++) {
+                    Object[] object = new Object[6];
+                    object[0] = movimientos.get(i).getVarDateFechaTransac();
+                    object[1] = movimientos.get(i).getVarTarjeta();
+                    object[2] = movimientos.get(i).getVarNombTajHabiente();
+                    object[3] = movimientos.get(i).getVarDescripEsta();
+                    object[4] = movimientos.get(i).getVarDescriSubtipo();
+                    object[5] = movimientos.get(i).getDecSaldoDispo();
+
+                                modelo.addRow(object);
+                            }
+
+                        } else {
+                            if (idTipoFiltro == 5) {
+
+                                String formato = FechIni.getDateFormatString();
+                                Date date = FechIni.getDate();
+
+                                SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                                String fechIni = String.valueOf(sdf.format(date));
+
+                                String formato2 = FechFi.getDateFormatString();
+                                Date date2 = FechFi.getDate();
+
+                                SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                                String fechFi = String.valueOf(sdf.format(date2));
+
+                                movimientos = movimientoController.consultaSaldoTarjetasEmpresa(fechIni, fechFi,entidad, Nit.getText().trim(), SubTipo.getText().trim(), Bin.getText().trim(),entidad ,NumTarj.getText().trim());
+
+                                DefaultTableModel modelo;
+                                modelo = new DefaultTableModel();
+
+                                jTable1.setModel(modelo);
+
+                                modelo.addColumn("Fecha Trasaccion");
+                modelo.addColumn("Numero Tarjeta");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("Estado Tarjeta");
+                modelo.addColumn("Suptipo");
+                modelo.addColumn("Saldo Tarjeta ");
+
+                for (int i = 0; i < movimientos.size(); i++) {
+                    Object[] object = new Object[6];
+                    object[0] = movimientos.get(i).getVarDateFechaTransac();
+                    object[1] = movimientos.get(i).getVarTarjeta();
+                    object[2] = movimientos.get(i).getVarNombTajHabiente();
+                    object[3] = movimientos.get(i).getVarDescripEsta();
+                    object[4] = movimientos.get(i).getVarDescriSubtipo();
+                    object[5] = movimientos.get(i).getDecSaldoDispo();
+
+                                    modelo.addRow(object);
+
+                                }
+
+                            } else {
+                                if (idTipoFiltro == 6) {
+                                    String formato = FechIni.getDateFormatString();
+                                    Date date = FechIni.getDate();
+
+                                    SimpleDateFormat sdf = new SimpleDateFormat(formato);
+                                    String fechIni = String.valueOf(sdf.format(date));
+
+                                    String formato2 = FechFi.getDateFormatString();
+                                    Date date2 = FechFi.getDate();
+
+                                    SimpleDateFormat sdf2 = new SimpleDateFormat(formato2);
+                                    String fechFi = String.valueOf(sdf.format(date2));
+
+                                    movimientos = movimientoController.consultaSaldoTarjetaEntidad(NumTarj.getText().trim(), entidad,Bin.getText().trim());
+
+                                    DefaultTableModel modelo;
+                                    modelo = new DefaultTableModel();
+
+                                    jTable1.setModel(modelo);
+
+                                    modelo.addColumn("Fecha Trasaccion");
+                modelo.addColumn("Numero Tarjeta");
+                modelo.addColumn(" Nombre TarjetaHabiente");
+                modelo.addColumn("Nit Empresa");
+                modelo.addColumn("Estado");
+                modelo.addColumn("Saldo Estado Tarjeta ");
+
+                for (int i = 0; i < movimientos.size(); i++) {
+                    Object[] object = new Object[6];
+                    object[0] = movimientos.get(i).getVarDateFechaTransac();
+                    object[1] = movimientos.get(i).getVarTarjeta();
+                    object[2] = movimientos.get(i).getVarNombTajHabiente();
+                    object[3] = movimientos.get(i).getVarDescripEsta();
+                    object[4] = movimientos.get(i).getVarDescriSubtipo();
+                    object[5] = movimientos.get(i).getDecSaldoDispo();
+
+                                        modelo.addRow(object);
+
+                                    }
+                                } else {
+
+                                }
+
+                            }
+                        }
+
+                    }
+                }
+                }
+
+            }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FiltrosMonetarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
+    }//GEN-LAST:event_button1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Bin;
@@ -747,7 +1075,8 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
     private javax.swing.JTextField Nit;
     private javax.swing.JTextField NumTarj;
     private javax.swing.JTextField SubTipo;
-    private java.awt.Button button1;
+    private javax.swing.JButton button1;
+    private java.awt.Button button12;
     private javax.swing.JComboBox<String> entity;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;

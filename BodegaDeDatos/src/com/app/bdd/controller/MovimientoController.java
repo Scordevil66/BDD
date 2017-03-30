@@ -44,6 +44,7 @@ public class MovimientoController {
     static String rutas = "";
     static int retorno = 0;
     static int error = 0;
+    static int fin = 0;
 
 //    public void MostrarCargando() {
 //        c.setLocationRelativeTo(null);
@@ -762,6 +763,7 @@ public class MovimientoController {
 //                    frame.createAndShowGUI();
 //                }
 //            });
+    if(fin==0){
             while ((texto = contenido2.readLine()) != null) {
 
                 movimiento = new Movimientos();
@@ -879,8 +881,13 @@ public class MovimientoController {
                 resultado = registrarMovimiento(movimiento);
 
                 error = 0;
+                fin++;
+                
+                
 
             }
+            JOptionPane.showMessageDialog(null, "Registro realizado satisfactoriamente");
+    }
             c.dispose();
             c.setVisible(false);
         } //Si se causa un error al leer cae aqui

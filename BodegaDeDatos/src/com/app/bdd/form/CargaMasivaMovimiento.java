@@ -331,7 +331,7 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
                 }
 
                 if (valor > 0) {
-                    JOptionPane.showMessageDialog(null, "Registro realizado satisfactoriamente");
+                    
 
                     l_nombre.setText("");
                     bAceptar.setEnabled(false);

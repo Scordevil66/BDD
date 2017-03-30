@@ -9,14 +9,21 @@ package com.app.bdd.controller;
 import com.app.bdd.conexion.ConexionSQL;
 import static com.app.bdd.controller.NomonetariasController.LeerArchivoNoMonetariasTxt;
 import static com.app.bdd.controller.NomonetariasController.registrarNoMonetaria;
+import com.app.bdd.form.Cargando;
 import com.app.bdd.models.NoMonetarias;
 import com.app.bdd.models.TslSaldos;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import static jdk.nashorn.internal.objects.NativeString.substring;
 
 /**
@@ -26,6 +33,10 @@ import static jdk.nashorn.internal.objects.NativeString.substring;
 public class SaldosController {
 
     static Statement st;
+    static Cargando c = new Cargando();
+    static String rutas = "";
+    static int retorno = 0;
+    static int error = 0;
 
     public static void SaldosController() throws SQLException {
         SaldosController.st = ConexionSQL.conexion();
@@ -80,6 +91,33 @@ public class SaldosController {
 
         return sa;
 
+    }
+    
+    public int LeerArchivoSaldo(String ruta) {
+
+        rutas = ruta;
+
+        c.setLocationRelativeTo(null);
+        c.setVisible(true);
+
+        Timer t;
+        t = new Timer(1000, new ListenerSal());
+        t.start();
+
+        return retorno;
+
+    }
+
+    class ListenerSal implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                retorno = LeerArchivoSaldosTxt(rutas);
+            } catch (Exception ex) {
+                Logger.getLogger(MovimientoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
       public static int LeerArchivoSaldosTxt(String ruta) {
@@ -164,11 +202,21 @@ public class SaldosController {
                 System.out.println(texto);
 
                 resultado = registrarSaldo(saldo);
+                
+                error = 0;
 
             }
+            
+            c.dispose();
+            c.setVisible(false);
         } //Si se causa un error al leer cae aqui //Si se causa un error al leer cae aqui //Si se causa un error al leer cae aqui //Si se causa un error al leer cae aqui
         catch (Exception e) {
-            System.out.println("Error al leer");
+            c.dispose();
+            c.setVisible(false);
+            if (error == 0) {
+                JOptionPane.showMessageDialog(null, "  Error al intentar cargar el archivo, Valide nuevamente ");
+            }
+            error++;
         }
         return resultado;
     }

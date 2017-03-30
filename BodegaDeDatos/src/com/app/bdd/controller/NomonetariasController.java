@@ -7,9 +7,10 @@ package com.app.bdd.controller;
 
 import com.app.bdd.conexion.ConexionSQL;
 
-import com.app.bdd.models.Movimientos;
-import com.app.bdd.controller.NomonetariasController;
+import com.app.bdd.form.Cargando;
 import com.app.bdd.models.NoMonetarias;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.sql.Date;
@@ -18,6 +19,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import static jdk.nashorn.internal.objects.NativeString.substring;
 
 /**
@@ -27,6 +32,10 @@ import static jdk.nashorn.internal.objects.NativeString.substring;
 public class NomonetariasController {
 
     static Statement st;
+    static Cargando c = new Cargando();
+    static String rutas = "";
+    static int retorno = 0;
+    static int error = 0;
 
     public static void NomonetariasController() throws SQLException {
         NomonetariasController.st = ConexionSQL.conexion();
@@ -135,9 +144,9 @@ public class NomonetariasController {
             if (!(NumTarjeta.equals(""))) {
                 sql = sql + " and nomo.varNumTarjeta='" + NumTarjeta + "'\n";
             }
-            
-             if (!((entidad+"").equals(""))) {
-                sql = sql + " and mov.varBin ='"+ entidad +"' \n";
+
+            if (!((entidad + "").equals(""))) {
+                sql = sql + " and mov.varBin ='" + entidad + "' \n";
             }
 
             if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
@@ -214,11 +223,11 @@ public class NomonetariasController {
             if (!(Subtipo.equals(""))) {
                 sql = sql + " and mov.varDescriSubtipo='" + Subtipo + "'\n";
             }
-            
-            if (!((entidad+"").equals(""))) {
-                sql = sql + " and mov.varBin ='"+ entidad +"' \n";
+
+            if (!((entidad + "").equals(""))) {
+                sql = sql + " and mov.varBin ='" + entidad + "' \n";
             }
-            
+
             if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
             }
@@ -290,9 +299,9 @@ public class NomonetariasController {
             if (!(FechIni.equals("")) && !(FechFin.equals(""))) {
                 sql = sql + " and mov.dateFechaTransac  BETWEEN '" + FechIni + "' AND '" + FechFin + "'\n";
             }
-            
-            if (!((entidad+"").equals(""))) {
-                sql = sql + " and mov.varBin ='"+ entidad +"' \n";
+
+            if (!((entidad + "").equals(""))) {
+                sql = sql + " and mov.varBin ='" + entidad + "' \n";
             }
 
             ResultSet rs = null;
@@ -314,6 +323,33 @@ public class NomonetariasController {
         }
 
         return nomonetarias;
+    }
+
+    public int LeerArchivoNo(String ruta) {
+
+        rutas = ruta;
+
+        c.setLocationRelativeTo(null);
+        c.setVisible(true);
+
+        Timer t;
+        t = new Timer(1000, new ListenerNo());
+        t.start();
+
+        return retorno;
+
+    }
+
+    class ListenerNo implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            try {
+                retorno = LeerArchivoNoMonetariasTxt(rutas);
+            } catch (Exception ex) {
+                Logger.getLogger(MovimientoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
 
     /* FIN CONSULTA SALDO POR ENTIDAD */
@@ -347,19 +383,17 @@ public class NomonetariasController {
                 nomonetaria.setVardateFechaNovedad(texto.substring(3, 11));
                 nomonetaria.setVarCodFranquicia(texto.substring(11, 14));
                 //nomonetaria.setVarCodBin(texto.substring(14, 23));
-                
-                String primer= substring(14,18);
-                primer =primer+"XXXX";
+
+                String primer = substring(14, 18);
+                primer = primer + "XXXX";
                 String restobin = texto.substring(18, 23);
-                nomonetaria.setVarCodBin(primer+restobin);
-                
-                
-               /* String codigobin = texto.substring(9, 18);
+                nomonetaria.setVarCodBin(primer + restobin);
+
+                /* String codigobin = texto.substring(9, 18);
                 String varTarjeta = substring(18, 23); 
                 varTarjeta = varTarjeta + "xxxx";
                 varTarjeta = codigobin + varTarjeta  + texto.substring(23, 28); 
                 movimiento.setVarTarjeta(varTarjeta*/
-                
 //                String codigobin = texto.substring(23, 32);
 //                String varTarjeta = substring(32,37);
 //                 varTarjeta = varTarjeta + "XXXX";
@@ -367,32 +401,28 @@ public class NomonetariasController {
 //                varnumtarjeta= codigobin + varTarjeta + (texto.substring(37, 42));
 //                
 //              nomonetaria.setVarNumTarjeta(varnumtarjeta);
-              
-                if((texto.substring(23, 42)).length() > 16){
-                  String corte= substring(23,27);
-                corte=corte+"XXXX";
-                String codigobin = texto.substring(27, 32);
-                String varTarjeta = substring(32, 35); 
-                varTarjeta = varTarjeta + "XXX";
-                varTarjeta = corte + codigobin + varTarjeta  + texto.substring(35, 42); 
-                nomonetaria.setVarNumTarjeta(varTarjeta);
-                  
-              }else{
-                  
-                String ntarjeta = (texto.substring(23, 42));
-                String corte= ntarjeta.substring(0,3);
-                corte=corte+"XXX";
-                String codigobin = texto.substring(3, 8);
-                String varTarjeta = substring(8, 11); 
-                varTarjeta = varTarjeta + "XXX";
-                varTarjeta = corte + codigobin + varTarjeta  + texto.substring(11, 16); 
-                nomonetaria.setVarNumTarjeta(varTarjeta);
-              
-              } 
-              
-              
-                
-                
+                if ((texto.substring(23, 42)).length() > 16) {
+                    String corte = substring(23, 27);
+                    corte = corte + "XXXX";
+                    String codigobin = texto.substring(27, 32);
+                    String varTarjeta = substring(32, 35);
+                    varTarjeta = varTarjeta + "XXX";
+                    varTarjeta = corte + codigobin + varTarjeta + texto.substring(35, 42);
+                    nomonetaria.setVarNumTarjeta(varTarjeta);
+
+                } else {
+
+                    String ntarjeta = (texto.substring(23, 42));
+                    String corte = ntarjeta.substring(0, 3);
+                    corte = corte + "XXX";
+                    String codigobin = texto.substring(3, 8);
+                    String varTarjeta = substring(8, 11);
+                    varTarjeta = varTarjeta + "XXX";
+                    varTarjeta = corte + codigobin + varTarjeta + texto.substring(11, 16);
+                    nomonetaria.setVarNumTarjeta(varTarjeta);
+
+                }
+
                 nomonetaria.setVarNombreTarjetahabiente(texto.substring(42, 64));
                 nomonetaria.setVarSubTipo(texto.substring(64, 67));
                 nomonetaria.setVarTipoCuenta(texto.substring(67, 70));
@@ -417,10 +447,20 @@ public class NomonetariasController {
 
                 resultado = registrarNoMonetaria(nomonetaria);
 
+                error = 0;
+
             }
+            c.dispose();
+            c.setVisible(false);
         } //Si se causa un error al leer cae aqui
         catch (Exception e) {
-            System.out.println("Error al leer");
+            c.dispose();
+            c.setVisible(false);
+            if (error == 0) {
+                JOptionPane.showMessageDialog(null, "  Error al intentar cargar el archivo, Valide nuevamente ");
+            }
+            error++;
+            //  System.out.println("Error al leer");
         }
         return resultado;
     }

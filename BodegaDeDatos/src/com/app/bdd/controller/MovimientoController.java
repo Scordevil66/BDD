@@ -883,12 +883,6 @@ public class MovimientoController {
         } //Si se causa un error al leer cae aqui
         catch (Exception e) {
 
-            // c.cerrar();
-//             c.cambioEstado();
-//            CargaMasivaMovimiento c = new CargaMasivaMovimiento();
-//            Cargando ca = new Cargando();
-//            ca.setVisible(false);
-//            c.setC(ca);
             c.dispose();
             c.setVisible(false);
             if (error == 0) {

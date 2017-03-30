@@ -7,7 +7,9 @@ package com.app.bdd.form;
 
 //import com.app.utils.LeerArchivoDeExcel;
 import com.app.bdd.controller.MovimientoController;
+import com.app.bdd.controller.NomonetariasController;
 import static com.app.bdd.controller.NomonetariasController.LeerArchivoNoMonetariasTxt;
+import static com.app.bdd.controller.NomonetariasController.NomonetariasController;
 import static com.app.bdd.controller.SaldosController.LeerArchivoSaldosTxt;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -294,23 +296,7 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
 
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
 
-       
-//          try {
-//            
-////            c.setLocationRelativeTo(null);
-//////        dpnEscritorio.add(cmau);
-////            c.setVisible(true);
-//            
-//          
-//        } catch (Exception ex) {
-//            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-       
-          //  jL_cargando.setText("Cargando... por favor espere.");
-
-            //if (jL_cargando.getText().equals("Cargando... por favor espere.")) {
-
-                // JOptionPane.showMessageDialog(null, "Cargando....Por favor espere" );
+      
                 int valor = 0;
 
                 int idArchivo = 0;
@@ -332,7 +318,8 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
                 } else {
 //                JOptionPane.showMessageDialog(null, "Por favor espere" );
                     if (idArchivo == 1) {
-                        valor = LeerArchivoNoMonetariasTxt(lPath.getText());
+                        NomonetariasController n = new NomonetariasController();
+                        valor = n.LeerArchivoNo(lPath.getText());
 
                     } else {
 //                    JOptionPane.showMessageDialog(null, "Por favor espere" );

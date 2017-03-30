@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Workbook;
 
 
 
@@ -1091,7 +1093,7 @@ public class FiltrosMonetarios extends javax.swing.JInternalFrame {
         } catch (IOException ex) {
             Logger.getLogger(FiltrosMonetarios.class.getName()).log(Level.SEVERE, null, ex);
         }
-      //  Workbook libro = new HSSFWorkbook();
+        Workbook libro = new HSSFWorkbook();
      
         
     }//GEN-LAST:event_jButton1ActionPerformed

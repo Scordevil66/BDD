@@ -29,7 +29,7 @@ public class UserController {
 
         try {
             
-            String sql = "INSERT INTO  [BodegaDatos].[dbo].[usuarios] "
+            String sql = "INSERT INTO  [usuarios] "
                     + "           ([varNombreUser] "
                     + "           ,[varApellidosUser]"
                     + "           ,[varCargoUser]"

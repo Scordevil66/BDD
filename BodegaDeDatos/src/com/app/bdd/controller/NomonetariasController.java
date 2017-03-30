@@ -45,7 +45,7 @@ public class NomonetariasController {
 
         try {
 
-            sql = "INSERT INTO  [BodegaDatos].[dbo].[nomonetarias] "
+            sql = "INSERT INTO  [nomonetarias] "
                     + "           ([varTipoNovedad]"
                     + "           ,[dateFechaNovedad]"
                     + "           ,[varCodFranquicia]"

@@ -43,7 +43,7 @@ public class SaldosController {
 
         try {
             
-            String sql = "INSERT INTO  [BodegaDatos].[dbo].[saldos] "
+            String sql = "INSERT INTO  [saldos] "
                     + "           ([varBin]"
                     + "           ,[varNitEMpresa]"
                     + "           ,[varTarjeta]"

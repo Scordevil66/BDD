@@ -97,7 +97,7 @@ public class MovimientoController {
 //        CONVERT(VARCHAR, '" + mesN+"/"+diaN+"/" +anioN +"', 103)"
         try {
 
-            sql = "INSERT INTO  [BodegaDatos].[dbo].[movimientos] "
+            sql = "INSERT INTO  [movimientos] "
                     + "           ([varBin]"
                     + "           ,[varTarjeta]"
                     + "           ,[varNitEmpresa]"

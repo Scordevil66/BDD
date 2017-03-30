@@ -58,6 +58,7 @@ public class Menu extends javax.swing.JFrame {
         setIconImages(null);
 
         dpnEscritorio.setBackground(new java.awt.Color(153, 153, 153));
+        dpnEscritorio.setForeground(new java.awt.Color(240, 240, 240));
         dpnEscritorio.setPreferredSize(new java.awt.Dimension(350, 240));
 
         javax.swing.GroupLayout dpnEscritorioLayout = new javax.swing.GroupLayout(dpnEscritorio);
@@ -71,8 +72,13 @@ public class Menu extends javax.swing.JFrame {
             .addGap(0, 240, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setBackground(new java.awt.Color(16, 26, 126));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jMenu5.setForeground(new java.awt.Color(240, 240, 240));
         jMenu5.setText("Inicio");
 
+        jMenuItem6.setBackground(new java.awt.Color(199, 232, 249));
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Usuarios2.png"))); // NOI18N
         jMenuItem6.setText("Cambio de Usuario");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -82,6 +88,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem6);
 
+        jMenuItem8.setBackground(new java.awt.Color(199, 232, 249));
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Salir2.png"))); // NOI18N
         jMenuItem8.setText("Salir");
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +100,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu1.setForeground(new java.awt.Color(240, 240, 240));
         jMenu1.setText("Archivos");
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +108,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jMenuItem2.setBackground(new java.awt.Color(199, 232, 249));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/CargadeArchivos2.png"))); // NOI18N
         jMenuItem2.setText("Carga de Archivos");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +118,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem10.setBackground(new java.awt.Color(199, 232, 249));
         jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Buscar2.png"))); // NOI18N
         jMenuItem10.setText("Historico Archivos Cargados");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -120,8 +130,10 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu6.setForeground(new java.awt.Color(240, 240, 240));
         jMenu6.setText("Reportes");
 
+        jMenuItem7.setBackground(new java.awt.Color(199, 232, 249));
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TextoPlano2.png"))); // NOI18N
         jMenuItem7.setText("Novedades Monetarias");
         jMenuItem7.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -136,6 +148,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem7);
 
+        jMenuItem9.setBackground(new java.awt.Color(199, 232, 249));
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/TextoPlano2.png"))); // NOI18N
         jMenuItem9.setText("Novedades No Monetarias");
         jMenuItem9.addActionListener(new java.awt.event.ActionListener() {

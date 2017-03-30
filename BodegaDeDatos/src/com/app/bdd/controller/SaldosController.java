@@ -112,11 +112,9 @@ public class SaldosController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            try {
+         
                 retorno = LeerArchivoSaldosTxt(rutas);
-            } catch (Exception ex) {
-                Logger.getLogger(MovimientoController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    
         }
     }
     

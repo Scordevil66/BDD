@@ -342,12 +342,11 @@ public class NomonetariasController {
 
     class ListenerNo implements ActionListener {
 
+        @Override
         public void actionPerformed(ActionEvent e) {
-            try {
+     
                 retorno = LeerArchivoNoMonetariasTxt(rutas);
-            } catch (Exception ex) {
-                Logger.getLogger(MovimientoController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         }
 
     }

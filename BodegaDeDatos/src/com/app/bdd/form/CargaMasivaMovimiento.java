@@ -7,7 +7,6 @@ package com.app.bdd.form;
 
 //import com.app.utils.LeerArchivoDeExcel;
 import com.app.bdd.controller.MovimientoController;
-import static com.app.bdd.controller.MovimientoController.LeerArchivoMovimientoTxt;
 import static com.app.bdd.controller.NomonetariasController.LeerArchivoNoMonetariasTxt;
 import static com.app.bdd.controller.SaldosController.LeerArchivoSaldosTxt;
 import java.awt.BorderLayout;
@@ -32,6 +31,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class CargaMasivaMovimiento extends javax.swing.JFrame {
 
+//    Cargando c = new Cargando();
+    
     /**
      * Creates new form CargaMasivaUsuario
      *
@@ -43,6 +44,16 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
         init();
     }
 
+//    public Cargando getC() {
+//        return c;
+//    }
+//
+//    public void setC(Cargando c) {
+//        this.c = c;
+//    }
+    
+    
+
     public void init() throws Exception {
 
         lPath.setVisible(false);
@@ -53,6 +64,8 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
         jComboBox1.addItem("0 - Movimiento");
         jComboBox1.addItem("1 - No Monetarios");
         jComboBox1.addItem("2 - Saldos");
+        
+        
 
 //        for (int i = 0; i < areas.size(); i++) {
 //            jComboBox1.addItem(areas.get(i).getIdArea() + " - " + areas.get(i).getArea());
@@ -282,6 +295,17 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
     private void bAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarActionPerformed
 
        
+//          try {
+//            
+////            c.setLocationRelativeTo(null);
+//////        dpnEscritorio.add(cmau);
+////            c.setVisible(true);
+//            
+//          
+//        } catch (Exception ex) {
+//            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+       
           //  jL_cargando.setText("Cargando... por favor espere.");
 
             //if (jL_cargando.getText().equals("Cargando... por favor espere.")) {
@@ -303,7 +327,8 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
                 }
                 if (idArchivo == 0) {
 //                JOptionPane.showMessageDialog(null, "Por favor espere" );
-                    valor = LeerArchivoMovimientoTxt(lPath.getText());
+                    MovimientoController mc = new MovimientoController();
+                    valor = mc.LeerArchivoMovimiento(lPath.getText());
                 } else {
 //                JOptionPane.showMessageDialog(null, "Por favor espere" );
                     if (idArchivo == 1) {
@@ -322,6 +347,7 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
                     l_nombre.setText("");
                     bAceptar.setEnabled(false);
                     jComboBox1.setSelectedIndex(0);
+//                     c.setVisible(false);
 
                 }
 
@@ -329,7 +355,10 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
 
         } catch (Exception ex) {
             Logger.getLogger(CargaMasivaMovimiento.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, ex);
+           // JOptionPane.showMessageDialog(null, ex);
+//              c.setVisible(false);
+//              c.dispose();
+           
         }
 
     }//GEN-LAST:event_bAceptarActionPerformed
@@ -377,6 +406,11 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
             }
         });
     }
+    
+//    public void cambioEstado(){
+//    
+//    
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAceptar;

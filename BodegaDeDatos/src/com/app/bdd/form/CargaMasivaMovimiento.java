@@ -10,6 +10,7 @@ import com.app.bdd.controller.MovimientoController;
 import com.app.bdd.controller.NomonetariasController;
 import static com.app.bdd.controller.NomonetariasController.LeerArchivoNoMonetariasTxt;
 import static com.app.bdd.controller.NomonetariasController.NomonetariasController;
+import com.app.bdd.controller.SaldosController;
 import static com.app.bdd.controller.SaldosController.LeerArchivoSaldosTxt;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -323,7 +324,8 @@ public class CargaMasivaMovimiento extends javax.swing.JFrame {
 
                     } else {
 //                    JOptionPane.showMessageDialog(null, "Por favor espere" );
-                        valor = LeerArchivoSaldosTxt(lPath.getText());
+                        SaldosController s = new SaldosController();
+                        valor = s.LeerArchivoSaldo(lPath.getText());
                     }
 
                 }

@@ -12,6 +12,7 @@ import com.app.bdd.form.Menu;
 import com.app.bdd.form.Progress;
 import com.app.bdd.models.Contador;
 import com.app.bdd.models.Movimientos;
+import com.itextpdf.io.source.PdfTokenizer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.Visibility;
@@ -373,23 +374,23 @@ public class MovimientoController {
                     + " mov.varTarjeta,"
                     + " mov.varDispOrigen,"
                     + " mov.varDesEstCoCargos, "
-                    + "mov.varDescTransac ,"
-                    + "mov.decValTransaccion,"
+                    + " mov.varDescTransac ,"
+                    + " mov.decValTransaccion,"
                     + " mov.dateFechaTransac,"
-                    + "mov.decValIva,"
-                    + "mov.decTotalCobrar,"
-                    + "mov.decImpEmerEcono,"
-                    + "mov.varIndicadorRever,"
-                    + "mov.varDescrpResp,"
+                    + " mov.decValIva,"
+                    + " mov.decTotalCobrar,"
+                    + " mov.decImpEmerEcono,"
+                    + " mov.varIndicadorRever,"
+                    + " mov.varDescrpResp,"
                     + " mov.varCodAutoriza,"
-                    + "mov.varRedAdquiriente, "
+                    + " mov.varRedAdquiriente, "
                     + " mov.varCodEstablecimiento,"
-                    + "mov.varDescriSubtipo,"
-                    + "mov.varNumTarjSecundari"
-                    + ",mov.varValorBaseDevIva,"
-                    + "sal.decSaldoDispo,"
-                    + "sal.varDescripEsta,"
-                    + "comer.varNombreComercio  \n"
+                    + " mov.varDescriSubtipo,"
+                    + " mov.varNumTarjSecundari,"
+                    + " mov.varValorBaseDevIva,"
+                    + " sal.decSaldoDispo,"
+                    + " sal.varDescripEsta,"
+                    + " comer.varNombreComercio  \n"
                     + " from saldos as sal, movimientos as mov,comerciosred as comer\n"
                     + " where sal.varTarjeta= mov.varTarjeta\n"
                     + " and comer.varCodigoComercio=mov.varCodEstablecimiento\n"
@@ -549,7 +550,7 @@ public class MovimientoController {
                     + " and mov.varSubtipo=sal.varSubtipo\n";
 
             if (!(Bin.equals(""))) {
-                sql = sql + " and mov.varTarjeta='" + Bin + "'\n";
+                sql = sql + " and mov.varBin='" + Bin + "'\n";
             }
             if (!((entity + "").equals(""))) {
                 sql = sql + " and mov.varBin ='" + entity + "' \n";
@@ -708,6 +709,10 @@ public class MovimientoController {
 
         return retorno;
 
+    }
+
+    public void consultaExtractoPorTarjeta(PdfTokenizer.TokenType tokenType) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     class ListenerMov implements ActionListener {

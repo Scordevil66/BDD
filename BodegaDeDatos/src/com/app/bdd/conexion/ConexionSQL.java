@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+
+
 /**
  *
  * @author ContabilidadPC
@@ -24,7 +26,8 @@ import javax.swing.JOptionPane;
 public class ConexionSQL {
 
     //static String clave = "yU7eywfXILoZjtaD";
-     static String clave = "qwerty78";
+    // static String clave = "qwerty78";
+     static String clave = "qwerty";
   //  static String clave = "wstinol";
     static Statement ST = null;
     static Connection cn = null;
@@ -48,12 +51,13 @@ public class ConexionSQL {
             //  149.56.93.6
             //  String url = "jdbc:mysql://149.56.93.6:3306/smsrenta_actualizada";
         
-           String rsl = "jdbc:sqlserver://SQL5020.SmarterASP.NET;databaseName=DB_9F51D1_bdd";
+        //   String rsl = "jdbc:sqlserver://SQL5020.SmarterASP.NET;databaseName=DB_9F51D1_bdd";
+                    String rsl = "jdbc:sqlserver://localhost:1433;databaseName=BodegaDatos";
           // String rsl = "jdbc:sqlserver://10.9.200.189:1499;databaseName=BodegaBPO";
             // CONECCION A LA BASE DE DATOS
          //   System.out.print("vamos a conectar");
-//           cn = DriverManager.getConnection(rsl, "sa", clave);
-           cn = DriverManager.getConnection(rsl, "DB_9F51D1_bdd_admin", clave);
+           cn = DriverManager.getConnection(rsl, "sa", clave);
+        //   cn = DriverManager.getConnection(rsl, "DB_9F51D1_bdd_admin", clave);
             // TRAE LOS DATOS
             Statement st = cn.createStatement();
              
@@ -62,7 +66,7 @@ public class ConexionSQL {
             System.out.print("-------------------consulta BD:" + ST);
 
         } catch (ClassNotFoundException ex) {
-             JOptionPane.showMessageDialog(null, "No se logro conectar a la base de datos" + ex);
+             JOptionPane.showMessageDialog(null, "No se logro conectar a la base de datos");
             //System.out.print("No se logro conectar a la Base de datos");
         } catch (SQLException e) {
            

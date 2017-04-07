@@ -237,9 +237,60 @@ public class Movimientos {
         this.varNombreComercio = varNombreComercio;
     }
 
-   
-    
-    // FIN CONSUlTA NO MONETARIA POR TARJETA
+    private String entidad;
+  private String numtarjeta;
+  private String fechini;
+  private String fechfin;
+
+    public Movimientos(String entidad, String numtarjeta, String fechini, String fechfin) {
+        this.entidad = entidad;
+        this.numtarjeta = numtarjeta;
+        this.fechini = fechini;
+        this.fechfin = fechfin;
+    }
+
+    public Movimientos(String toString, Object valueAt, Object valueAt0, Object valueAt1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(String entidad) {
+        this.entidad = entidad;
+    }
+
+    public String getNumtarjeta() {
+        return numtarjeta;
+    }
+
+    public void setNumtarjeta(String numtarjeta) {
+        this.numtarjeta = numtarjeta;
+    }
+
+    public String getFechini() {
+        return fechini;
+    }
+
+    public void setFechini(String fechini) {
+        this.fechini = fechini;
+    }
+
+    public String getFechfin() {
+        return fechfin;
+    }
+
+    public void setFechfin(String fechfin) {
+        this.fechfin = fechfin;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "EjectutaReporte{" + "entidad=" + entidad + ", numtarjeta=" + numtarjeta + ", fechini=" + fechini + ", fechfin=" + fechfin + '}';
+//    }
+//    
+//    // FIN CONSUlTA NO MONETARIA POR TARJETA
 
       //consulta consultaSaldoPorTarjeta   private String varDateFechaTransac
 
@@ -820,10 +871,11 @@ public class Movimientos {
 
     @Override
     public String toString() {
-        return "Movimientos{" + "intidMovimientos=" + intidMovimientos + ", varBin=" + varBin + ", varTarjeta=" + varTarjeta + ", varNitEmpresa=" + varNitEmpresa + ", varNumCuenta=" + varNumCuenta + ", varDispOrigen=" + varDispOrigen + ", varDesEstCoCargos=" + varDesEstCoCargos + ", varDescTransac=" + varDescTransac + ", decValTransaccion=" + decValTransaccion + ", decValDispensado=" + decValDispensado + ", dateFechaTransac=" + dateFechaTransac + ", varDateFechaTransac=" + varDateFechaTransac + ", decValCarCobr=" + decValCarCobr + ", decValIva=" + decValIva + ", decTotalCobrar=" + decTotalCobrar + ", decImpEmerEcono=" + decImpEmerEcono + ", varIndicadorRever=" + varIndicadorRever + ", varRespuAutoriz=" + varRespuAutoriz + ", varDescrpResp=" + varDescrpResp + ", varCodAutoriza=" + varCodAutoriza + ", varFiller=" + varFiller + ", dateFechAutoriza=" + dateFechAutoriza + ", varFechAutoriza=" + varFechAutoriza + ", varHoraAutoriza=" + varHoraAutoriza + ", varHortaDisposi=" + varHortaDisposi + ", varNumReferencia=" + varNumReferencia + ", varRedAdquiriente=" + varRedAdquiriente + ", varNumDispos=" + varNumDispos + ", varCodEstablecimiento=" + varCodEstablecimiento + ", varSubtipo=" + varSubtipo + ", varDescriSubtipo=" + varDescriSubtipo + ", varNumTarjSecundari=" + varNumTarjSecundari + ", varValorPropina=" + varValorPropina + ", varValorIva=" + varValorIva + ", varValorBaseDevIva=" + varValorBaseDevIva + ", varNumCuotas=" + varNumCuotas + ", varFiller2=" + varFiller2 + ", decSaldoDispo=" + decSaldoDispo + ", varEstadoTarjeta=" + varEstadoTarjeta + ", varDescripEsta=" + varDescripEsta + ", varNombreTarjetahabiente=" + varNombreTarjetahabiente + ", varTipoDocumTatjetaHabiente=" + varTipoDocumTatjetaHabiente + ", varNumDocumento=" + varNumDocumento + ", dateFechaNovedad=" + dateFechaNovedad + ", vardateFechaNovedad=" + vardateFechaNovedad + ", varTipoNovedad=" + varTipoNovedad + ", varDescripcionTipoNovedad=" + varDescripcionTipoNovedad + ", varOficina=" + varOficina + ", varNumTarjetaAnterior=" + varNumTarjetaAnterior + ", varDescripcionTipoDocumento=" + varDescripcionTipoDocumento + ", varCodigoComercio=" + varCodigoComercio + ", varNombreComercio=" + varNombreComercio + ", varNombTajHabiente=" + varNombTajHabiente + ", idBonbanco=" + idBonbanco + ", CodBanco=" + CodBanco + ", CodBin=" + CodBin + ", nombreBanco=" + nombreBanco + '}';
+        return "Movimientos{" + "intidMovimientos=" + intidMovimientos + ", varBin=" + varBin + ", varTarjeta=" + varTarjeta + ", varNitEmpresa=" + varNitEmpresa + ", varNumCuenta=" + varNumCuenta + ", varDispOrigen=" + varDispOrigen + ", varDesEstCoCargos=" + varDesEstCoCargos + ", varDescTransac=" + varDescTransac + ", decValTransaccion=" + decValTransaccion + ", decValDispensado=" + decValDispensado + ", dateFechaTransac=" + dateFechaTransac + ", varDateFechaTransac=" + varDateFechaTransac + ", decValCarCobr=" + decValCarCobr + ", decValIva=" + decValIva + ", decTotalCobrar=" + decTotalCobrar + ", decImpEmerEcono=" + decImpEmerEcono + ", varIndicadorRever=" + varIndicadorRever + ", varRespuAutoriz=" + varRespuAutoriz + ", varDescrpResp=" + varDescrpResp + ", varCodAutoriza=" + varCodAutoriza + ", varFiller=" + varFiller + ", dateFechAutoriza=" + dateFechAutoriza + ", varFechAutoriza=" + varFechAutoriza + ", varHoraAutoriza=" + varHoraAutoriza + ", varHortaDisposi=" + varHortaDisposi + ", varNumReferencia=" + varNumReferencia + ", varRedAdquiriente=" + varRedAdquiriente + ", varNumDispos=" + varNumDispos + ", varCodEstablecimiento=" + varCodEstablecimiento + ", varSubtipo=" + varSubtipo + ", varDescriSubtipo=" + varDescriSubtipo + ", varNumTarjSecundari=" + varNumTarjSecundari + ", varValorPropina=" + varValorPropina + ", varValorIva=" + varValorIva + ", varValorBaseDevIva=" + varValorBaseDevIva + ", varNumCuotas=" + varNumCuotas + ", varFiller2=" + varFiller2 + ", decSaldoDispo=" + decSaldoDispo + ", varEstadoTarjeta=" + varEstadoTarjeta + ", varDescripEsta=" + varDescripEsta + ", varNombreTarjetahabiente=" + varNombreTarjetahabiente + ", varTipoDocumTatjetaHabiente=" + varTipoDocumTatjetaHabiente + ", varNumDocumento=" + varNumDocumento + ", dateFechaNovedad=" + dateFechaNovedad + ", vardateFechaNovedad=" + vardateFechaNovedad + ", varTipoNovedad=" + varTipoNovedad + ", varDescripcionTipoNovedad=" + varDescripcionTipoNovedad + ", varOficina=" + varOficina + ", varNumTarjetaAnterior=" + varNumTarjetaAnterior + ", varDescripcionTipoDocumento=" + varDescripcionTipoDocumento + ", varCodigoComercio=" + varCodigoComercio + ", varNombreComercio=" + varNombreComercio + ", varNombTajHabiente=" + varNombTajHabiente + ", idBonbanco=" + idBonbanco + ", CodBanco=" + CodBanco + ", CodBin=" + CodBin + ", nombreBanco=" + nombreBanco + ", entidad=" + entidad + ", numtarjeta=" + numtarjeta + ", fechini=" + fechini + ", fechfin=" + fechfin + '}';
     }
-    
-    
+
+   
+   
     
     
 }
